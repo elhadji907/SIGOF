@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('email', 200)->nullable();
             $table->string('telephone', 200)->nullable();
             $table->longText('message')->nullable();
-            $table->timestamp('cread_at')->nullable();
             $table->softDeletes();
             $table->nullableTimestamps();
         });

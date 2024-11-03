@@ -1,11 +1,31 @@
 <?php
 
 namespace App\Models;
+use Carbon\Carbon;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Class Notification
+ * 
+ * @property string $id
+ * @property string $type
+ * @property string $notifiable_type
+ * @property int $uuid
+ * @property int $notifiable_id
+ * @property string $data
+ * @property string $objet
+ * @property string $email
+ * @property string $telephone
+ * @property string $message
+ * @property Carbon|null $read_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ *
+ * @package App\Models
+ */
 class Contact extends Model
 {
     use SoftDeletes;
@@ -16,18 +36,25 @@ class Contact extends Model
     protected $casts = [
         'commentable_id' => 'int',
         'users_id' => 'int',
-        'courriers_id' => 'int'
+        'courriers_id' => 'int',
+		'notifiable_id' => 'int'
     ];
+
+	protected $dates = [
+		'read_at'
+	];
 
     protected $fillable = [
         'uuid',
-        'content',
-        'commentable_id',
-        'commentable_type',
         'objet',
         'email',
         'telephone',
         'message',
+		'type',
+		'notifiable_type',
+		'notifiable_id',
+		'data',
+		'read_at'
     ];
 
 

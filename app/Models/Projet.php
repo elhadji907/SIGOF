@@ -91,6 +91,8 @@ class Projet extends Model
 		'date_fermeture',
 		'type_projet',
 		'type_localite',
+		'convention_file',
+		'image',
 	];
 
 	

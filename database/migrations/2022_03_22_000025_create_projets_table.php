@@ -38,6 +38,8 @@ class CreateProjetsTable extends Migration
             $table->string('duree', 200)->nullable();
             $table->string('effectif', 200)->nullable();
             $table->string('statut', 200)->nullable();//ouvert, fermer
+            $table->string('image', 200)->nullable();
+            $table->string('convention_file', 200)->nullable();
             $table->string('type_localite')->nullable();
             $table->timestamp('date_signature')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->softDeletes();

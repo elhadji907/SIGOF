@@ -23,13 +23,14 @@ class ContactController extends Controller
             'telephone'     => $data['telephone'],
             'objet'         => $data['objet'],
             'message'       => $data['message'],
-            'content'       => $data['message'],
         ]);
 
         $contact->save();
 
         Alert::success("Félicitations !!!", "Votre message a été envoyé. Merci!");
+
         $status = "Félicitation, Votre message a été envoyé. Merci!";
+        
         return redirect()->back()->with('status', $status);
     }
 }

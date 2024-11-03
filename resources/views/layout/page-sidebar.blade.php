@@ -361,7 +361,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ url('postes') }}">
                     <i class="bi bi-layers-half"></i>
-                    <span>Postes</span>
+                    <span>Actualités</span>
                 </a>
             </li>
         @endcan
