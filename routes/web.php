@@ -10,6 +10,7 @@ use App\Http\Controllers\CollectivemoduleController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CommissionagrementController;
 use App\Http\Controllers\CommuneController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ConventionController;
 use App\Http\Controllers\CourrierController;
 use App\Http\Controllers\DecisionController;
@@ -54,8 +55,8 @@ use App\Http\Controllers\ProjetmoduleController;
 use App\Http\Controllers\ReferentielController;
 use App\Http\Controllers\RegionController;
 use App\Http\Controllers\RoleController;
-use App\Http\Controllers\SecteurController;
 
+use App\Http\Controllers\SecteurController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ValidationcollectiveController;
 use App\Http\Controllers\ValidationformationController;
@@ -65,6 +66,7 @@ use App\Http\Controllers\ValidationoperateurController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 
 
 
@@ -462,6 +464,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::resource('/conventions', ConventionController::class);
     Route::resource('/postes', PosteController::class);
 });
+
+Route::resource('/contacts', ContactController::class);
 
 
 

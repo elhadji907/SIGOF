@@ -31,6 +31,9 @@
     <!-- Main CSS File -->
     <link href="{{ asset('asset/css/main.css') }}" rel="stylesheet">
 
+    {{-- Pour sweetAlert --}}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
     <script type="text/javascript">
         function callbackThen(response) {
             // read Promise object
@@ -136,6 +139,15 @@
                                 aria-label="Close"></button>
                         </div>
                     @endif
+                    @if ($errors->any())
+                        @foreach ($errors->all() as $error)
+                            <div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show"
+                                role="alert"><strong>{{ $error }}</strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                        @endforeach
+                    @endif
                     <div class="col-lg-6">
                         <div class="hero-content" data-aos="fade-up" data-aos-delay="200">
                             <div class="company-badge mb-4">
@@ -171,8 +183,10 @@
 
                             <div class="customers-badge">
                                 <div class="customer-avatars">
-                                    <img src="{{ asset('asset/img/avatar-1.webp') }}" alt="Customer 1" class="avatar">
-                                    <img src="{{ asset('asset/img/avatar-2.webp') }}" alt="Customer 2" class="avatar">
+                                    <img src="{{ asset('asset/img/avatar-1.webp') }}" alt="Customer 1"
+                                        class="avatar">
+                                    <img src="{{ asset('asset/img/avatar-2.webp') }}" alt="Customer 2"
+                                        class="avatar">
                                     <img src="{{ asset('asset/img/avatar-3.webp') }}" alt="Customer 3"
                                         class="avatar">
                                     <img src="{{ asset('asset/img/avatar-4.webp') }}" alt="Customer 4"
@@ -1299,9 +1313,9 @@
 
                                 </div>
                             </form> --}}
-                            <form class="row g-3 needs-validation" novalidate method="POST" action="#">
+                            <form class="row g-3 needs-validation" novalidate method="POST"
+                                action="{{ route('contacts.store') }}">
                                 @csrf
-
                                 <div class="col-12 col-md-12 col-lg-6 col-sm-12 col-xs-12 col-xxl-6">
                                     <label for="email" class="form-label">Email<span
                                             class="text-danger mx-1">*</span></label>
@@ -1906,6 +1920,35 @@
     <!-- Template Main JS File -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
 
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+        crossorigin="anonymous"></script>
+    <script>
+        setTimeout(function() {
+            $('.alert-success').remove();
+        }, 10000);
+    </script>
+    <script>
+        setTimeout(function() {
+            $('.alert-danger').remove();
+        }, 10000);
+    </script>
+    <script>
+        function myFunction() {
+            var element = document.body;
+            element.dataset.bsTheme =
+                element.dataset.bsTheme == "light" ? "dark" : "light";
+        }
+
+        function stepFunction(event) {
+            debugger;
+            var element = document.getElementsByClassName(("html")[0].innerHTML);
+            for (var i = 0; i < element.length; i++) {
+                if (element[i] !== event.target.ariaControls) {
+                    element[i].classList.remove("show");
+                }
+            }
+        }
+    </script>
 </body>
 
 </html>
