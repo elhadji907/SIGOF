@@ -107,12 +107,7 @@
 
                     <li>
                         <a class="btn" href="#" data-bs-toggle="modal"
-                            data-bs-target="#registerOperateurModal">Créer compte opérateur
-                        </a>
-                    </li>
-                    <li>
-                        <a class="btn" href="#" data-bs-toggle="modal"
-                            data-bs-target="#registerDemandeurModal">Créer compte personnel
+                            data-bs-target="#registerteurModal">{{ __("S'inscrire") }}
                         </a>
                     </li>
                 </ul>
@@ -161,10 +156,10 @@
 
                             <div class="hero-buttons">
                                 <a href="#about" class="btn btn-primary me-0 me-sm-2 mx-1">En savoir plus</a>
-                                <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8"
+                                <a href="https://www.youtube.com/watch?v=nExQc0IzhTk"
                                     class="btn btn-link mt-2 mt-sm-0 glightbox">
                                     <i class="bi bi-play-circle me-1"></i>
-                                    Play Video
+                                    Lire la vidéo
                                 </a>
                             </div>
                         </div>
@@ -176,10 +171,8 @@
 
                             <div class="customers-badge">
                                 <div class="customer-avatars">
-                                    <img src="{{ asset('asset/img/avatar-1.webp') }}" alt="Customer 1"
-                                        class="avatar">
-                                    <img src="{{ asset('asset/img/avatar-2.webp') }}" alt="Customer 2"
-                                        class="avatar">
+                                    <img src="{{ asset('asset/img/avatar-1.webp') }}" alt="Customer 1" class="avatar">
+                                    <img src="{{ asset('asset/img/avatar-2.webp') }}" alt="Customer 2" class="avatar">
                                     <img src="{{ asset('asset/img/avatar-3.webp') }}" alt="Customer 3"
                                         class="avatar">
                                     <img src="{{ asset('asset/img/avatar-4.webp') }}" alt="Customer 4"
@@ -1211,7 +1204,7 @@
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
                 <h2>Contact</h2>
-                <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+                {{-- <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p> --}}
             </div><!-- End Section Title -->
 
             <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -1219,40 +1212,40 @@
                 <div class="row g-4 g-lg-5">
                     <div class="col-lg-5">
                         <div class="info-box" data-aos="fade-up" data-aos-delay="200">
-                            <h3>Contact Info</h3>
-                            <p>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ante
-                                ipsum primis.</p>
+                            <h3 class="text-center">Pour nous joindre</h3>
+                            <p class="text-center">Vous pouvez nous contacter via le formulaire de contact, par email
+                                direct ou par
+                                téléphone.</p>
 
                             <div class="info-item" data-aos="fade-up" data-aos-delay="300">
                                 <div class="icon-box">
                                     <i class="bi bi-geo-alt"></i>
                                 </div>
                                 <div class="content">
-                                    <h4>Our Location</h4>
-                                    <p>A108 Adam Street</p>
-                                    <p>New York, NY 535022</p>
+                                    <h4>Notre localisation</h4>
+                                    <p>Spres 1, lot 2 - 2 voies liberté 6, extension VDN. </p>
                                 </div>
                             </div>
 
                             <div class="info-item" data-aos="fade-up" data-aos-delay="400">
                                 <div class="icon-box">
-                                    <i class="bi bi-telephone"></i>
+                                    <a href="tel:+221338279251"><i class="bi bi-telephone"></i></a>
                                 </div>
                                 <div class="content">
-                                    <h4>Phone Number</h4>
-                                    <p>+1 5589 55488 55</p>
-                                    <p>+1 6678 254445 41</p>
+                                    <h4>Téléphone</h4>
+                                    <p>+221 33 827 92 51</p>
+                                    {{-- <p>+221 77 291 33 97</p> --}}
                                 </div>
                             </div>
 
                             <div class="info-item" data-aos="fade-up" data-aos-delay="500">
                                 <div class="icon-box">
-                                    <i class="bi bi-envelope"></i>
+                                    <a href="mailto:onfp@onfp.sn"><i class="bi bi-envelope"></i></a>
                                 </div>
                                 <div class="content">
-                                    <h4>Email Address</h4>
-                                    <p>info@example.com</p>
-                                    <p>contact@example.com</p>
+                                    <h4>Addresse e-mail</h4>
+                                    <p>onfp@onfp.sn</p>
+                                    {{-- <p>lamine.badji@onfp.sn</p> --}}
                                 </div>
                             </div>
                         </div>
@@ -1260,8 +1253,18 @@
 
                     <div class="col-lg-7">
                         <div class="contact-form" data-aos="fade-up" data-aos-delay="300">
-                            <h3>Connectez-vous !</h3>
-                            <p>Introduire vos identifiants de connexion pour vous connecter</p>
+                            <h3>Connectez-nous !</h3>
+                            <p>
+                                Bonjour et bienvenue sur notre application !
+
+                                Nous sommes ravis de vous compter parmi nos utilisateurs. Si vous avez des questions,
+                                des suggestions ou des remarques, n'hésitez pas à nous contacter. Notre équipe est là
+                                pour vous assister et s'assurer que vous avez la meilleure expérience possible.
+                            </p>
+                            <p>
+                                Cordialement,
+                                L'équipe digitale
+                            </p>
 
                             {{-- <form action="forms/contact.php" method="post" class="php-email-form"
                                 data-aos="fade-up" data-aos-delay="200">
@@ -1296,11 +1299,10 @@
 
                                 </div>
                             </form> --}}
-                            <form class="row g-3 needs-validation" novalidate method="POST"
-                                action="{{ route('login') }}">
+                            <form class="row g-3 needs-validation" novalidate method="POST" action="#">
                                 @csrf
 
-                                <div class="col-12">
+                                <div class="col-12 col-md-12 col-lg-6 col-sm-12 col-xs-12 col-xxl-6">
                                     <label for="email" class="form-label">Email<span
                                             class="text-danger mx-1">*</span></label>
                                     <div class="input-group has-validation">
@@ -1316,39 +1318,47 @@
                                     </div>
                                 </div>
 
-                                <div class="col-12">
-                                    <label for="password" class="form-label">Mot de passe<span
+                                <div class="col-12 col-md-12 col-lg-6 col-sm-12 col-xs-12 col-xxl-6">
+                                    <label for="telephone" class="form-label">Téléphone<span
                                             class="text-danger mx-1">*</span></label>
-                                    <input type="password" name="password"
-                                        class="form-control form-control-sm  @error('password') is-invalid @enderror"
-                                        id="password" required placeholder="Votre mot de passe">
-                                    <div class="invalid-feedback">
-                                        @error('password')
-                                            {{ $message }}
-                                        @enderror
+                                    <div class="input-group has-validation">
+                                        <input type="telephone" name="telephone"
+                                            class="form-control form-control-sm @error('telephone') is-invalid @enderror"
+                                            id="telephone" required placeholder="Votre téléphone"
+                                            value="{{ old('telephone') }}">
+                                        <div class="invalid-feedback">
+                                            @error('telephone')
+                                                {{ $message }}
+                                            @enderror
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div class="col-12">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="remember"
-                                            value="true" id="rememberMe">
-                                        <label class="form-check-label" for="rememberMe">Souviens-toi de
-                                            moi</label>
+                                <div class="col-12 col-md-12 col-lg-12 col-sm-12 col-xs-12 col-xxl-12">
+                                    <label for="objet" class="form-label">Objet<span
+                                            class="text-danger mx-1">*</span></label>
+                                    <div class="input-group has-validation">
+                                        <input type="name" name="objet"
+                                            class="form-control form-control-sm @error('objet') is-invalid @enderror"
+                                            id="objet" required placeholder="Objet" value="{{ old('objet') }}">
+                                        <div class="invalid-feedback">
+                                            @error('objet')
+                                                {{ $message }}
+                                            @enderror
+                                        </div>
                                     </div>
                                 </div>
+
+                                <div class="col-12 col-md-12 col-lg-12 col-sm-12 col-xs-12 col-xxl-12">
+                                    <label for="message" class="form-label">Message<span
+                                            class="text-danger mx-1">*</span></label>
+                                    <div class="input-group has-validation">
+                                        <textarea class="form-control" name="message" rows="4" placeholder="Ecrire votre message ici" required></textarea>
+                                    </div>
+                                </div>
+
                                 <div class="col-12 text-center">
-                                    <button class="btn btn-sm" type="submit">Se connecter</button>
-                                </div>
-                                <div class="col-12">
-                                    @if (Route::has('password.request'))
-                                        <p class="small mb-0">Mot de passe oublié !<a
-                                                href="{{ route('password.request') }}"> Réinitialiser</a></p>
-                                    @endif
-                                </div>
-                                <div class="col-12">
-                                    <p class="small mb-0">Vous n'avez pas de compte ?<a
-                                            href="{{ url('/register-page') }}"> Créer un compte</a></p>
+                                    <button class="btn btn-sm" type="submit">Envoyer</button>
                                 </div>
                             </form>
                         </div>
@@ -1557,8 +1567,9 @@
 
                                     <div
                                         class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xxl-12 justify-content-center">
-                                        <p class="small">Vous avez déjà un compte ? <a
-                                                href="{{ url('/login-page') }}">Se connecter</a></p>
+                                        <p class="small">Vous avez déjà un compte ? <a href="#"
+                                                data-bs-toggle="modal" data-bs-target="#loginModal">Se connecter</a>
+                                        </p>
                                     </div>
                                 </div>
                                 {{-- <div class="modal-footer">
@@ -1575,6 +1586,38 @@
             </div>
         </div>
 
+        {{-- Inscription --}}
+        <div
+            class="col-12 col-md-12 col-lg-12 col-sm-12 col-xs-12 col-xxl-12 d-flex flex-column align-items-center justify-content-center">
+            <div class="modal fade" id="registerteurModal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="w-100  text-center">Inscription</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row g-3">
+
+                                <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xxl-12">
+                                    <button class="btn btn-outline-primary w-100" data-bs-toggle="modal"
+                                        data-bs-target="#registerDemandeurModal">{{ __('Créer un compte personnel') }}
+                                    </button>
+                                </div>
+
+                                <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xxl-12">
+                                    <button class="btn btn-outline-primary w-100" data-bs-toggle="modal"
+                                        data-bs-target="#registerOperateurModal">{{ __('Créer un compte opérateur') }}
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         {{-- Inscription opérateur --}}
         <div
             class="col-12 col-md-12 col-lg-12 col-sm-12 col-xs-12 col-xxl-12 d-flex flex-column align-items-center justify-content-center">
@@ -1683,8 +1726,9 @@
 
                                     <div
                                         class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xxl-12 justify-content-center">
-                                        <p class="small">Vous avez déjà un compte ? <a
-                                                href="{{ url('/login-page') }}">Se connecter</a></p>
+                                        <p class="small">Vous avez déjà un compte ? <a href="#"
+                                                data-bs-toggle="modal" data-bs-target="#loginModal">Se connecter</a>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -1808,7 +1852,7 @@
                         <li><a href="#">Flexo</a></li>
                     </ul>
 
-                    <div class="footer-links">
+                    {{-- <div class="footer-links">
                         <h4>
                             <form action="{{ route('logout') }}" method="post">
                                 @csrf
@@ -1816,7 +1860,7 @@
                                     déconnecter</button>
                             </form>
                         </h4>
-                    </div>
+                    </div> --}}
                 </div>
 
             </div>

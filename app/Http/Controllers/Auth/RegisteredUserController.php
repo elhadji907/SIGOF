@@ -110,7 +110,7 @@ class RegisteredUserController extends Controller
         /* Redirection vers le connexion après incrption */
         /* $status = "Compte créé, merci de vous connecter";
         return redirect(RouteServiceProvider::LOGIN)->with('status', $status); */
-
-        return redirect(RouteServiceProvider::LOGIN);
+        $status = "Compte créé, merci de vous connecter";
+        return redirect(RouteServiceProvider::LOGIN)->with('status', __($status));
     }
 }
