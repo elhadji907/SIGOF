@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Termes et conditions</h5>
+                <h5 class="col-12 modal-title text-center">{{ __("Termes et conditions d'utilisation") }}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                     aria-label="Close"></button>
             </div>
@@ -27,7 +27,7 @@
                 ci-dessus.
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary"
+                <button type="button" class="btn btn-secondary btn-sm"
                     data-bs-dismiss="modal">Fermer</button>
             </div>
         </div>

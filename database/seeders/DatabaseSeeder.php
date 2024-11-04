@@ -271,6 +271,11 @@ class DatabaseSeeder extends Seeder
         'devenir-operateur-agrement-view',
         'devenir-operateur-agrement-delete',
         'devenir-operateur-agrement-ouvert',
+        'une-view',
+        'une-show',
+        'une-create',
+        'une-update',
+        'une-delete',
     ];
 
     public function run(): void

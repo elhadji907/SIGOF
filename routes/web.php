@@ -57,6 +57,7 @@ use App\Http\Controllers\RegionController;
 use App\Http\Controllers\RoleController;
 
 use App\Http\Controllers\SecteurController;
+use App\Http\Controllers\UneController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ValidationcollectiveController;
 use App\Http\Controllers\ValidationformationController;
@@ -66,6 +67,7 @@ use App\Http\Controllers\ValidationoperateurController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 
 
 
@@ -101,10 +103,12 @@ use Illuminate\Support\Facades\Route;
     return view('welcome');
 }); */
 
-Route::get('/', function () {
+/* Route::get('/', function () {
     return view('user.login');
 });
-Route::get('/', [UserController::class, 'homePage'])->name('home');
+Route::get('/', [UserController::class, 'homePage'])->name('home'); */
+
+Route::get('/', [UneController::class, 'unePage'])->name('accueil');
 
 Route::get('/email/verify', function () {
     return view('auth.verify');
@@ -406,6 +410,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/postes/create', [PosteController::class, 'create'])->name('postes.create');
     Route::post('/postes', [PosteController::class, 'store'])->name('postes.store');
     Route::get('/postes/{poste}', [PosteController::class, 'show'])->name('postes.show');
+
+    Route::put('/alaunes', [UneController::class, 'alaUne'])->name('alaunes');
     /* Vues ressouces */
     Route::resource('/users', UserController::class);
     Route::resource('/permissions', PermissionController::class);
@@ -463,6 +469,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::resource('/referentiels', ReferentielController::class);
     Route::resource('/conventions', ConventionController::class);
     Route::resource('/postes', PosteController::class);
+    Route::resource('/unes', UneController::class);
 });
 
 Route::resource('/contacts', ContactController::class);

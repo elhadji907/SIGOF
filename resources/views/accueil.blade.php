@@ -150,20 +150,19 @@
                     @endif
                     <div class="col-lg-6">
                         <div class="hero-content" data-aos="fade-up" data-aos-delay="200">
-                            <div class="company-badge mb-4">
+                            <div class="company-badge mb-4 mt-0">
                                 <i class="bi bi-gear-fill me-2"></i>
-                                Travailler pour votre réussite
+                                Formez-vous pour votre réussite
                             </div>
 
                             <h1 class="mb-4">
-                                Maecenas Vitae <br>
-                                Consectetur Led <br>
-                                <span class="accent-text">Vestibulum Ante</span>
+                                {{ $une->titre1 }} <br>
+                                {{--  Consectetur Led <br> --}}
+                                <span class="accent-text">{{ $une->titre2 }}</span>
                             </h1>
 
                             <p class="mb-4 mb-md-5">
-                                Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt.
-                                Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna.
+                                {{ $une->message }}
                             </p>
 
                             <div class="hero-buttons">
@@ -179,11 +178,13 @@
 
                     <div class="col-lg-6">
                         <div class="hero-image" data-aos="zoom-out" data-aos-delay="300">
-                            <img src="{{ asset('asset/img/illustration-1.webp') }}" alt="Hero Image" class="img-fluid">
+                            {{-- <img src="{{ asset('asset/img/illustration-1.webp') }}" alt="Hero Image" class="img-fluid"> --}}
+
+                            <img class="img-fluid" alt="Image" src="{{ asset($une->getUne()) }}">
 
                             <div class="customers-badge">
                                 <div class="customer-avatars">
-                                    <img src="{{ asset('asset/img/avatar-1.webp') }}" alt="Customer 1"
+                                    {{-- <img src="{{ asset('asset/img/avatar-1.webp') }}" alt="Customer 1"
                                         class="avatar">
                                     <img src="{{ asset('asset/img/avatar-2.webp') }}" alt="Customer 2"
                                         class="avatar">
@@ -192,10 +193,12 @@
                                     <img src="{{ asset('asset/img/avatar-4.webp') }}" alt="Customer 4"
                                         class="avatar">
                                     <img src="{{ asset('asset/img/avatar-5.webp') }}" alt="Customer 5"
-                                        class="avatar">
+                                        class="avatar"> --}}
                                     <span class="avatar more">12+</span>
                                 </div>
-                                <p class="mb-0 mt-2">12,000+ lorem ipsum dolor sit amet consectetur adipiscing elit</p>
+                                <p class="mb-0 mt-2">
+                                    Nouvelle(s) demande(s)
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -1880,15 +1883,15 @@
             </div>
         </div>
 
+        @include('user.termes')
         <div class="container copyright text-center mt-4">
-            <p>© <span>Copyright</span> <strong class="px-1 sitename">iLanding</strong> <span>All Rights
-                    Reserved</span></p>
+            <p>© <span>Copyright</span> <strong class="px-1 sitename">SIGOF</strong> <span></span></p>
             <div class="credits">
                 <!-- All the links in the footer should remain intact. -->
                 <!-- You can delete the links only if you've purchased the pro version. -->
                 <!-- Licensing information: https://bootstrapmade.com/license/ -->
                 <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                Conçu par <a href="https://www.onfp.sn/" target="_blank">ONFP</a>
             </div>
         </div>
 

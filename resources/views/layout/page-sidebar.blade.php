@@ -360,8 +360,16 @@
         @can('projet-view')
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ url('postes') }}">
-                    <i class="bi bi-layers-half"></i>
+                    <i class="bi bi-file-post"></i>
                     <span>Actualités</span>
+                </a>
+            </li>
+        @endcan
+        @can('une-view')
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ url('unes') }}">
+                    <i class="bi bi-book"></i>
+                    <span>A la une</span>
                 </a>
             </li>
         @endcan

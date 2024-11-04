@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\Une;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -19,7 +20,8 @@ class AuthenticatedSessionController extends Controller
     public function accueil(): View
     {
         /* return view('auth.login'); */
-        return view('accueil');
+        $une = Une::where("status", "!=", null)->first();
+        return view('accueil', compact('une'));
     }
     
     public function create(): View

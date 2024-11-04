@@ -53,10 +53,10 @@ class Contact extends Model
 		'type',
 		'notifiable_type',
 		'notifiable_id',
+        'users_id',
 		'data',
 		'read_at'
     ];
-
 
     public function commentable()
     {
