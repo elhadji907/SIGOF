@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>@yield('title', 'SIGOF')</title>
+    <title>@yield('title', "SIGOF | SYSTEME D'INFORMATION ET DE GESTION DES OPERATIONS DE FORMATION")</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -194,10 +194,10 @@
                                         class="avatar">
                                     <img src="{{ asset('asset/img/avatar-5.webp') }}" alt="Customer 5"
                                         class="avatar"> --}}
-                                    <span class="avatar more">12+</span>
+                                    <span class="avatar more">{{ $count_today }}</span>
                                 </div>
                                 <p class="mb-0 mt-2">
-                                    Nouvelle(s) demande(s)
+                                    {{ $title }}
                                 </p>
                             </div>
                         </div>
@@ -205,47 +205,69 @@
                 </div>
 
                 <div class="row stats-row gy-4 mt-5" data-aos="fade-up" data-aos-delay="500">
-                    <div class="col-lg-3 col-md-6">
+                    <div class="col-lg-4 col-md-6">
                         <div class="stat-item">
                             <div class="stat-icon">
-                                <i class="bi bi-trophy"></i>
+                                <i class="bi bi-book"></i>
                             </div>
                             <div class="stat-content">
-                                <h4>3x Won Awards</h4>
-                                <p class="mb-0">Vestibulum ante ipsum</p>
+                                <h6>Formation | Qualification</h6>
+                                {{-- <p class="mb-0">Formation | Qualification</p> --}}
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6">
+                    <div class="col-lg-4 col-md-6">
                         <div class="stat-item">
                             <div class="stat-icon">
                                 <i class="bi bi-briefcase"></i>
                             </div>
                             <div class="stat-content">
-                                <h4>6.5k Faucibus</h4>
-                                <p class="mb-0">Nullam quis ante</p>
+                                <h6>Evaluation | Certification</h6>
+                                {{-- <p class="mb-0">Evaluation | Certification</p> --}}
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6">
+                    <div class="col-lg-4 col-md-6">
                         <div class="stat-item">
                             <div class="stat-icon">
                                 <i class="bi bi-graph-up"></i>
                             </div>
                             <div class="stat-content">
-                                <h4>80k Mauris</h4>
-                                <p class="mb-0">Etiam sit amet orci</p>
+                                <h6>Construction | Equipement</h6>
+                                {{-- <p class="mb-0">Construction | Equipement</p> --}}
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6">
+                    <div class="col-lg-4 col-md-6">
                         <div class="stat-item">
                             <div class="stat-icon">
                                 <i class="bi bi-award"></i>
                             </div>
                             <div class="stat-content">
-                                <h4>6x Phasellus</h4>
-                                <p class="mb-0">Vestibulum ante ipsum</p>
+                                <h6>Suivi-Insertion</h6>
+                                {{-- <p class="mb-0">Suivi-Insertion</p> --}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <i class="bi bi-journal"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h6>Documentation | Edition</h6>
+                                {{-- <p class="mb-0">Documentation | Edition</p> --}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <i class="bi bi-bag-dash"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h6>Etude | Recherche</h6>
+                                {{-- <p class="mb-0">Etude | Recherche</p> --}}
                             </div>
                         </div>
                     </div>
@@ -263,30 +285,32 @@
                 <div class="row gy-4 align-items-center justify-content-between">
 
                     <div class="col-xl-5" data-aos="fade-up" data-aos-delay="200">
-                        <span class="about-meta">MORE ABOUT US</span>
-                        <h2 class="about-title">Voluptas enim suscipit temporibus</h2>
-                        <p class="about-description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                            accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore
-                            veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                        <span class="about-meta">A PROPOS DE NOUS</span>
+                        {{-- <h2 class="about-title">La référence de la formation professionnelle</h2> --}}
+                        <p class="about-description">L’Office National de Formation Professionnelle (ONFP) est un
+                            établissement public à caractère industriel et commercial (EPIC) créé par la Loi n°86-44 du
+                            11 Août 1986. Ainsi, l’ONFP a pour mission de :</p>
 
                         <div class="row feature-list-wrapper">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <ul class="feature-list">
-                                    <li><i class="bi bi-check-circle-fill"></i> Lorem ipsum dolor sit amet</li>
-                                    <li><i class="bi bi-check-circle-fill"></i> Consectetur adipiscing elit</li>
-                                    <li><i class="bi bi-check-circle-fill"></i> Sed do eiusmod tempor</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-6">
-                                <ul class="feature-list">
-                                    <li><i class="bi bi-check-circle-fill"></i> Incididunt ut labore et</li>
-                                    <li><i class="bi bi-check-circle-fill"></i> Dolore magna aliqua</li>
-                                    <li><i class="bi bi-check-circle-fill"></i> Ut enim ad minim veniam</li>
+                                    <li><i class="bi bi-check-circle-fill"></i> Aider à mettre en œuvre les objectifs
+                                        sectoriels du gouvernement et d’assister les organismes publics et privés dans
+                                        la réalisation de leur action ;</li>
+                                    <li><i class="bi bi-check-circle-fill"></i> Réaliser des études sur l’emploi, la
+                                        qualification professionnelle, les moyens quantitatifs et qualitatifs de la
+                                        formation professionnelle initiale et continue ;</li>
+                                    <li><i class="bi bi-check-circle-fill"></i> Coordonner les interventions par
+                                        branche professionnelle par action prioritaire en s’appuyant sur des structures
+                                        existantes ou à créer ;</li>
+                                    <li><i class="bi bi-check-circle-fill"></i> Coordonner l’action de formation
+                                        professionnelle des organismes d’aides bilatérales ou multilatérales.</li>
+
                                 </ul>
                             </div>
                         </div>
 
-                        <div class="info-wrapper">
+                     {{--    <div class="info-wrapper">
                             <div class="row gy-4">
                                 <div class="col-lg-5">
                                     <div class="profile d-flex align-items-center gap-3">
@@ -308,7 +332,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
 
                     <div class="col-xl-6" data-aos="fade-up" data-aos-delay="300">
@@ -320,8 +344,8 @@
                                     class="img-fluid small-image rounded-4">
                             </div>
                             <div class="experience-badge floating">
-                                <h3>15+ <span>Years</span></h3>
-                                <p>Of experience in business service</p>
+                                <h3>38+ <span>ans</span></h3>
+                                <p>{{ __("d'expérience dans la formation professionnelle") }}</p>
                             </div>
                         </div>
                     </div>
@@ -336,8 +360,8 @@
 
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-                <h2>Features</h2>
-                <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+                <h2>Projets & Programes</h2>
+                {{-- <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p> --}}
             </div><!-- End Section Title -->
 
             <div class="container">
@@ -348,19 +372,19 @@
 
                         <li class="nav-item">
                             <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#features-tab-1">
-                                <h4>Modisit</h4>
+                                <h4>Tous</h4>
                             </a>
                         </li><!-- End tab nav item -->
 
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-2">
-                                <h4>Praesenti</h4>
+                                <h4>Projets</h4>
                             </a><!-- End tab nav item -->
 
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-3">
-                                <h4>Explica</h4>
+                                <h4>Programmes</h4>
                             </a>
                         </li><!-- End tab nav item -->
 
@@ -370,7 +394,7 @@
 
                 <div class="tab-content" data-aos="fade-up" data-aos-delay="200">
 
-                    <div class="tab-pane fade active show" id="features-tab-1">
+                    {{-- <div class="tab-pane fade active show" id="features-tab-1">
                         <div class="row">
                             <div
                                 class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
@@ -395,7 +419,8 @@
                                     class="img-fluid">
                             </div>
                         </div>
-                    </div><!-- End tab content item -->
+                    </div> --}}
+                    <!-- End tab content item -->
 
                     <div class="tab-pane fade" id="features-tab-2">
                         <div class="row">
@@ -425,7 +450,8 @@
                                     class="img-fluid">
                             </div>
                         </div>
-                    </div><!-- End tab content item -->
+                    </div>
+                    <!-- End tab content item -->
 
                     <div class="tab-pane fade" id="features-tab-3">
                         <div class="row">
@@ -611,7 +637,7 @@
         </section><!-- /Features 2 Section -->
 
         <!-- Call To Action Section -->
-        <section id="call-to-action" class="call-to-action section">
+        {{-- <section id="call-to-action" class="call-to-action section">
 
             <div class="container" data-aos="fade-up" data-aos-delay="100">
 
@@ -672,7 +698,8 @@
 
             </div>
 
-        </section><!-- /Call To Action Section -->
+        </section> --}}
+        <!-- /Call To Action Section -->
 
         <!-- Clients Section -->
         <section id="clients" class="clients section">

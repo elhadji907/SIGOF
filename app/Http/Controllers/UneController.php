@@ -21,7 +21,7 @@ class UneController extends Controller
             'titre1'      =>  ['required', 'string', 'max:20'],
             'titre2'      =>  ['required', 'string', 'max:25'],
             'message'    =>  ['required', 'string'],
-            'image'      =>  ['image', 'required', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
+            'image'      =>  ['image', 'required', 'mimes:jpeg,png,jpg,gif,svg,webp', 'max:2048'],
 
         ]);
 
@@ -52,7 +52,7 @@ class UneController extends Controller
             'titre1'      =>  ['required', 'string', 'max:20'],
             'titre2'      =>  ['required', 'string', 'max:25'],
             'message'    =>  ['required', 'string'],
-            'image'      =>  ['image', 'nullable', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
+            'image'      =>  ['image', 'nullable', 'mimes:jpeg,png,jpg,gif,svg,webp', 'max:2048'],
 
         ]);
 
@@ -108,12 +108,12 @@ class UneController extends Controller
 
             return redirect()->back();
         } else {
-            
+
             foreach ($alunes as $alune) {
                 $alune->update([
                     'status' => null
                 ]);
-    
+
                 $alune->save();
             }
             $une->update([

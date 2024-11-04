@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\Individuelle;
 use App\Models\Une;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
@@ -21,7 +22,15 @@ class AuthenticatedSessionController extends Controller
     {
         /* return view('auth.login'); */
         $une = Une::where("status", "!=", null)->first();
-        return view('accueil', compact('une'));
+        $today = date('Y-m-d');
+        $count_today = Individuelle::where("created_at", "LIKE",  "{$today}%")->count();
+        if ($count_today <= "0") {
+            $title = "nouvelle demande aujourd'hui";
+        } else {
+            $title = "nouvelles demandes aujourd'hui";
+        }
+        
+        return view('accueil', compact('une', 'count_today', 'title'));
     }
     
     public function create(): View
