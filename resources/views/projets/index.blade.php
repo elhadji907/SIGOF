@@ -47,7 +47,7 @@
                         <table class="table datatables align-middle" id="table-individuelles">
                             <thead>
                                 <tr>
-                                    <th class="text-center" width="3%">N°</th>
+                                    <th class="text-center" width="3%">LOGO</th>
                                     <th>Projet / Programme</th>
                                     <th class="text-center">Sigle</th>
                                     <th class="text-center">Statut</th>
@@ -61,7 +61,10 @@
                                 <?php $i = 1; ?>
                                 @foreach ($projets as $projet)
                                     <tr>
-                                        <td class="text-center">{{ $i++ }}</td>
+                                        <th scope="row" style="text-align: center">
+                                            <img class="rounded-circle" alt="Profil" src="{{ asset($projet->getProjetImage()) }}"
+                                                width="40" height="auto">
+                                        </th>
                                         <td>{{ $projet?->name }}</td>
                                         <td class="text-center">{{ $projet?->sigle }}</td>
                                         <td class="text-center">

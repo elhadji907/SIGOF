@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use RealRashid\SweetAlert\Facades\Alert;
+use Intervention\Image\Facades\Image;
 
 class ProjetController extends Controller
 {
@@ -100,6 +101,7 @@ class ProjetController extends Controller
     public function update(Request $request, $id)
     {
         $projet = Projet::find($id);
+
         $this->validate($request, [
             "name"              => ["required", "string", Rule::unique('projets')->where(function ($query) {
                 return $query->whereNull('deleted_at');
@@ -120,7 +122,34 @@ class ProjetController extends Controller
             "type_projet"       => ["required", "string"],
             "date_ouverture"    => ["required", "string"],
             "date_fermeture"    => ["required", "string"],
+            'image'             => ['image', 'nullable', 'mimes:jpeg,png,jpg,gif,svg,webp', 'max:2048'],
+            'convention_file'   => ['file', 'nullable', 'mimes:pdf', 'max:2048'],
         ]);
+
+        if (request('image')) {
+
+            $imagePath = request('image')->store('projets', 'public');
+
+            $image = Image::make(public_path("/storage/{$imagePath}"))->fit(2400, 2400);
+
+            $image->save();
+        } else {
+            $imagePath = $projet->image;
+        }
+        if (request('convention_file')) {
+
+            $filePath = request('convention_file')->store('projets', 'public');
+
+            $file = $request->file('convention_file');
+            $filenameWithExt = $file->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Remove unwanted characters
+            $filename = preg_replace("/[^A-Za-z0-9 ]/", '', $filename);
+            $filename = preg_replace("/\s+/", '-', $filename);
+
+        } else {
+            $filePath = $projet->convention_file;
+        }
 
         $projet->update([
             'name'                  =>  $request->input('name'),
@@ -136,6 +165,8 @@ class ProjetController extends Controller
             'type_projet'           =>  $request->input('type_projet'),
             'date_ouverture'        =>  $request->input('date_ouverture'),
             'date_fermeture'        =>  $request->input('date_fermeture'),
+            'image'                 =>  $imagePath,
+            'convention_file'       =>  $filePath
         ]);
 
         $projet->save();

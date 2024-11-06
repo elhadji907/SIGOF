@@ -373,6 +373,14 @@
                 </a>
             </li>
         @endcan
+        @can('une-view')
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ url('contacts') }}">
+                    <i class="bi bi-envelope"></i>
+                    <span>Contact</span>
+                </a>
+            </li>
+        @endcan
         @can('user-view')
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ url('user') }}">

@@ -19,6 +19,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property string $uuid
  * @property string|null $name
  * @property string|null $code
+ * @property string|null $contact
+ * @property string|null $adresse
  * @property string|null $deleted_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
@@ -40,7 +42,9 @@ class Antenne extends Model
 	protected $fillable = [
 		'uuid',
 		'name',
-		'code'
+		'code',
+		'contact',
+		'adresse',
 	];
 
 	public function regions()

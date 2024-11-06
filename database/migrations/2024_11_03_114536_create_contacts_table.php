@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('email', 200)->nullable();
             $table->string('telephone', 200)->nullable();
             $table->longText('message')->nullable();
+            $table->longText('reponse')->nullable();
+            $table->string('statut', 50)->nullable();
             $table->softDeletes();
             $table->nullableTimestamps();
         });

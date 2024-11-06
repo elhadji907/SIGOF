@@ -25,6 +25,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property float|null $budjet
  * @property string|null $statut
  * @property string|null $duree
+ * @property string|null $image
+ * @property string|null $convention_file
  * @property string|null $type_projet
  * @property string|null $type_localite
  * @property string|null $budjet_lettre
@@ -96,6 +98,18 @@ class Projet extends Model
 	];
 
 	
+    public function getProjetImage()
+    {
+        $imagePath = $this->image ?? 'projets/default.png';
+        return "/storage/" . $imagePath;
+    }
+	
+    public function getConvention()
+    {
+        $imagePath = $this->convention_file ?? '';
+        return "/storage/" . $imagePath;
+    }
+
 	public function projetmodules()
 	{
 		return $this->hasMany(Projetmodule::class, 'projets_id')->latest();

@@ -20,6 +20,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $email
  * @property string $telephone
  * @property string $message
+ * @property string $reponse
+ * @property string $statut
  * @property Carbon|null $read_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
@@ -50,6 +52,8 @@ class Contact extends Model
         'email',
         'telephone',
         'message',
+        'reponse',
+        'statut',
 		'type',
 		'notifiable_type',
 		'notifiable_id',

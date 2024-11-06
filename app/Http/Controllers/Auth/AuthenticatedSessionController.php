@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\Contact;
 use App\Models\Individuelle;
+use App\Models\Projet;
 use App\Models\Une;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
@@ -22,6 +24,8 @@ class AuthenticatedSessionController extends Controller
     {
         /* return view('auth.login'); */
         $une = Une::where("status", "!=", null)->first();
+        $projets = Projet::where("image", "!=", null)->get();
+        $contacts = Contact::orderBy("created_at", "desc")->where("statut", "!=", null)->get();
         $today = date('Y-m-d');
         $count_today = Individuelle::where("created_at", "LIKE",  "{$today}%")->count();
         if ($count_today <= "0") {
@@ -29,10 +33,10 @@ class AuthenticatedSessionController extends Controller
         } else {
             $title = "nouvelles demandes aujourd'hui";
         }
-        
-        return view('accueil', compact('une', 'count_today', 'title'));
+
+        return view('accueil', compact('une', 'count_today', 'title', 'projets', 'contacts'));
     }
-    
+
     public function create(): View
     {
         /* return view('auth.login'); */

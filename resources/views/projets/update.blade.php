@@ -156,8 +156,8 @@
                                                 class="form-select  @error('type') is-invalid @enderror"
                                                 aria-label="Select" id="select-field-type"
                                                 data-placeholder="Choisir type">
-                                                <option value="{{ $projet?->type_localite }}">
-                                                    {{ $projet?->type_localite }}</option>
+                                                <option value="{{ $projet?->type_localite ?? old('type') }}">
+                                                    {{ $projet?->type_localite ?? old('type') }}</option>
                                                 <option value="Commune">Commune</option>
                                                 <option value="Arrondissement">Arrondissement</option>
                                                 <option value="Departement">Departement</option>
@@ -177,8 +177,8 @@
                                                 class="form-select  @error('type_projet') is-invalid @enderror"
                                                 aria-label="Select" id="select-field"
                                                 data-placeholder="Choisir type projet">
-                                                <option value="{{ $projet?->type_projet }}">
-                                                    {{ $projet?->type_projet }}</option>
+                                                <option value="{{ $projet?->type_projet ?? old('type_projet') }}">
+                                                    {{ $projet?->type_projet ?? old('type_projet') }}</option>
                                                 <option value="Projet">Projet</option>
                                                 <option value="Programme">Programme</option>
                                             </select>
@@ -188,7 +188,6 @@
                                                 </span>
                                             @enderror
                                         </div>
-
 
                                         <div class="col-12 col-md-4 col-lg-4 col-sm-12 col-xs-12 col-xxl-4">
                                             <label for="date_ouverture" class="form-label">Date ouverture</label>
@@ -214,6 +213,61 @@
                                                     <div>{{ $message }}</div>
                                                 </span>
                                             @enderror
+                                        </div>
+
+                                        <div class="col-12 col-md-12 col-lg-3 col-sm-12 col-xs-12 col-xxl-3">
+                                            <label for="image" class="form-label">Logo<span
+                                                    class="text-danger mx-1">*</span></label>
+                                            <input type="file" name="image" value="{{ old('image') }}"
+                                                class="form-control form-control-sm @error('image') is-invalid @enderror"
+                                                id="image" placeholder="Image">
+                                            @error('image')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <div>{{ $message }}</div>
+                                                </span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-12 col-md-12 col-lg-1 col-sm-12 col-xs-12 col-xxl-1">
+                                            <label for="reference" class="form-label">Image</label><br>
+                                            @if (isset($projet->image))
+                                                <div>
+                                                    <img class="w-25" alt="Profil"
+                                                        src="{{ asset($projet->getProjetImage()) }}" width="20"
+                                                        height="auto">
+                                                </div>
+                                            @else
+                                                <div class="badge bg-warning">Aucun</div>
+                                            @endif
+                                        </div>
+
+                                        <div class="col-12 col-md-12 col-lg-3 col-sm-12 col-xs-12 col-xxl-3">
+                                            <label for="convention_file" class="form-label">Convention signée<span
+                                                    class="text-danger mx-1">*</span></label>
+                                            <input type="file" name="convention_file"
+                                                value="{{ old('convention_file') }}"
+                                                class="form-control form-control-sm @error('convention_file') is-invalid @enderror"
+                                                id="convention_file" placeholder="convention">
+                                            @error('convention_file')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <div>{{ $message }}</div>
+                                                </span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-12 col-md-12 col-lg-1 col-sm-12 col-xs-12 col-xxl-1">
+                                            <label for="reference" class="form-label">Fichier</label><br>
+                                            @if (isset($projet->convention_file))
+                                                <div>
+                                                    <a class="btn btn-outline-secondary btn-sm"
+                                                        title="télécharger le fichier joint" target="_blank"
+                                                        href="{{ asset($projet->getConvention()) }}">
+                                                        <i class="bi bi-file-earmark-pdf"></i>
+                                                    </a>
+                                                </div>
+                                            @else
+                                                <div class="badge bg-warning">Aucun</div>
+                                            @endif
                                         </div>
 
                                         <div class="col-12 col-md-12 col-lg-12 col-sm-12 col-xs-12 col-xxl-12">

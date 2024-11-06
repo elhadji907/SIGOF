@@ -82,9 +82,9 @@
 
             <nav id="navmenu" class="navmenu">
                 <ul>
-                    <li><a href="#hero" class="active">Accueil</a></li>
-                    <li><a href="#about">À propos</a></li>
-                    <li><a href="#features">Projets</a></li>
+                    <li><a href="#accueil" class="active">Accueil</a></li>
+                    <li><a href="#apropos">À propos</a></li>
+                    <li><a href="#partenaires">Partenaires</a></li>
                     <li><a href="#services">Services</a></li>
                     {{-- <li><a href="#pricing">Pricing</a></li> --}}
                     {{-- <li class="dropdown"><a href="#"><span>Dropdown</span> <i
@@ -126,7 +126,7 @@
     <main class="main">
 
         <!-- Hero Section -->
-        <section id="hero" class="hero section">
+        <section id="accueil" class="hero section">
 
             <div class="container" data-aos="fade-up" data-aos-delay="100">
 
@@ -166,7 +166,7 @@
                             </p>
 
                             <div class="hero-buttons">
-                                <a href="#about" class="btn btn-primary me-0 me-sm-2 mx-1">En savoir plus</a>
+                                <a href="#apropos" class="btn btn-primary me-0 me-sm-2 mx-1">En savoir plus</a>
                                 <a href="https://www.youtube.com/watch?v=nExQc0IzhTk"
                                     class="btn btn-link mt-2 mt-sm-0 glightbox">
                                     <i class="bi bi-play-circle me-1"></i>
@@ -278,7 +278,7 @@
         </section><!-- /Hero Section -->
 
         <!-- About Section -->
-        <section id="about" class="about section">
+        <section id="apropos" class="about section">
 
             <div class="container" data-aos="fade-up" data-aos-delay="100">
 
@@ -287,42 +287,42 @@
                     <div class="col-xl-5" data-aos="fade-up" data-aos-delay="200">
                         <span class="about-meta">A PROPOS DE NOUS</span>
                         {{-- <h2 class="about-title">La référence de la formation professionnelle</h2> --}}
-                        <p class="about-description">L’Office National de Formation Professionnelle (ONFP) est un
+                        <p class="about-description">L'Office National de Formation Professionnelle (ONFP) est un
                             établissement public à caractère industriel et commercial (EPIC) créé par la Loi n°86-44 du
-                            11 Août 1986. Ainsi, l’ONFP a pour mission de :</p>
+                            11 Août 1986. Ainsi, l'ONFP a pour mission de :</p>
 
                         <div class="row feature-list-wrapper">
                             <div class="col-md-12">
                                 <ul class="feature-list">
                                     <li><i class="bi bi-check-circle-fill"></i> Aider à mettre en œuvre les objectifs
-                                        sectoriels du gouvernement et d’assister les organismes publics et privés dans
+                                        sectoriels du gouvernement et d'assister les organismes publics et privés dans
                                         la réalisation de leur action ;</li>
-                                    <li><i class="bi bi-check-circle-fill"></i> Réaliser des études sur l’emploi, la
+                                    <li><i class="bi bi-check-circle-fill"></i> Réaliser des études sur l'emploi, la
                                         qualification professionnelle, les moyens quantitatifs et qualitatifs de la
                                         formation professionnelle initiale et continue ;</li>
                                     <li><i class="bi bi-check-circle-fill"></i> Coordonner les interventions par
-                                        branche professionnelle par action prioritaire en s’appuyant sur des structures
+                                        branche professionnelle par action prioritaire en s'appuyant sur des structures
                                         existantes ou à créer ;</li>
-                                    <li><i class="bi bi-check-circle-fill"></i> Coordonner l’action de formation
-                                        professionnelle des organismes d’aides bilatérales ou multilatérales.</li>
+                                    <li><i class="bi bi-check-circle-fill"></i> Coordonner l'action de formation
+                                        professionnelle des organismes d'aides bilatérales ou multilatérales.</li>
 
                                 </ul>
                             </div>
                         </div>
 
-                     {{--    <div class="info-wrapper">
+                        <div class="info-wrapper">
                             <div class="row gy-4">
-                                <div class="col-lg-5">
+                                <div class="col-lg-12">
                                     <div class="profile d-flex align-items-center gap-3">
-                                        <img src="{{ asset('asset/img/avatar-1.webp') }}" alt="CEO Profile"
+                                        <img src="{{ asset('asset/img/dg.png') }}" alt="DG ONFP"
                                             class="profile-image">
                                         <div>
-                                            <h4 class="profile-name">Mario Smith</h4>
-                                            <p class="profile-position">CEO &amp; Founder</p>
+                                            <h4 class="profile-name"><b>Mouhamadou Lamine Bara LO</b></h4>
+                                            <p class="profile-position">DG ONFP</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-7">
+                                {{-- <div class="col-lg-7">
                                     <div class="contact-info d-flex align-items-center gap-2">
                                         <i class="bi bi-telephone-fill"></i>
                                         <div>
@@ -330,17 +330,16 @@
                                             <p class="contact-number">+123 456-789</p>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
-                        </div> --}}
+                        </div>
                     </div>
-
                     <div class="col-xl-6" data-aos="fade-up" data-aos-delay="300">
                         <div class="image-wrapper">
                             <div class="images position-relative" data-aos="zoom-out" data-aos-delay="400">
-                                <img src="{{ asset('asset/img/about-5.webp') }}" alt="Business Meeting"
+                                <img src="{{ asset('asset/img/about5.jpg') }}" alt="Image 5"
                                     class="img-fluid main-image rounded-4">
-                                <img src="{{ asset('asset/img/about-2.webp') }}" alt="Team Discussion"
+                                <img src="{{ asset('asset/img/about2.jpg') }}" alt="Image 2"
                                     class="img-fluid small-image rounded-4">
                             </div>
                             <div class="experience-badge floating">
@@ -356,12 +355,12 @@
         </section><!-- /About Section -->
 
         <!-- Features Section -->
-        <section id="features" class="features section">
+        {{-- <section id="features" class="features section">
 
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-                <h2>Projets & Programes</h2>
-                {{-- <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p> --}}
+                <h2>Partenaires</h2>
+                <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
             </div><!-- End Section Title -->
 
             <div class="container">
@@ -394,7 +393,7 @@
 
                 <div class="tab-content" data-aos="fade-up" data-aos-delay="200">
 
-                    {{-- <div class="tab-pane fade active show" id="features-tab-1">
+                    <div class="tab-pane fade active show" id="features-tab-1">
                         <div class="row">
                             <div
                                 class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
@@ -419,7 +418,7 @@
                                     class="img-fluid">
                             </div>
                         </div>
-                    </div> --}}
+                    </div>
                     <!-- End tab content item -->
 
                     <div class="tab-pane fade" id="features-tab-2">
@@ -478,16 +477,18 @@
                                     class="img-fluid">
                             </div>
                         </div>
-                    </div><!-- End tab content item -->
+                    </div>
+                    <!-- End tab content item -->
 
                 </div>
 
             </div>
 
-        </section><!-- /Features Section -->
+        </section> --}}
+        <!-- /Features Section -->
 
         <!-- Features Cards Section -->
-        <section id="features-cards" class="features-cards section">
+        {{--  <section id="features-cards" class="features-cards section">
 
             <div class="container">
 
@@ -529,10 +530,11 @@
 
             </div>
 
-        </section><!-- /Features Cards Section -->
+        </section> --}}
+        <!-- /Features Cards Section -->
 
         <!-- Features 2 Section -->
-        <section id="features-2" class="features-2 section">
+        {{-- <section id="features-2" class="features-2 section">
 
             <div class="container" data-aos="fade-up" data-aos-delay="100">
 
@@ -634,7 +636,8 @@
 
             </div>
 
-        </section><!-- /Features 2 Section -->
+        </section> --}}
+        <!-- /Features 2 Section -->
 
         <!-- Call To Action Section -->
         {{-- <section id="call-to-action" class="call-to-action section">
@@ -702,7 +705,11 @@
         <!-- /Call To Action Section -->
 
         <!-- Clients Section -->
-        <section id="clients" class="clients section">
+        <section id="partenaires" class="clients section">
+
+            <div class="container section-title" data-aos="fade-up">
+                <h2>Partenaires</h2>
+            </div><!-- End Section Title -->
 
             <div class="container" data-aos="fade-up" data-aos-delay="100">
 
@@ -741,22 +748,26 @@
             }
           </script>
                     <div class="swiper-wrapper align-items-center">
-                        <div class="swiper-slide"><img src="{{ asset('asset/img/clients/client-1.png') }}"
-                                class="img-fluid" alt=""></div>
-                        <div class="swiper-slide"><img src="{{ asset('asset/img/clients/client-2.png') }}"
-                                class="img-fluid" alt=""></div>
-                        <div class="swiper-slide"><img src="{{ asset('asset/img/clients/client-3.png') }}"
-                                class="img-fluid" alt=""></div>
-                        <div class="swiper-slide"><img src="{{ asset('asset/img/clients/client-4.png') }}"
-                                class="img-fluid" alt=""></div>
-                        <div class="swiper-slide"><img src="{{ asset('asset/img/clients/client-5.png') }}"
-                                class="img-fluid" alt=""></div>
-                        <div class="swiper-slide"><img src="{{ asset('asset/img/clients/client-6.png') }}"
-                                class="img-fluid" alt=""></div>
-                        <div class="swiper-slide"><img src="{{ asset('asset/img/clients/client-7.png') }}"
-                                class="img-fluid" alt=""></div>
-                        <div class="swiper-slide"><img src="{{ asset('asset/img/clients/client-8.png') }}"
-                                class="img-fluid" alt=""></div>
+                        @foreach ($projets as $projet)
+                            <div class="swiper-slide"><img src="{{ asset($projet->getProjetImage()) }}"
+                                    class="img-fluid" alt="">
+                            </div>
+                        @endforeach
+                        <div class="swiper-slide"><img src="" class="img-fluid" alt=""></div>
+                        {{-- <div class="swiper-slide"><img src="{{ asset('asset/img/clients/client-2.png') }}"
+                            class="img-fluid" alt=""></div>
+                    <div class="swiper-slide"><img src="{{ asset('asset/img/clients/client-3.png') }}"
+                            class="img-fluid" alt=""></div>
+                    <div class="swiper-slide"><img src="{{ asset('asset/img/clients/client-4.png') }}"
+                            class="img-fluid" alt=""></div>
+                    <div class="swiper-slide"><img src="{{ asset('asset/img/clients/client-5.png') }}"
+                            class="img-fluid" alt=""></div>
+                    <div class="swiper-slide"><img src="{{ asset('asset/img/clients/client-6.png') }}"
+                            class="img-fluid" alt=""></div>
+                    <div class="swiper-slide"><img src="{{ asset('asset/img/clients/client-7.png') }}"
+                            class="img-fluid" alt=""></div>
+                    <div class="swiper-slide"><img src="{{ asset('asset/img/clients/client-8.png') }}"
+                            class="img-fluid" alt=""></div> --}}
                     </div>
                     <div class="swiper-pagination"></div>
                 </div>
@@ -766,7 +777,7 @@
         </section><!-- /Clients Section -->
 
         <!-- Testimonials Section -->
-        <section id="testimonials" class="testimonials section light-background">
+        {{-- <section id="testimonials" class="testimonials section light-background">
 
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
@@ -866,10 +877,11 @@
 
             </div>
 
-        </section><!-- /Testimonials Section -->
+        </section> --}}
+        <!-- /Testimonials Section -->
 
         <!-- Stats Section -->
-        <section id="stats" class="stats section">
+        {{-- <section id="stats" class="stats section">
 
             <div class="container" data-aos="fade-up" data-aos-delay="100">
 
@@ -911,7 +923,8 @@
 
             </div>
 
-        </section><!-- /Stats Section -->
+        </section> --}}
+        <!-- /Stats Section -->
 
         <!-- Services Section -->
         <section id="services" class="services section light-background">
@@ -919,7 +932,6 @@
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
                 <h2>Services</h2>
-                <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
             </div><!-- End Section Title -->
 
             <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -935,7 +947,7 @@
                                 <h3>Nesciunt Mete</h3>
                                 <p>Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus
                                     dolores iure perferendis tempore et consequatur.</p>
-                                <a href="service-details.html" class="read-more">Read More <i
+                                <a href="service-details.html" class="read-more">En savoir plus <i
                                         class="bi bi-arrow-right"></i></a>
                             </div>
                         </div>
@@ -950,7 +962,7 @@
                                 <h3>Eosle Commodi</h3>
                                 <p>Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque
                                     eum hic non ut nesciunt dolorem.</p>
-                                <a href="service-details.html" class="read-more">Read More <i
+                                <a href="service-details.html" class="read-more">En savoir plus <i
                                         class="bi bi-arrow-right"></i></a>
                             </div>
                         </div>
@@ -965,7 +977,7 @@
                                 <h3>Ledo Markt</h3>
                                 <p>Ut excepturi voluptatem nisi sed. Quidem fuga consequatur. Minus ea aut. Vel qui id
                                     voluptas adipisci eos earum corrupti.</p>
-                                <a href="service-details.html" class="read-more">Read More <i
+                                <a href="service-details.html" class="read-more">En savoir plus <i
                                         class="bi bi-arrow-right"></i></a>
                             </div>
                         </div>
@@ -980,7 +992,7 @@
                                 <h3>Asperiores Commodit</h3>
                                 <p>Non et temporibus minus omnis sed dolor esse consequatur. Cupiditate sed error ea
                                     fuga sit provident adipisci neque.</p>
-                                <a href="service-details.html" class="read-more">Read More <i
+                                <a href="service-details.html" class="read-more">En savoir plus <i
                                         class="bi bi-arrow-right"></i></a>
                             </div>
                         </div>
@@ -993,7 +1005,7 @@
         </section><!-- /Services Section -->
 
         <!-- Pricing Section -->
-        <section id="pricing" class="pricing section light-background">
+        {{-- <section id="pricing" class="pricing section light-background">
 
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
@@ -1127,7 +1139,8 @@
 
             </div>
 
-        </section><!-- /Pricing Section -->
+        </section> --}}
+        <!-- /Pricing Section -->
 
         <!-- Faq Section -->
         <section class="faq-9 faq section light-background" id="faq">
@@ -1136,9 +1149,9 @@
                 <div class="row">
 
                     <div class="col-lg-5" data-aos="fade-up">
-                        <h2 class="faq-title">Have a question? Check out the FAQ</h2>
-                        <p class="faq-description">Maecenas tempus tellus eget condimentum rhoncus sem quam semper
-                            libero sit amet adipiscing sem neque sed ipsum.</p>
+                        <h2 class="faq-title">Vous avez une question ? Consultez les questions fréquemment posées</h2>
+                        {{-- <p class="faq-description">Maecenas tempus tellus eget condimentum rhoncus sem quam semper
+                            libero sit amet adipiscing sem neque sed ipsum.</p> --}}
                         <div class="faq-arrow d-none d-lg-block" data-aos="fade-up" data-aos-delay="200">
                             <svg class="faq-arrow" width="200" height="211" viewBox="0 0 200 211"
                                 fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1150,9 +1163,10 @@
                     </div>
 
                     <div class="col-lg-7" data-aos="fade-up" data-aos-delay="300">
+
                         <div class="faq-container">
 
-                            <div class="faq-item faq-active">
+                            {{--  <div class="faq-item faq-active">
                                 <h3>Non consectetur a erat nam at lectus urna duis?</h3>
                                 <div class="faq-content">
                                     <p>Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus
@@ -1160,9 +1174,19 @@
                                         rhoncus dolor purus non.</p>
                                 </div>
                                 <i class="faq-toggle bi bi-chevron-right"></i>
-                            </div><!-- End Faq item-->
+                            </div> --}}
+                            @foreach ($contacts as $contact)
+                                <div class="faq-item faq-item">
+                                    <h3>{{ $contact->objet }}</h3>
+                                    <div class="faq-content">
+                                        <p><b>Question : </b>{{ $contact->message }} <br> <b>Réponse : </b>{{ $contact->reponse }}</p>
+                                    </div>
+                                    <i class="faq-toggle bi bi-chevron-right"></i>
+                                </div>
+                            @endforeach
+                            <!-- End Faq item-->
 
-                            <div class="faq-item">
+                            {{-- <div class="faq-item">
                                 <h3>Feugiat scelerisque varius morbi enim nunc faucibus?</h3>
                                 <div class="faq-content">
                                     <p>Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id
@@ -1171,7 +1195,8 @@
                                         Mauris ultrices eros in cursus turpis massa tincidunt dui.</p>
                                 </div>
                                 <i class="faq-toggle bi bi-chevron-right"></i>
-                            </div><!-- End Faq item-->
+                            </div>
+                            <!-- End Faq item-->
 
                             <div class="faq-item">
                                 <h3>Dolor sit amet consectetur adipiscing elit pellentesque?</h3>
@@ -1183,7 +1208,8 @@
                                     </p>
                                 </div>
                                 <i class="faq-toggle bi bi-chevron-right"></i>
-                            </div><!-- End Faq item-->
+                            </div>
+                            <!-- End Faq item-->
 
                             <div class="faq-item">
                                 <h3>Ac odio tempor orci dapibus. Aliquam eleifend mi in nulla?</h3>
@@ -1194,7 +1220,8 @@
                                         Mauris ultrices eros in cursus turpis massa tincidunt dui.</p>
                                 </div>
                                 <i class="faq-toggle bi bi-chevron-right"></i>
-                            </div><!-- End Faq item-->
+                            </div>
+                            <!-- End Faq item-->
 
                             <div class="faq-item">
                                 <h3>Tempus quam pellentesque nec nam aliquam sem et tortor?</h3>
@@ -1205,7 +1232,8 @@
                                     </p>
                                 </div>
                                 <i class="faq-toggle bi bi-chevron-right"></i>
-                            </div><!-- End Faq item-->
+                            </div>
+                            <!-- End Faq item-->
 
                             <div class="faq-item">
                                 <h3>Perspiciatis quod quo quos nulla quo illum ullam?</h3>
@@ -1214,7 +1242,8 @@
                                         in suscipit sequi. Distinctio ipsam dolore et.</p>
                                 </div>
                                 <i class="faq-toggle bi bi-chevron-right"></i>
-                            </div><!-- End Faq item-->
+                            </div>
+                            <!-- End Faq item--> --}}
 
                         </div>
                     </div>
@@ -1224,7 +1253,7 @@
         </section><!-- /Faq Section -->
 
         <!-- Call To Action 2 Section -->
-        <section id="call-to-action-2" class="call-to-action-2 section dark-background">
+        {{-- <section id="call-to-action-2" class="call-to-action-2 section dark-background">
 
             <div class="container">
                 <div class="row justify-content-center" data-aos="zoom-in" data-aos-delay="100">
@@ -1240,7 +1269,8 @@
                 </div>
             </div>
 
-        </section><!-- /Call To Action 2 Section -->
+        </section> --}}
+        <!-- /Call To Action 2 Section -->
 
         <!-- Contact Section -->
         <section id="contact" class="contact section light-background">
@@ -1611,8 +1641,8 @@
 
                                     <div
                                         class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xxl-12 justify-content-center">
-                                        <p class="small">Vous avez déjà un compte ? <a href="#"
-                                                data-bs-toggle="modal" data-bs-target="#loginModal">Se connecter</a>
+                                        <p class="small">Vous avez déjà un compte ? <a data-bs-toggle="modal"
+                                                data-bs-target="#loginModal">Se connecter</a>
                                         </p>
                                     </div>
                                 </div>
@@ -1840,32 +1870,39 @@
                         <span class="sitename">SIGOF</span>
                     </a>
                     <div class="footer-contact pt-3">
-                        <p>A108 Adam Street</p>
-                        <p>New York, NY 535022</p>
-                        <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-                        <p><strong>Email:</strong> <span>info@example.com</span></p>
+                        <p>Sipres 1, lot 2</p>
+                        <p>2 voies liberté 6, extension VDN</p>
+                        <p class="mt-3"><strong>Téléphone:</strong> <span><a href="tel:+2211338279251">+221 33 827
+                                    92 51</a></span></p>
+                        <p><strong>Email:</strong> <span><a href="mailto:onfp@onfp.sn">onfp@onfp.sn</a></span></p>
                     </div>
                     <div class="social-links d-flex mt-4">
-                        <a href=""><i class="bi bi-twitter-x"></i></a>
-                        <a href=""><i class="bi bi-facebook"></i></a>
-                        <a href=""><i class="bi bi-instagram"></i></a>
-                        <a href=""><i class="bi bi-linkedin"></i></a>
+                        <a href="https://x.com/ONFP_Officiel/" target="_blank"><i class="bi bi-twitter-x"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=61566912421177" target="_blank"><i
+                                class="bi bi-facebook"></i></a>
+                        <a href="https://www.instagram.com/onfp.sn/" target="_blank"><i
+                                class="bi bi-instagram"></i></a>
+                        <a href="https://www.linkedin.com/company/104719756/admin/page-posts/published/"
+                            target="_blank"><i class="bi bi-linkedin"></i></a>
+                        <a href="https://www.youtube.com/@onfp9383/featured" target="_blank"><i
+                                class="bi bi-youtube"></i></a>
+                        <a href="https://wa.me/221772911838" target="_blank"><i class="bi bi-whatsapp"></i></a>
                     </div>
                 </div>
 
                 <div class="col-lg-2 col-md-3 footer-links">
-                    <h4>Useful Links</h4>
+                    <h4>Réseaux sociaux</h4>
                     <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About us</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">Terms of service</a></li>
-                        <li><a href="#">Privacy policy</a></li>
+                        <li><a href="#accueil">Accueil</a></li>
+                        <li><a href="#apropos">A propos</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#partenaires">Partenaires</a></li>
+                        <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
 
-                <div class="col-lg-2 col-md-3 footer-links">
-                    <h4>Our Services</h4>
+                {{-- <div class="col-lg-2 col-md-3 footer-links">
+                    <h4>Nos services</h4>
                     <ul>
                         <li><a href="#">Web Design</a></li>
                         <li><a href="#">Web Development</a></li>
@@ -1873,10 +1910,10 @@
                         <li><a href="#">Marketing</a></li>
                         <li><a href="#">Graphic Design</a></li>
                     </ul>
-                </div>
+                </div> --}}
 
                 <div class="col-lg-2 col-md-3 footer-links">
-                    <h4>Hic solutasetp</h4>
+                    <h4>Nos antennes</h4>
                     <ul>
                         <li><a href="#">Molestiae accusamus iure</a></li>
                         <li><a href="#">Excepturi dignissimos</a></li>
@@ -1886,14 +1923,73 @@
                     </ul>
                 </div>
 
-                <div class="col-lg-2 col-md-3 footer-links">
-                    <h4>Nobis illum</h4>
+                <div class="col-lg-4 col-md-6 footer-links">
+                    <h4>Connexion</h4>
                     <ul>
-                        <li><a href="#">Ipsam</a></li>
-                        <li><a href="#">Laudantium dolorum</a></li>
-                        <li><a href="#">Dinera</a></li>
-                        <li><a href="#">Trodelas</a></li>
-                        <li><a href="#">Flexo</a></li>
+                        {{-- <li><a data-bs-toggle="modal" data-bs-target="#loginModal">Se connecter</a></li>
+                        <li><a data-bs-toggle="modal" data-bs-target="#registerDemandeurModal">Créer un compte
+                                personnel</a></li>
+                        <li><a data-bs-toggle="modal" data-bs-target="#registerOperateurModal">Créer un compte
+                                opérateur</a></li> --}}
+
+                        <div class="modal-content">
+                            <form class="row needs-validation" novalidate method="POST"
+                                action="{{ route('login') }}">
+                                @csrf
+                                <div class="modal-body">
+                                    <div class="row g-3">
+                                        <div class="col-12">
+                                            {{--  <label for="email" class="form-label">Email<span
+                                                    class="text-danger mx-1">*</span></label> --}}
+                                            <div class="input-group has-validation">
+                                                <input type="email" name="email"
+                                                    class="form-control form-control-sm @error('email') is-invalid @enderror"
+                                                    id="email" required placeholder="Votre adresse e-mail"
+                                                    value="{{ old('email') }}">
+                                                <div class="invalid-feedback">
+                                                    @error('email')
+                                                        {{ $message }}
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            {{-- <label for="password" class="form-label">Mot de passe<span
+                                                    class="text-danger mx-1">*</span></label> --}}
+                                            <input type="password" name="password"
+                                                class="form-control form-control-sm  @error('password') is-invalid @enderror"
+                                                id="password" required placeholder="Votre mot de passe">
+                                            <div class="invalid-feedback">
+                                                @error('password')
+                                                    {{ $message }}
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="remember"
+                                                    value="true" id="rememberMe">
+                                                <label class="form-check-label" for="rememberMe">Souviens-toi de
+                                                    moi</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xxl-12">
+                                            <button class="btn btn-primary btn-m w-100" type="submit">Se
+                                                connecter</button>
+                                        </div>
+
+                                        <div class="col-12">
+                                            @if (Route::has('password.request'))
+                                                <p class="small mb-0">Mot de passe oublié !
+                                                    <a data-bs-toggle="modal" data-bs-target="#forgotModal">
+                                                        Réinitialiser</a>
+                                                </p>
+                                            @endif
+                                        </div>
+                                    </div>
+                            </form>
                     </ul>
 
                     {{-- <div class="footer-links">
@@ -1918,7 +2014,7 @@
                 <!-- You can delete the links only if you've purchased the pro version. -->
                 <!-- Licensing information: https://bootstrapmade.com/license/ -->
                 <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-                Conçu par <a href="https://www.onfp.sn/" target="_blank">ONFP</a>
+                Conçu par <a href="https://www.onfp.sn/" target="_blank">ONFP</a>, MAI 2024
             </div>
         </div>
 

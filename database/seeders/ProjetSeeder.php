@@ -27,6 +27,18 @@ class ProjetSeeder extends Seeder
           ]);
 
           DB::table('projets')->insert([
+               "name" => "PROJET DE REHABILITATION DE LA ROUTE SENOBA-ZIGUINCHOR-MPACK ET DE DESENCLAVEMENT DES REGIONS DU SUD",
+               "sigle" => "AGEROUTE-SENOZIG",
+               "description" => "description AGEROUTE-SENOZIG",
+               "budjet" => "100000000",
+               "effectif" => "450",
+               "statut" => "attente",
+               'created_at' => now(),
+               'updated_at' => now(),
+               'uuid' => Str::uuid(),
+          ]);
+          
+          DB::table('projets')->insert([
                "name" => "Projet d'appui au Développement des Compétences et de l'Entreprenariat des Jeunes dans les secteurs porteurs",
                "sigle" => "PDCEJ",
                "description" => "description PDCEJ",
@@ -44,18 +56,6 @@ class ProjetSeeder extends Seeder
                "description" => "description ACEFOP",
                "budjet" => "320000000",
                "effectif" => "300",
-               "statut" => "attente",
-               'created_at' => now(),
-               'updated_at' => now(),
-               'uuid' => Str::uuid(),
-          ]);
-
-          DB::table('projets')->insert([
-               "name" => "PROJET DE REHABILITATION DE LA ROUTE SENOBA-ZIGUINCHOR-MPACK ET DE DESENCLAVEMENT DES REGIONS DU SUD",
-               "sigle" => "AGEROUTE-SENOZIG",
-               "description" => "description AGEROUTE-SENOZIG",
-               "budjet" => "100000000",
-               "effectif" => "450",
                "statut" => "attente",
                'created_at' => now(),
                'updated_at' => now(),

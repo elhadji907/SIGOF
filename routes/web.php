@@ -412,6 +412,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/postes/{poste}', [PosteController::class, 'show'])->name('postes.show');
 
     Route::put('/alaunes', [UneController::class, 'alaUne'])->name('alaunes');
+    Route::put('/uneContacts', [ContactController::class, 'uneContacts'])->name('uneContacts');
     /* Vues ressouces */
     Route::resource('/users', UserController::class);
     Route::resource('/permissions', PermissionController::class);

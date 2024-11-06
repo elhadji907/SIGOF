@@ -198,7 +198,7 @@
                     <form action="{{ route('logout') }}" method="post">
                         @csrf
                         <button type="submit" class="dropdown-item show_confirm_disconnect"><i
-                                class="bi bi-trash"></i>Se
+                                class="bi bi-box-arrow-in-left"></i>Se
                             déconnecter</button>
                     </form>
                 </li>
