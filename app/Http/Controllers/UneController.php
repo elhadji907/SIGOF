@@ -21,15 +21,20 @@ class UneController extends Controller
             'titre1'      =>  ['required', 'string', 'max:20'],
             'titre2'      =>  ['required', 'string', 'max:25'],
             'message'    =>  ['required', 'string'],
-            'image'      =>  ['image', 'required', 'mimes:jpeg,png,jpg,gif,svg,webp', 'max:2048'],
+            'image'      =>  ['image', 'nullable', 'mimes:jpeg,png,jpg,gif,svg,webp', 'max:2048'],
 
         ]);
 
-        $imagePath = request('image')->store('unes', 'public');
+        if (request('image')) {
+            $imagePath = request('image')->store('unes', 'public');
 
-        $image = Image::make(public_path("/storage/{$imagePath}"))->fit(2400, 2400);
+            $image = Image::make(public_path("/storage/{$imagePath}"))->fit(2400, 2400);
 
-        $image->save();
+            $image->save();
+        } else {
+            $imagePath = null;
+        }
+
 
         $une = new Une([
             'titre1'     => $data['titre1'],

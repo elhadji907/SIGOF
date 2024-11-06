@@ -150,26 +150,40 @@
                     @endif
                     <div class="col-lg-6">
                         <div class="hero-content" data-aos="fade-up" data-aos-delay="200">
-                            <div class="company-badge mb-4 mt-0">
+                            {{-- <div class="company-badge mb-4 mt-0">
                                 <i class="bi bi-gear-fill me-2"></i>
                                 Formez-vous pour votre réussite
+                            </div> --}}
+                            <div class="company-badge mb-4 mt-0">
+                                <i class="bi bi-align-start me-2"></i>
+                                La référence de la formation professionnelle
                             </div>
 
                             <h1 class="mb-4">
-                                {{ $une->titre1 }} <br>
-                                {{--  Consectetur Led <br> --}}
-                                <span class="accent-text">{{ $une->titre2 }}</span>
+                                @if (!empty($une?->titre1))
+                                    {{ $une?->titre1 }} <br>
+                                @endif
                             </h1>
+                            <h3>
+                                {{--  Consectetur Led <br> --}}
+                                @if (!empty($une?->titre2))
+                                    <span class="accent-text">{{ $une?->titre2 }}</span>
+                                @endif
+                            </h3>
 
-                            <p class="mb-4 mb-md-5">
-                                {{ substr($une->message, 0, 150) }}...
-                            </p>
+                            @if (!empty($une?->message))
+                                <p class="mb-4 mb-md-5">
+                                    {{ substr($une?->message, 0, 150) }}...
+                                </p>
+                            @endif
 
                             <div class="hero-buttons">
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#enSavoirPlusModal"
-                                    class="btn btn-primary me-0 me-sm-2 mx-1">En savoir plus</a>
-                                @if (!empty($une->video))
-                                    <a href="{{ $une->video }}" class="btn btn-link mt-2 mt-sm-0 glightbox">
+                                @if (!empty($une?->message))
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#enSavoirPlusModal"
+                                        class="btn btn-primary me-0 me-sm-2 mx-1">En savoir plus</a>
+                                @endif
+                                @if (!empty($une?->video))
+                                    <a href="{{ $une?->video }}" class="btn btn-link mt-2 mt-sm-0 glightbox">
                                         <i class="bi bi-play-circle me-1"></i>
                                         Lire la vidéo
                                     </a>
@@ -182,7 +196,11 @@
                         <div class="hero-image" data-aos="zoom-out" data-aos-delay="300">
                             {{-- <img src="{{ asset('asset/img/illustration-1.webp') }}" alt="Hero Image" class="img-fluid"> --}}
 
-                            <img class="img-fluid" alt="Image" src="{{ asset($une->getUne()) }}">
+                            @if (!empty($une?->image))
+                                <img class="img-fluid" alt="Image" src="{{ asset($une?->getUne()) }}">
+                            @else
+                                <img src="{{ asset('asset/img/dg.png') }}" alt="Hero Image" class="img-fluid">
+                            @endif
 
                             <div class="customers-badge">
                                 <div class="customer-avatars">
@@ -751,7 +769,7 @@
           </script>
                     <div class="swiper-wrapper align-items-center">
                         @foreach ($projets as $projet)
-                            <div class="swiper-slide"><img src="{{ asset($projet->getProjetImage()) }}"
+                            <div class="swiper-slide"><img src="{{ asset($projet?->getProjetImage()) }}"
                                     class="img-fluid" alt="">
                             </div>
                         @endforeach
@@ -1179,10 +1197,10 @@
                             </div> --}}
                             @foreach ($contacts as $contact)
                                 <div class="faq-item faq-item">
-                                    <h3>{{ $contact->objet }}</h3>
+                                    <h3>{{ $contact?->objet }}</h3>
                                     <div class="faq-content">
-                                        <p><b>Question : </b>{{ $contact->message }} <br> <b>Réponse :
-                                            </b>{{ $contact->reponse }}</p>
+                                        <p><b>Question : </b>{{ $contact?->message }} <br> <b>Réponse :
+                                            </b>{{ $contact?->reponse }}</p>
                                     </div>
                                     <i class="faq-toggle bi bi-chevron-right"></i>
                                 </div>
@@ -1379,7 +1397,7 @@
                             <form class="row g-3 needs-validation" novalidate method="POST"
                                 action="{{ route('contacts.store') }}">
                                 @csrf
-                                <div class="col-12 col-md-12 col-lg-6 col-sm-12 col-xs-12 col-xxl-6">
+                                <div class="col-12 col-md-6 col-lg-6 col-sm-12 col-xs-12 col-xxl-6">
                                     <label for="email" class="form-label">Email<span
                                             class="text-danger mx-1">*</span></label>
                                     <div class="input-group has-validation">
@@ -1395,7 +1413,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-12 col-md-12 col-lg-6 col-sm-12 col-xs-12 col-xxl-6">
+                                <div class="col-12 col-md-6 col-lg-6 col-sm-12 col-xs-12 col-xxl-6">
                                     <label for="telephone" class="form-label">Téléphone<span
                                             class="text-danger mx-1">*</span></label>
                                     <div class="input-group has-validation">
@@ -1868,15 +1886,15 @@
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h3 class="w-100  text-center">{{ $une->titre1 }}</h3>
+                            <h3 class="w-100  text-center">{{ $une?->titre1 }}</h3>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="row g-3">
 
-                                <h4>{{ $une->titre2 }}</h4>
-                                <p>{{ $une->message }}</p>
+                                <h4>{{ $une?->titre2 }}</h4>
+                                <p>{{ $une?->message }}</p>
 
                             </div>
                         </div>

@@ -253,7 +253,7 @@
                                     <div class="input-group has-validation">
                                         <input type="name" name="statut"
                                             class="form-control form-control-sm @error('statut') is-invalid @enderror"
-                                            id="statut" required placeholder="statut" value="{{ $contact->statut ?? old('statut') }}">
+                                            id="statut" placeholder="statut" value="{{ $contact->statut ?? old('statut') }}">
                                         <div class="invalid-feedback">
                                             @error('statut')
                                                 {{ $message }}

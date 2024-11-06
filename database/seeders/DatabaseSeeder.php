@@ -276,6 +276,11 @@ class DatabaseSeeder extends Seeder
         'une-create',
         'une-update',
         'une-delete',
+        'contact-view',
+        'contact-show',
+        'contact-create',
+        'contact-update',
+        'contact-delete',
     ];
 
     public function run(): void
