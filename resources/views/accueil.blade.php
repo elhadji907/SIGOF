@@ -162,16 +162,18 @@
                             </h1>
 
                             <p class="mb-4 mb-md-5">
-                                {{ $une->message }}
+                                {{ substr($une->message, 0, 150) }}...
                             </p>
 
                             <div class="hero-buttons">
-                                <a href="#apropos" class="btn btn-primary me-0 me-sm-2 mx-1">En savoir plus</a>
-                                <a href="https://www.youtube.com/watch?v=nExQc0IzhTk"
-                                    class="btn btn-link mt-2 mt-sm-0 glightbox">
-                                    <i class="bi bi-play-circle me-1"></i>
-                                    Lire la vidéo
-                                </a>
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#enSavoirPlusModal"
+                                    class="btn btn-primary me-0 me-sm-2 mx-1">En savoir plus</a>
+                                @if (!empty($une->video))
+                                    <a href="{{ $une->video }}" class="btn btn-link mt-2 mt-sm-0 glightbox">
+                                        <i class="bi bi-play-circle me-1"></i>
+                                        Lire la vidéo
+                                    </a>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -1179,7 +1181,8 @@
                                 <div class="faq-item faq-item">
                                     <h3>{{ $contact->objet }}</h3>
                                     <div class="faq-content">
-                                        <p><b>Question : </b>{{ $contact->message }} <br> <b>Réponse : </b>{{ $contact->reponse }}</p>
+                                        <p><b>Question : </b>{{ $contact->message }} <br> <b>Réponse :
+                                            </b>{{ $contact->reponse }}</p>
                                     </div>
                                     <i class="faq-toggle bi bi-chevron-right"></i>
                                 </div>
@@ -1858,6 +1861,29 @@
             </div>
         </div>
 
+        {{-- En savoir plus --}}
+        <div
+            class="col-12 col-md-12 col-lg-12 col-sm-12 col-xs-12 col-xxl-12 d-flex flex-column align-items-center justify-content-center">
+            <div class="modal fade" id="enSavoirPlusModal" tabindex="-1">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="w-100  text-center">{{ $une->titre1 }}</h3>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row g-3">
+
+                                <h4>{{ $une->titre2 }}</h4>
+                                <p>{{ $une->message }}</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         @include('sweetalert::alert')
     </main>
 

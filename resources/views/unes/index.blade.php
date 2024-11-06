@@ -44,6 +44,7 @@
                                     <th width="12%">Titre 2</th>
                                     <th>Message</th>
                                     <th width="5%" class="text-center">Statut</th>
+                                    <th width="5%" class="text-center">Vidéo</th>
                                     <th width="5%" class="text-center">#</th>
                                 </tr>
                             </thead>
@@ -59,6 +60,13 @@
                                         <td>{{ $une?->titre2 }}</td>
                                         <td>{{ $une?->message }}</td>
                                         <td>{{ $une?->status }}</td>
+                                        <td>
+                                            @if (!empty($une->video))
+                                                <a href="{{ $une->video }}" class="btn btn-link mt-2 mt-sm-0 glightbox" target="_blank">
+                                                    <i class="bi bi-play-circle me-1"></i>
+                                                </a>
+                                            @endif
+                                        </td>
                                         <td>
                                             <span class="d-flex mt-2 align-items-baseline"><a href="#"
                                                     class="btn btn-warning btn-sm mx-1" title="Voir"><i
@@ -82,9 +90,10 @@
                                                         <form action="{{ route('alaunes') }}" method="post">
                                                             @csrf
                                                             @method('PUT')
-                                                            <input type="hidden" name="alaune" id="alaune" value="{{ $une->id }}">
-                                                            <button type="submit"
-                                                                class="dropdown-item une_confirm">Mettre à la une</button>
+                                                            <input type="hidden" name="alaune" id="alaune"
+                                                                value="{{ $une->id }}">
+                                                            <button type="submit" class="dropdown-item une_confirm">Mettre
+                                                                à la une</button>
                                                         </form>
                                                     </ul>
                                                 </div>
@@ -118,8 +127,8 @@
                                 <div class="col-12 col-md-12 col-lg-6 col-sm-12 col-xs-12 col-xxl-6">
                                     <label for="titre1" class="form-label">Titre 1<span
                                             class="text-danger mx-1">*</span></label>
-                                    <textarea name="titre1" rows="1"
-                                        class="form-control form-control-sm @error('titre1') is-invalid @enderror" placeholder="Titre 1">{{ old('titre1') }}</textarea>
+                                    <textarea name="titre1" rows="1" class="form-control form-control-sm @error('titre1') is-invalid @enderror"
+                                        placeholder="Titre 1">{{ old('titre1') }}</textarea>
                                     @error('titre1')
                                         <span class="invalid-feedback" role="alert">
                                             <div>{{ $message }}</div>
@@ -130,8 +139,8 @@
                                 <div class="col-12 col-md-12 col-lg-6 col-sm-12 col-xs-12 col-xxl-6">
                                     <label for="titre2" class="form-label">Titre 2<span
                                             class="text-danger mx-1">*</span></label>
-                                    <textarea name="titre2" rows="1"
-                                        class="form-control form-control-sm @error('titre2') is-invalid @enderror" placeholder="Titre 2">{{ old('titre2') }}</textarea>
+                                    <textarea name="titre2" rows="1" class="form-control form-control-sm @error('titre2') is-invalid @enderror"
+                                        placeholder="Titre 2">{{ old('titre2') }}</textarea>
                                     @error('titre2')
                                         <span class="invalid-feedback" role="alert">
                                             <div>{{ $message }}</div>
@@ -143,7 +152,8 @@
                                     <label for="message" class="form-label">Message<span
                                             class="text-danger mx-1">*</span></label>
                                     <textarea name="message" id="message" rows="3"
-                                        class="form-control form-control-sm @error('message') is-invalid @enderror" placeholder="Ecrire votre message ici">{{ old('message') }}</textarea>
+                                        class="form-control form-control-sm @error('message') is-invalid @enderror"
+                                        placeholder="Ecrire votre message ici">{{ old('message') }}</textarea>
                                     @error('message')
                                         <span class="invalid-feedback" role="alert">
                                             <div>{{ $message }}</div>
@@ -177,95 +187,104 @@
         </div>
     </div>
     @foreach ($unes as $une)
-                <div
-                    class="col-12 col-md-12 col-lg-12 col-sm-12 col-xs-12 col-xxl-12 d-flex flex-column align-items-center justify-content-center">
-                    <div class="modal fade" id="EditUneModal{{ $une->id }}" tabindex="-1">
-                        <div class="modal-dialog modal-xl">
-                            <div class="modal-content">
-                                <form method="post" action="{{ route('unes.update', $une->id) }}"
-                                    enctype="multipart/form-data">
-                                    @csrf
-                                    @method('PUT')
-                                    <div class="card-header text-center bg-gradient-default">
-                                        <h1 class="h4 text-black mb-0">MODIFICATION A LA UNE</h1>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="row g-3">
-
-                                            <div class="col-12 col-md-12 col-lg-6 col-sm-12 col-xs-12 col-xxl-6">
-                                                <label for="titre1" class="form-label">Titre 1<span
-                                                        class="text-danger mx-1">*</span></label>
-                                                <textarea name="titre1" rows="1"
-                                                    class="form-control form-control-sm @error('titre1') is-invalid @enderror" placeholder="Titre1">{{ $une->titre1 ?? old('titre1') }}</textarea>
-                                                @error('titre1')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <div>{{ $message }}</div>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                            <div class="col-12 col-md-12 col-lg-6 col-sm-12 col-xs-12 col-xxl-6">
-                                                <label for="titre2" class="form-label">Titre 2<span
-                                                        class="text-danger mx-1">*</span></label>
-                                                <textarea name="titre2" rows="1"
-                                                    class="form-control form-control-sm @error('titre2') is-invalid @enderror" placeholder="Titre 2">{{ $une->titre2 ?? old('titre2') }}</textarea>
-                                                @error('titre2')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <div>{{ $message }}</div>
-                                                    </span>
-                                                @enderror
-                                            </div>
-
-                                            <div class="col-12 col-md-12 col-lg-12 col-sm-12 col-xs-12 col-xxl-12">
-                                                <label for="message" class="form-label">Mesage<span
-                                                        class="text-danger mx-1">*</span></label>
-                                                <textarea name="message" id="message" rows="3"
-                                                    class="form-control form-control-sm @error('message') is-invalid @enderror" placeholder="Ecrire votre une ici">{{ $une->message ?? old('message') }}</textarea>
-                                                @error('message')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <div>{{ $message }}</div>
-                                                    </span>
-                                                @enderror
-                                            </div>
-
-                                            <div class="col-12 col-md-12 col-lg-10 col-sm-12 col-xs-12 col-xxl-10">
-                                                <label for="image" class="form-label">Image<span
-                                                        class="text-danger mx-1">*</span></label>
-                                                <input type="file" name="image" value="{{ old('image') }}"
-                                                    class="form-control form-control-sm @error('image') is-invalid @enderror"
-                                                    id="image" placeholder="Image">
-                                                @error('image')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <div>{{ $message }}</div>
-                                                    </span>
-                                                @enderror
-                                            </div>
-
-                                            <div class="col-12 col-md-12 col-lg-2 col-sm-12 col-xs-12 col-xxl-2">
-                                                <label for="reference" class="form-label">Image</label><br>
-                                                @if (isset($une->image))
-                                                    <div>
-                                                        <img class="w-25" alt="Profil"
-                                                            src="{{ asset($une->getUne()) }}" width="20"
-                                                            height="auto">
-                                                    </div>
-                                                @else
-                                                    <div class="badge bg-warning">Aucun</div>
-                                                @endif
-                                            </div>
-
-                                        </div>
-                                        <div class="modal-footer mt-5">
-                                            <button type="button" class="btn btn-secondary btn-sm"
-                                                data-bs-dismiss="modal">Fermer</button>
-                                            <button type="submit" class="btn btn-primary btn-sm">Modifier</button>
-                                        </div>
-                                    </div>
-                                </form>
+        <div
+            class="col-12 col-md-12 col-lg-12 col-sm-12 col-xs-12 col-xxl-12 d-flex flex-column align-items-center justify-content-center">
+            <div class="modal fade" id="EditUneModal{{ $une->id }}" tabindex="-1">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <form method="post" action="{{ route('unes.update', $une->id) }}"
+                            enctype="multipart/form-data">
+                            @csrf
+                            @method('PUT')
+                            <div class="card-header text-center bg-gradient-default">
+                                <h1 class="h4 text-black mb-0">MODIFICATION A LA UNE</h1>
                             </div>
-                        </div>
+                            <div class="modal-body">
+                                <div class="row g-3">
+
+                                    <div class="col-12 col-md-12 col-lg-6 col-sm-12 col-xs-12 col-xxl-6">
+                                        <label for="titre1" class="form-label">Titre 1<span
+                                                class="text-danger mx-1">*</span></label>
+                                        <textarea name="titre1" rows="1" class="form-control form-control-sm @error('titre1') is-invalid @enderror"
+                                            placeholder="Titre1">{{ $une->titre1 ?? old('titre1') }}</textarea>
+                                        @error('titre1')
+                                            <span class="invalid-feedback" role="alert">
+                                                <div>{{ $message }}</div>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-12 col-md-12 col-lg-6 col-sm-12 col-xs-12 col-xxl-6">
+                                        <label for="titre2" class="form-label">Titre 2<span
+                                                class="text-danger mx-1">*</span></label>
+                                        <textarea name="titre2" rows="1" class="form-control form-control-sm @error('titre2') is-invalid @enderror"
+                                            placeholder="Titre 2">{{ $une->titre2 ?? old('titre2') }}</textarea>
+                                        @error('titre2')
+                                            <span class="invalid-feedback" role="alert">
+                                                <div>{{ $message }}</div>
+                                            </span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="col-12 col-md-12 col-lg-12 col-sm-12 col-xs-12 col-xxl-12">
+                                        <label for="message" class="form-label">Mesage<span
+                                                class="text-danger mx-1">*</span></label>
+                                        <textarea name="message" id="message" rows="3"
+                                            class="form-control form-control-sm @error('message') is-invalid @enderror" placeholder="Ecrire votre une ici">{{ $une->message ?? old('message') }}</textarea>
+                                        @error('message')
+                                            <span class="invalid-feedback" role="alert">
+                                                <div>{{ $message }}</div>
+                                            </span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="col-12 col-md-12 col-lg-4 col-sm-12 col-xs-12 col-xxl-4">
+                                        <label for="image" class="form-label">Image<span
+                                                class="text-danger mx-1">*</span></label>
+                                        <input type="file" name="image" value="{{ old('image') }}"
+                                            class="form-control form-control-sm @error('image') is-invalid @enderror"
+                                            id="image" placeholder="Image">
+                                        @error('image')
+                                            <span class="invalid-feedback" role="alert">
+                                                <div>{{ $message }}</div>
+                                            </span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="col-12 col-md-12 col-lg-2 col-sm-12 col-xs-12 col-xxl-2">
+                                        <label for="reference" class="form-label">Image</label><br>
+                                        @if (isset($une->image))
+                                            <div>
+                                                <img class="w-25" alt="Profil" src="{{ asset($une->getUne()) }}"
+                                                    width="20" height="auto">
+                                            </div>
+                                        @else
+                                            <div class="badge bg-warning">Aucun</div>
+                                        @endif
+                                    </div>
+
+                                    <div class="col-12 col-md-12 col-lg-6 col-sm-12 col-xs-12 col-xxl-6">
+                                        <label for="video" class="form-label">Vidéo</label>
+                                        <textarea name="video" rows="1" class="form-control form-control-sm @error('video') is-invalid @enderror"
+                                            placeholder="Lien vidéo">{{ $une->video ?? old('video') }}</textarea>
+                                        @error('video')
+                                            <span class="invalid-feedback" role="alert">
+                                                <div>{{ $message }}</div>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="modal-footer mt-5">
+                                    <button type="button" class="btn btn-secondary btn-sm"
+                                        data-bs-dismiss="modal">Fermer</button>
+                                    <button type="submit" class="btn btn-primary btn-sm">Modifier</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
-            @endforeach
+            </div>
+        </div>
+    @endforeach
 @endsection
 @push('scripts')
     <script>

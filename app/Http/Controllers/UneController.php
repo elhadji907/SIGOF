@@ -53,6 +53,7 @@ class UneController extends Controller
             'titre2'      =>  ['required', 'string', 'max:25'],
             'message'    =>  ['required', 'string'],
             'image'      =>  ['image', 'nullable', 'mimes:jpeg,png,jpg,gif,svg,webp', 'max:2048'],
+            'video'    =>  ['nullable', 'string'],
 
         ]);
 
@@ -73,6 +74,7 @@ class UneController extends Controller
             'titre1'     => $data['titre1'],
             'titre2'     => $data['titre2'],
             'message'   => $data['message'],
+            'video'   => $data['video'],
             'users_id'  => auth()->user()->id,
             'image'     => $imagePath
         ]);

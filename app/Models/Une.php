@@ -19,6 +19,7 @@ class Une extends Model
         'titre1',
         'titre2',
         'image',
+        'video',
         'message',
         'status',
         'users_id',

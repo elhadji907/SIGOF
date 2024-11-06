@@ -20,6 +20,7 @@ return new class extends Migration
             $table->longText('message')->nullable();
             $table->string('status', 200)->nullable(); /* à la une */
             $table->unsignedInteger(column: 'users_id')->nullable(); /* auth user id */
+            $table->string('video', 200)->nullable();
             $table->softDeletes();
             $table->nullableTimestamps();
         });
