@@ -17,7 +17,7 @@ class ContactController extends Controller
     public function store(Request $request)
     {
         $data = request()->validate([
-            'email'         =>  ['required', 'email'],
+            'emailadresse'  =>  ['required', 'email'],
             'telephone'     =>  ['required', 'string', 'max:9', 'min:9'],
             'objet'         =>  ['required', 'string'],
             'message'       =>  ['required', 'string'],
@@ -25,7 +25,7 @@ class ContactController extends Controller
         ]);
 
         $contact = new Contact([
-            'email'         => $data['email'],
+            'email'         => $data['emailadresse'],
             'telephone'     => $data['telephone'],
             'objet'         => $data['objet'],
             'message'       => $data['message'],

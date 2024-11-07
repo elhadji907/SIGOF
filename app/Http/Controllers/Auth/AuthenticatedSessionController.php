@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\Collective;
 use App\Models\Contact;
 use App\Models\Individuelle;
+use App\Models\Operateur;
 use App\Models\Projet;
 use App\Models\Une;
 use App\Providers\RouteServiceProvider;
@@ -25,16 +27,34 @@ class AuthenticatedSessionController extends Controller
         /* return view('auth.login'); */
         $une = Une::where("status", "!=", null)->first();
         $projets = Projet::where("image", "!=", null)->get();
-        $contacts = Contact::orderBy("created_at", "desc")->where("statut", "!=", null)->get();
+        $contacts = Contact::limit(5)->orderBy("created_at", "desc")->where("statut", "!=", null)->get();
         $today = date('Y-m-d');
         $count_today = Individuelle::where("created_at", "LIKE",  "{$today}%")->count();
+        $count_individuelles = Individuelle::count();
+        $count_collectives = Collective::count();
+        $count_projets = Projet::count();
+        $count_operateurs = Operateur::where('statut_agrement', 'agréer')->count();
+        
         if ($count_today <= "0") {
             $title = "nouvelle demande aujourd'hui";
         } else {
             $title = "nouvelles demandes aujourd'hui";
         }
 
-        return view('accueil', compact('une', 'count_today', 'title', 'projets', 'contacts'));
+        return view(
+            'accueil',
+            compact(
+                'une',
+                'count_today',
+                'title',
+                'projets',
+                'contacts',
+                'count_individuelles',
+                'count_projets',
+                'count_operateurs',
+                'count_collectives'
+            )
+        );
     }
 
     public function create(): View

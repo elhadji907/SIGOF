@@ -77,6 +77,7 @@
             <a href="{{ url('/') }}" class="logo d-flex align-items-center me-auto me-xl-0">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
                 <!-- <img src="{{ asset('asset/img/logo.png') }}" alt=""> -->
+                {{-- <img src="{{ asset('assets/img/logo_sigle.png') }}" alt=""> --}}
                 <h1 class="sitename"><b>SIGOF</b></h1>
             </a>
 
@@ -159,28 +160,26 @@
                         <div class="hero-content" data-aos="fade-up" data-aos-delay="200">
                             <div class="company-badge mb-4 mt-0">
                                 <i class="bi bi-gear-fill me-2"></i>
-                                La référence de la formation professionnelle, formez-vous pour votre réussite !
+                                La référence de la formation professionnelle
                             </div>
                             {{-- <div class="company-badge mb-4 mt-0">
                                 <i class="bi bi-align-start me-2"></i>
-                                La référence de la formation professionnelle
+                                Formez-vous pour votre réussite
                             </div> --}}
 
                             <h1 class="mb-4">
                                 @if (!empty($une?->titre1))
                                     {{ $une?->titre1 }} <br>
                                 @endif
-                            </h1>
-                            <h3>
                                 {{--  Consectetur Led <br> --}}
                                 @if (!empty($une?->titre2))
                                     <span class="accent-text">{{ $une?->titre2 }}</span>
                                 @endif
-                            </h3>
+                            </h1>
 
                             @if (!empty($une?->message))
                                 <p class="mb-4 mb-md-5">
-                                    {{ substr($une?->message, 0, 150) }}...
+                                    {{ substr($une?->message, 0, 350) }}...
                                 </p>
                             @endif
 
@@ -339,7 +338,7 @@
 
                         <div class="info-wrapper">
                             <div class="row gy-4">
-                                <div class="col-lg-12">
+                                <div class="col-lg-6">
                                     <div class="profile d-flex align-items-center gap-3">
                                         <img src="{{ asset('asset/img/dg.png') }}" alt="DG ONFP"
                                             class="profile-image">
@@ -349,15 +348,15 @@
                                         </div>
                                     </div>
                                 </div>
-                                {{-- <div class="col-lg-7">
+                                <div class="col-lg-6">
                                     <div class="contact-info d-flex align-items-center gap-2">
                                         <i class="bi bi-telephone-fill"></i>
                                         <div>
-                                            <p class="contact-label">Call us anytime</p>
-                                            <p class="contact-number">+123 456-789</p>
+                                            <p class="contact-label">Appelez-nous</p>
+                                            <p class="contact-number">+221 33 827 92 51</p>
                                         </div>
                                     </div>
-                                </div> --}}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -907,8 +906,10 @@
         </section> --}}
         <!-- /Testimonials Section -->
 
+        <section id="testimonials" class="testimonials section light-background">
+        </section>
         <!-- Stats Section -->
-        {{-- <section id="stats" class="stats section">
+        <section id="stats" class="stats section">
 
             <div class="container" data-aos="fade-up" data-aos-delay="100">
 
@@ -916,33 +917,33 @@
 
                     <div class="col-lg-3 col-md-6">
                         <div class="stats-item text-center w-100 h-100">
-                            <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1"
-                                class="purecounter"></span>
-                            <p>Clients</p>
-                        </div>
-                    </div><!-- End Stats Item -->
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="stats-item text-center w-100 h-100">
-                            <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1"
-                                class="purecounter"></span>
-                            <p>Projects</p>
-                        </div>
-                    </div><!-- End Stats Item -->
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="stats-item text-center w-100 h-100">
-                            <span data-purecounter-start="0" data-purecounter-end="1453"
+                            <span data-purecounter-start="0" data-purecounter-end="{{ $count_individuelles }}"
                                 data-purecounter-duration="1" class="purecounter"></span>
-                            <p>Hours Of Support</p>
+                            <p>Demandes individuelles</p>
                         </div>
                     </div><!-- End Stats Item -->
 
                     <div class="col-lg-3 col-md-6">
                         <div class="stats-item text-center w-100 h-100">
-                            <span data-purecounter-start="0" data-purecounter-end="32" data-purecounter-duration="1"
-                                class="purecounter"></span>
-                            <p>Workers</p>
+                            <span data-purecounter-start="0" data-purecounter-end="{{ $count_collectives }}"
+                                data-purecounter-duration="1" class="purecounter"></span>
+                            <p>Demandes collectives</p>
+                        </div>
+                    </div><!-- End Stats Item -->
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="stats-item text-center w-100 h-100">
+                            <span data-purecounter-start="0" data-purecounter-end="{{ $count_projets }}"
+                                data-purecounter-duration="1" class="purecounter"></span>
+                            <p>Projets, Programmes</p>
+                        </div>
+                    </div><!-- End Stats Item -->
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="stats-item text-center w-100 h-100">
+                            <span data-purecounter-start="0" data-purecounter-end="{{ $count_operateurs }}"
+                                data-purecounter-duration="1" class="purecounter"></span>
+                            <p>Opérateurs agréés</p>
                         </div>
                     </div><!-- End Stats Item -->
 
@@ -950,7 +951,7 @@
 
             </div>
 
-        </section> --}}
+        </section>
         <!-- /Stats Section -->
 
         <!-- Services Section -->
@@ -1192,7 +1193,6 @@
                     <div class="col-lg-7" data-aos="fade-up" data-aos-delay="300">
 
                         <div class="faq-container">
-
                             {{--  <div class="faq-item faq-active">
                                 <h3>Non consectetur a erat nam at lectus urna duis?</h3>
                                 <div class="faq-content">
@@ -1203,11 +1203,15 @@
                                 <i class="faq-toggle bi bi-chevron-right"></i>
                             </div> --}}
                             @foreach ($contacts as $contact)
-                                <div class="faq-item faq-item">
+                                <div class="faq-item faq-active">
                                     <h3>{{ $contact?->objet }}</h3>
                                     <div class="faq-content">
-                                        <p><b>Question : </b>{{ $contact?->message }} <br> <b>Réponse :
-                                            </b>{{ $contact?->reponse }}</p>
+                                        <p><b>Question : </b>{{ $contact?->message }} <br>
+                                            {{-- @if (!empty($contact?->reponse))
+                                                <b>Réponse :</b>
+                                            @endif
+                                            {{ $contact?->reponse }} --}}
+                                        </p>
                                     </div>
                                     <i class="faq-toggle bi bi-chevron-right"></i>
                                 </div>
@@ -1405,15 +1409,15 @@
                                 action="{{ route('contacts.store') }}">
                                 @csrf
                                 <div class="col-12 col-md-6 col-lg-6 col-sm-12 col-xs-12 col-xxl-6">
-                                    <label for="email" class="form-label">Email<span
+                                    <label for="emailadresse" class="form-label">Email<span
                                             class="text-danger mx-1">*</span></label>
                                     <div class="input-group has-validation">
-                                        <input type="email" name="email"
-                                            class="form-control form-control-sm @error('email') is-invalid @enderror"
-                                            id="email" required placeholder="Votre adresse e-mail"
-                                            value="{{ old('email') }}">
+                                        <input type="emailadresse" name="emailadresse"
+                                            class="form-control form-control-sm @error('emailadresse') is-invalid @enderror"
+                                            id="emailadresse" required placeholder="Votre adresse e-mail"
+                                            value="{{ old('emailadresse') }}">
                                         <div class="invalid-feedback">
-                                            @error('email')
+                                            @error('emailadresse')
                                                 {{ $message }}
                                             @enderror
                                         </div>
@@ -2063,28 +2067,31 @@
     <script src="{{ asset('asset/js/main.js') }}"></script>
 
     <!-- Vendor JS Files -->
-    <script src="{{ asset('assets/vendor/apexcharts/apexcharts.min.js') }}"></script>
-    <script src="{{ asset('assets/vendor/chart.js/chart.umd.js') }}"></script>
-    <script src="{{ asset('assets/vendor/echarts/echarts.min.js') }}"></script>
-    <script src="{{ asset('assets/vendor/quill/quill.min.js') }}"></script>
-    <script src="{{ asset('assets/vendor/simple-datatables/simple-datatables.js') }}"></script>
-    <script src="{{ asset('assets/vendor/tinymce/tinymce.min.js') }}"></script>
+    {{-- <script src="{{ asset('asset/vendor/apexcharts/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('asset/vendor/chart.js/chart.umd.js') }}"></script>
+    <script src="{{ asset('asset/vendor/echarts/echarts.min.js') }}"></script>
+    <script src="{{ asset('asset/vendor/quill/quill.min.js') }}"></script>
+    <script src="{{ asset('asset/vendor/simple-datatables/simple-datatables.js') }}"></script>
+    <script src="{{ asset('asset/vendor/tinymce/tinymce.min.js') }}"></script> --}}
 
     <!-- Template Main JS File -->
-    <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script src="{{ asset('asset/js/main.js') }}"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
         crossorigin="anonymous"></script>
+
     <script>
         setTimeout(function() {
             $('.alert-success').remove();
         }, 10000);
     </script>
+
     <script>
         setTimeout(function() {
             $('.alert-danger').remove();
         }, 10000);
     </script>
+
     <script>
         function myFunction() {
             var element = document.body;
@@ -2102,6 +2109,7 @@
             }
         }
     </script>
+
 </body>
 
 </html>

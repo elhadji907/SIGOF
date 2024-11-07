@@ -117,15 +117,15 @@
 
 
                                 <div class="col-12 col-md-12 col-lg-6 col-sm-12 col-xs-12 col-xxl-6">
-                                    <label for="email" class="form-label">Email<span
+                                    <label for="emailadresse" class="form-label">Email<span
                                             class="text-danger mx-1">*</span></label>
                                     <div class="input-group has-validation">
-                                        <input type="email" name="email"
-                                            class="form-control form-control-sm @error('email') is-invalid @enderror"
-                                            id="email" required placeholder="Votre adresse e-mail"
-                                            value="{{ old('email') }}">
+                                        <input type="emailadresse" name="emailadresse"
+                                            class="form-control form-control-sm @error('emailadresse') is-invalid @enderror"
+                                            id="emailadresse" required placeholder="Votre adresse e-mail"
+                                            value="{{ old('emailadresse') }}">
                                         <div class="invalid-feedback">
-                                            @error('email')
+                                            @error('emailadresse')
                                                 {{ $message }}
                                             @enderror
                                         </div>
@@ -201,15 +201,15 @@
 
                                     
                                 <div class="col-12 col-md-12 col-lg-6 col-sm-12 col-xs-12 col-xxl-6">
-                                    <label for="email" class="form-label">Email<span
+                                    <label for="emailadresse" class="form-label">Email<span
                                             class="text-danger mx-1">*</span></label>
                                     <div class="input-group has-validation">
-                                        <input type="email" name="email"
-                                            class="form-control form-control-sm @error('email') is-invalid @enderror"
-                                            id="email" required placeholder="Votre adresse e-mail"
-                                            value="{{ $contact->email ?? old('email') }}">
+                                        <input type="emailadresse" name="emailadresse"
+                                            class="form-control form-control-sm @error('emailadresse') is-invalid @enderror"
+                                            id="emailadresse" required placeholder="Votre adresse e-mail"
+                                            value="{{ $contact->email ?? old('emailadresse') }}">
                                         <div class="invalid-feedback">
-                                            @error('email')
+                                            @error('emailadresse')
                                                 {{ $message }}
                                             @enderror
                                         </div>

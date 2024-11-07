@@ -18,8 +18,8 @@ class UneController extends Controller
     public function store(Request $request)
     {
         $data = request()->validate([
-            'titre1'      =>  ['required', 'string', 'max:20'],
-            'titre2'      =>  ['required', 'string', 'max:25'],
+            'titre1'      =>  ['required', 'string', 'max:40'],
+            'titre2'      =>  ['required', 'string', 'max:35'],
             'message'    =>  ['required', 'string'],
             'image'      =>  ['image', 'nullable', 'mimes:jpeg,png,jpg,gif,svg,webp', 'max:2048'],
 
@@ -54,8 +54,8 @@ class UneController extends Controller
     public function update(Request $request, $id)
     {
         $data = request()->validate([
-            'titre1'      =>  ['required', 'string', 'max:20'],
-            'titre2'      =>  ['required', 'string', 'max:25'],
+            'titre1'      =>  ['required', 'string', 'max:40'],
+            'titre2'      =>  ['required', 'string', 'max:35'],
             'message'    =>  ['required', 'string'],
             'image'      =>  ['image', 'nullable', 'mimes:jpeg,png,jpg,gif,svg,webp', 'max:2048'],
             'video'    =>  ['nullable', 'string'],
