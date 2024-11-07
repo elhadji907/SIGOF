@@ -473,8 +473,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::resource('/unes', UneController::class);
 });
 
-Route::resource('/contacts', ContactController::class);
-
+Route::middleware('guest')->group(function () {
+    Route::resource('/contacts', ContactController::class);
+});
 
 
 require __DIR__ . '/auth.php';

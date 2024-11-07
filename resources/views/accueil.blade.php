@@ -108,11 +108,18 @@
                     </li> --}}
                     <li><a href="#contact">Contact</a></li>
 
-                    <li>
-                        <a class="btn" href="#" data-bs-toggle="modal"
-                            data-bs-target="#registerteurModal">{{ __("S'inscrire") }}
-                        </a>
+                    <li class="dropdown"><a><span>S'inscrire</span> <i
+                                class="bi bi-chevron-down toggle-dropdown"></i></a>
+                        <ul>
+                            <li> <a href="#" data-bs-toggle="modal"
+                                    data-bs-target="#registerDemandeurModal">Compte personnel</a>
+                            </li>
+                            <li><a href="#" data-bs-toggle="modal" data-bs-target="#registerOperateurModal">Compte
+                                    opérateur</a>
+                            </li>
+                        </ul>
                     </li>
+
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
@@ -150,14 +157,14 @@
                     @endif
                     <div class="col-lg-6">
                         <div class="hero-content" data-aos="fade-up" data-aos-delay="200">
-                            {{-- <div class="company-badge mb-4 mt-0">
-                                <i class="bi bi-gear-fill me-2"></i>
-                                Formez-vous pour votre réussite
-                            </div> --}}
                             <div class="company-badge mb-4 mt-0">
+                                <i class="bi bi-gear-fill me-2"></i>
+                                La référence de la formation professionnelle, formez-vous pour votre réussite !
+                            </div>
+                            {{-- <div class="company-badge mb-4 mt-0">
                                 <i class="bi bi-align-start me-2"></i>
                                 La référence de la formation professionnelle
-                            </div>
+                            </div> --}}
 
                             <h1 class="mb-4">
                                 @if (!empty($une?->titre1))
@@ -1520,7 +1527,8 @@
                                         </div>
                                     </div>
                                     <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xxl-12">
-                                        <button class="btn btn-primary btn-m w-100" type="submit">Se
+                                        <button class="btn btn-sm w-100" type="submit"
+                                            style="background-color: #F28500; color: #FFFFFF">Se
                                             connecter</button>
                                     </div>
 
@@ -1534,7 +1542,7 @@
                                         @if (Route::has('password.request'))
                                             <p class="small mb-0">Mot de passe oublié !
                                                 {{-- <a href="{{ route('password.request') }}"> Réinitialiser</a> --}}
-                                                <a href="#" href="#" data-bs-toggle="modal"
+                                                <a href="#" data-bs-toggle="modal"
                                                     data-bs-target="#forgotModal"> Réinitialiser</a>
                                             </p>
                                         @endif
@@ -1654,7 +1662,8 @@
                                     </div>
 
                                     <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xxl-12">
-                                        <button type="submit" class="btn btn-primary btn-sm w-100">Créer un compte
+                                        <button type="submit" class="btn btn-sm w-100"
+                                            style="background-color: #F28500; color: #FFFFFF">Créer un compte
                                             personnel</button>
                                         {{--  <button class="btn btn-primary w-100" type="submit">Créer un
                                             compte opérateur</button> --}}
@@ -1662,8 +1671,8 @@
 
                                     <div
                                         class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xxl-12 justify-content-center">
-                                        <p class="small">Vous avez déjà un compte ? <a data-bs-toggle="modal"
-                                                data-bs-target="#loginModal">Se connecter</a>
+                                        <p class="small">Vous avez déjà un compte ? <a href="#"
+                                                data-bs-toggle="modal" data-bs-target="#loginModal">Se connecter</a>
                                         </p>
                                     </div>
                                 </div>
@@ -1681,38 +1690,6 @@
             </div>
         </div>
 
-        {{-- Inscription --}}
-        <div
-            class="col-12 col-md-12 col-lg-12 col-sm-12 col-xs-12 col-xxl-12 d-flex flex-column align-items-center justify-content-center">
-            <div class="modal fade" id="registerteurModal" tabindex="-1">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="w-100  text-center">Inscription</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row g-3">
-
-                                <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xxl-12">
-                                    <button class="btn btn-outline-primary w-100" data-bs-toggle="modal"
-                                        data-bs-target="#registerDemandeurModal">{{ __('Créer un compte personnel') }}
-                                    </button>
-                                </div>
-
-                                <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xxl-12">
-                                    <button class="btn btn-outline-primary w-100" data-bs-toggle="modal"
-                                        data-bs-target="#registerOperateurModal">{{ __('Créer un compte opérateur') }}
-                                    </button>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         {{-- Inscription opérateur --}}
         <div
             class="col-12 col-md-12 col-lg-12 col-sm-12 col-xs-12 col-xxl-12 d-flex flex-column align-items-center justify-content-center">
@@ -1813,7 +1790,8 @@
                                     <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xxl-12">
                                         {{-- <button type="button" class="btn btn-secondary btn-sm"
                                             data-bs-dismiss="modal">Fermer</button> --}}
-                                        <button type="submit" class="btn btn-primary btn-sm w-100">Créer un compte
+                                        <button type="submit" class="btn btn-sm w-100"
+                                            style="background-color: #F28500; color: #FFFFFF">Créer un compte
                                             opérateur</button>
                                         {{--  <button class="btn btn-primary w-100" type="submit">Créer un
                                             compte opérateur</button> --}}
@@ -1868,7 +1846,8 @@
                                     </div>
 
                                     <div class="col-12 col-md-12 col-lg-12 col-sm-12 col-xs-12 col-xxl-12">
-                                        <button class="btn btn-primary btn-m w-100" type="submit">Lien de
+                                        <button class="btn btn-sm w-100" type="submit"
+                                            style="background-color: #F28500; color: #FFFFFF">Lien de
                                             réinitialisation du mot de passe par e-mail</button>
                                     </div>
                                 </div>
@@ -1967,7 +1946,7 @@
                     </ul>
                 </div>
 
-                <div class="col-lg-4 col-md-6 footer-links">
+                <div class="contact-form col-12 col-md-6 col-lg-4 col-sm-12 col-xs-12 col-xxl-4 footer-links">
                     <h4>Connexion</h4>
                     <ul>
                         {{-- <li><a data-bs-toggle="modal" data-bs-target="#loginModal">Se connecter</a></li>
@@ -1977,17 +1956,16 @@
                                 opérateur</a></li> --}}
 
                         <div class="modal-content">
-                            <form class="row needs-validation" novalidate method="POST"
-                                action="{{ route('login') }}">
+                            <form class="needs-validation" novalidate method="POST" action="{{ route('login') }}">
                                 @csrf
                                 <div class="modal-body">
                                     <div class="row g-3">
-                                        <div class="col-12">
+                                        <div class="col-12 col-md-12 col-lg-12 col-sm-12 col-xs-12 col-xxl-12">
                                             {{--  <label for="email" class="form-label">Email<span
                                                     class="text-danger mx-1">*</span></label> --}}
                                             <div class="input-group has-validation">
                                                 <input type="email" name="email"
-                                                    class="form-control form-control-sm @error('email') is-invalid @enderror"
+                                                    class="form-control @error('email') is-invalid @enderror"
                                                     id="email" required placeholder="Votre adresse e-mail"
                                                     value="{{ old('email') }}">
                                                 <div class="invalid-feedback">
@@ -1998,20 +1976,22 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-12">
+                                        <div class="col-12 col-md-12 col-lg-12 col-sm-12 col-xs-12 col-xxl-12">
                                             {{-- <label for="password" class="form-label">Mot de passe<span
                                                     class="text-danger mx-1">*</span></label> --}}
-                                            <input type="password" name="password"
-                                                class="form-control form-control-sm  @error('password') is-invalid @enderror"
-                                                id="password" required placeholder="Votre mot de passe">
-                                            <div class="invalid-feedback">
-                                                @error('password')
-                                                    {{ $message }}
-                                                @enderror
+                                            <div class="input-group has-validation">
+                                                <input type="password" name="password"
+                                                    class="form-control @error('password') is-invalid @enderror"
+                                                    id="password" required placeholder="Votre mot de passe">
+                                                <div class="invalid-feedback">
+                                                    @error('password')
+                                                        {{ $message }}
+                                                    @enderror
+                                                </div>
                                             </div>
                                         </div>
 
-                                        <div class="col-12">
+                                        <div class="col-12 col-md-12 col-lg-12 col-sm-12 col-xs-12 col-xxl-12">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" name="remember"
                                                     value="true" id="rememberMe">
@@ -2020,14 +2000,17 @@
                                             </div>
                                         </div>
                                         <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xxl-12">
-                                            <button class="btn btn-primary btn-m w-100" type="submit">Se
+                                            <button class="btn btn-sm w-100" type="submit"
+                                                style="background-color: #F28500; color: #FFFFFF">Se
                                                 connecter</button>
                                         </div>
 
-                                        <div class="col-12">
+                                        <div
+                                            class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xxl-12 justify-content-center">
                                             @if (Route::has('password.request'))
                                                 <p class="small mb-0">Mot de passe oublié !
-                                                    <a data-bs-toggle="modal" data-bs-target="#forgotModal">
+                                                    <a href="#" data-bs-toggle="modal"
+                                                        data-bs-target="#forgotModal">
                                                         Réinitialiser</a>
                                                 </p>
                                             @endif
@@ -2045,8 +2028,8 @@
                             </form>
                         </h4>
                     </div> --}}
-                </div>
 
+                </div>
             </div>
         </div>
 
