@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property string $uuid
  * @property string|null $name
  * @property string|null $code
+ * @property string|null $chef_id
  * @property string|null $contact
  * @property string|null $adresse
  * @property string|null $deleted_at
@@ -38,6 +39,9 @@ class Antenne extends Model
 	use SoftDeletes;
 	use \App\Helpers\UuidForKey;
 	protected $table = 'antennes';
+	protected $casts = [
+		'chef_id' => 'int',
+	];
 
 	protected $fillable = [
 		'uuid',
@@ -45,6 +49,7 @@ class Antenne extends Model
 		'code',
 		'contact',
 		'adresse',
+		'chef_id',
 	];
 
 	public function regions()
@@ -67,5 +72,10 @@ class Antenne extends Model
 	public function individuelles()
 	{
 		return $this->hasMany(Individuelle::class, 'antennes_id');
+	}
+
+	public function chef()
+	{
+		return $this->belongsTo(Employee::class, 'chef_id');
 	}
 }

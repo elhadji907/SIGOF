@@ -381,6 +381,14 @@
                 </a>
             </li>
         @endcan
+        @can('antenne-view')
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ url('antennes') }}">
+                    <i class="bi bi-people"></i>
+                    <span>Antennes</span>
+                </a>
+            </li>
+        @endcan
         @can('user-view')
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ url('user') }}">

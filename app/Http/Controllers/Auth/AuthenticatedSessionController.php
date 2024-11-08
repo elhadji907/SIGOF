@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\Antenne;
 use App\Models\Collective;
 use App\Models\Contact;
 use App\Models\Individuelle;
@@ -29,12 +30,17 @@ class AuthenticatedSessionController extends Controller
         $projets = Projet::where("image", "!=", null)->get();
         $contacts = Contact::limit(5)->orderBy("created_at", "desc")->where("statut", "!=", null)->get();
         $today = date('Y-m-d');
+
+        $annee = date('Y');
+        $anciennete = date('Y') - '1987';
+
         $count_today = Individuelle::where("created_at", "LIKE",  "{$today}%")->count();
         $count_individuelles = Individuelle::count();
         $count_collectives = Collective::count();
         $count_projets = Projet::count();
+        $antennes = Antenne::get();
         $count_operateurs = Operateur::where('statut_agrement', 'agréer')->count();
-        
+
         if ($count_today <= "0") {
             $title = "nouvelle demande aujourd'hui";
         } else {
@@ -52,7 +58,9 @@ class AuthenticatedSessionController extends Controller
                 'count_individuelles',
                 'count_projets',
                 'count_operateurs',
-                'count_collectives'
+                'count_collectives',
+                'anciennete',
+                'antennes',
             )
         );
     }

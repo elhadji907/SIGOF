@@ -1,5 +1,5 @@
 @extends('layout.user-layout')
-@section('title', 'modification opérateur ' . $operateur->sigle)
+@section('title', 'modification opérateur ' . $operateur?->user?->username)
 @section('space-work')
     @can('operateur-update')
         <section class="section min-vh-0 d-flex flex-column align-items-center justify-content-center py-0">

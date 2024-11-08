@@ -352,7 +352,7 @@
                                     <div class="contact-info d-flex align-items-center gap-2">
                                         <i class="bi bi-telephone-fill"></i>
                                         <div>
-                                            <p class="contact-label">Appelez-nous</p>
+                                            <p class="contact-label">Appelez-nous au</p>
                                             <p class="contact-number">+221 33 827 92 51</p>
                                         </div>
                                     </div>
@@ -369,7 +369,7 @@
                                     class="img-fluid small-image rounded-4">
                             </div>
                             <div class="experience-badge floating">
-                                <h3>38+ <span>ans</span></h3>
+                                <h3>{{ $anciennete }}+ <span>ans</span></h3>
                                 <p>{{ __("d'expérience dans la formation professionnelle") }}</p>
                             </div>
                         </div>
@@ -1202,19 +1202,43 @@
                                 </div>
                                 <i class="faq-toggle bi bi-chevron-right"></i>
                             </div> --}}
+                            <?php $i = 1; ?>
                             @foreach ($contacts as $contact)
-                                <div class="faq-item faq-active">
+                                {{-- <div class="faq-item faq-active">
                                     <h3>{{ $contact?->objet }}</h3>
                                     <div class="faq-content">
                                         <p><b>Question : </b>{{ $contact?->message }} <br>
-                                            {{-- @if (!empty($contact?->reponse))
+                                            @if (!empty($contact?->reponse))
                                                 <b>Réponse :</b>
+                                            {{ $contact?->reponse }}
                                             @endif
-                                            {{ $contact?->reponse }} --}}
                                         </p>
                                     </div>
                                     <i class="faq-toggle bi bi-chevron-right"></i>
+                                </div> --}}
+
+                                <div class="faq-item accordion accordion-flush" id="faq-group-2">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed"
+                                                data-bs-target="#faqsTwo-{{ $i }}" type="button"
+                                                data-bs-toggle="collapse">
+                                                {{ $contact?->objet }}
+                                            </button>
+                                        </h2>
+                                        <div id="faqsTwo-{{ $i }}" class="accordion-collapse collapse"
+                                            data-bs-parent="#faq-group-2">
+                                            <div class="accordion-body">
+                                                <b>Question : </b>{{ $contact?->message }} <br>
+                                                @if (!empty($contact?->reponse))
+                                                    <b>Réponse :</b>
+                                                    {{ $contact?->reponse }}
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+                                <?php $i++; ?>
                             @endforeach
                             <!-- End Faq item-->
 
@@ -1942,11 +1966,9 @@
                 <div class="col-lg-2 col-md-3 footer-links">
                     <h4>Nos antennes</h4>
                     <ul>
-                        <li><a href="#">Molestiae accusamus iure</a></li>
-                        <li><a href="#">Excepturi dignissimos</a></li>
-                        <li><a href="#">Suscipit distinctio</a></li>
-                        <li><a href="#">Dilecta</a></li>
-                        <li><a href="#">Sit quas consectetur</a></li>
+                        @foreach ($antennes as $antenne)
+                            <li><a href="#">{{ $antenne?->name }}</a></li>
+                        @endforeach
                     </ul>
                 </div>
 

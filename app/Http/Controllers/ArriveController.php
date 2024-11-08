@@ -399,7 +399,7 @@ class ArriveController extends Controller
         $arrive->courrier()->delete();
         $arrive->delete();
         /*  $status = "Supprimer avec succès"; */
-        Alert::success('Effectué !', 'courrier supprimer avec succès');
+        Alert::success('Effectué !', 'courrier supprimé avec succès');
         /* return redirect()->back()->with("danger", $status); */
         return redirect()->back();
     }

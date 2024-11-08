@@ -281,6 +281,11 @@ class DatabaseSeeder extends Seeder
         'contact-create',
         'contact-update',
         'contact-delete',
+        'antenne-view',
+        'antenne-show',
+        'antenne-create',
+        'antenne-update',
+        'antenne-delete',
     ];
 
     public function run(): void
@@ -338,6 +343,7 @@ class DatabaseSeeder extends Seeder
             FileSeeder::class,
             ConventionSeeder::class,
             ReferentielSeeder::class,
+            AntenneSeeder::class,
             IndividuelleSeeder::class,
         ]);
     }

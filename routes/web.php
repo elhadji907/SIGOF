@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AntenneController;
 use App\Http\Controllers\ArriveController;
 use App\Http\Controllers\ArrondissementController;
 use App\Http\Controllers\ArticleController;
@@ -54,8 +55,8 @@ use App\Http\Controllers\ProjetlocaliteController;
 use App\Http\Controllers\ProjetmoduleController;
 use App\Http\Controllers\ReferentielController;
 use App\Http\Controllers\RegionController;
-use App\Http\Controllers\RoleController;
 
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SecteurController;
 use App\Http\Controllers\UneController;
 use App\Http\Controllers\UserController;
@@ -67,6 +68,7 @@ use App\Http\Controllers\ValidationoperateurController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 
 
 
@@ -471,6 +473,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::resource('/conventions', ConventionController::class);
     Route::resource('/postes', PosteController::class);
     Route::resource('/unes', UneController::class);
+    Route::resource('/antennes', AntenneController::class);
 });
 
 /* Route::middleware('guest')->group(function () { */

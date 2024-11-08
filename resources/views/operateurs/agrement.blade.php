@@ -1,5 +1,5 @@
 @extends('layout.user-layout')
-@section('title', $operateur->sigle)
+@section('title', $operateur?->user?->username)
 @section('space-work')
 
     <section
@@ -11,7 +11,7 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/home') }}">Accueil</a></li>
                         <li class="breadcrumb-item">Tables</li>
-                        <li class="breadcrumb-item active">{{ $operateur?->name }}</li>
+                        <li class="breadcrumb-item active">{{ $operateur?->user?->username }}</li>
                     </ol>
                 </nav>
             </div><!-- End Page Title -->
@@ -92,11 +92,11 @@
                                         </div>
                                         <div class="col-12 col-md-12 col-lg-12 mb-2">
                                             <div class="label">Raison sociale</div>
-                                            <div>{{ $operateur?->name }}</div>
+                                            <div>{{ $operateur?->user?->operateur }}</div>
                                         </div>
                                         <div class="col-12 col-md-4 col-lg-4 mb-2">
                                             <div class="label">Sigle</div>
-                                            <div>{{ $operateur?->sigle }}</div>
+                                            <div>{{ $operateur?->user?->username }}</div>
                                         </div>
                                         <div class="col-12 col-md-4 col-lg-4 mb-2">
                                             <div class="label">Numéro agrément</div>
@@ -104,18 +104,14 @@
                                         </div>
                                         <div class="col-12 col-md-4 col-lg-4 mb-2">
                                             <div class="label">Adresse email</div>
-                                            <div><a href="mailto:{{ $operateur?->email1 }}">{{ $operateur?->email1 }}</a>
+                                            <div><a
+                                                    href="mailto:{{ $operateur?->user?->email }}">{{ $operateur?->user?->email }}</a>
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-4 col-lg-4 mb-2">
                                             <div class="label">Téléphone fixe</div>
-                                            <div><a href="tel:+221{{ $operateur?->fixe }}">{{ $operateur?->fixe }}</a>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-md-4 col-lg-4 mb-2">
-                                            <div class="label">Téléphone portable</div>
                                             <div><a
-                                                    href="tel:+221{{ $operateur?->telephone1 }}">{{ $operateur?->telephone1 }}</a>
+                                                    href="tel:+221{{ $operateur?->user?->fixe }}">{{ $operateur?->user?->fixe }}</a>
                                             </div>
                                         </div>
                                         @isset($operateur?->user?->bp)
@@ -126,7 +122,7 @@
                                         @endisset
                                         <div class="col-12 col-md-4 col-lg-4 mb-2">
                                             <div class="label">Catégorie</div>
-                                            <div>{{ $operateur?->categorie }}</div>
+                                            <div>{{ $operateur?->user?->categorie }}</div>
                                         </div>
                                         <div class="col-12 col-md-4 col-lg-4 mb-2">
                                             <div class="label">Statut juridique</div>
@@ -142,19 +138,24 @@
                                         </div>
                                         <div class="col-12 col-md-4 col-lg-4 mb-2">
                                             <div class="label">Adrese</div>
-                                            <div>{{ $operateur?->adresse }}</div>
+                                            <div>{{ $operateur?->user?->adresse }}</div>
                                         </div>
                                         <div class="col-12 col-md-4 col-lg-4 mb-2">
                                             <div class="label">RCCM/Ninea</div>
-                                            <div>{{ $operateur?->rccm }}</div>
+                                            <div>{{ $operateur?->user?->rccm }}</div>
                                         </div>
                                         <div class="col-12 col-md-4 col-lg-4 mb-2">
                                             <div class="label">N° RCCM/Ninea</div>
-                                            <div>{{ $operateur?->ninea }}</div>
+                                            <div>{{ $operateur?->user?->ninea }}</div>
                                         </div>
                                         <div class="col-12 col-md-4 col-lg-4 mb-2">
                                             <div class="label">Quitus</div>
-                                            <div>{{ $operateur?->quitus }}</div>
+                                            <div>
+                                                <a class="btn btn-outline-secondary btn-sm" title="télécharger le quitus"
+                                                    target="_blank" href="{{ asset($operateur?->getQuitus()) }}">
+                                                    <i class="bi bi-file-image"></i>
+                                                </a>
+                                            </div>
                                         </div>
                                         <div class="col-12 col-md-4 col-lg-4">
                                             <div class="label">Date délivrance quitus</div>
@@ -167,30 +168,32 @@
                                         <h5 class="card-title">Personne morale</h5>
                                         <div class="col-12 col-md-4 col-lg-4">
                                             <div class="label">Civilité</div>
-                                            <div>{{ $operateur?->civilite_responsable }}</div>
+                                            <div>{{ $operateur?->user?->civilite }}</div>
                                         </div>
                                         <div class="col-12 col-md-4 col-lg-4 mb-2">
                                             <div class="label">Prénom</div>
-                                            <div>{{ $operateur->prenom_responsable }}</div>
+                                            <div>{{ $operateur?->user?->firstname }}</div>
                                         </div>
                                         <div class="col-12 col-md-4 col-lg-4 mb-2">
                                             <div class="label">Nom</div>
-                                            <div>{{ $operateur->nom_responsable }}</div>
+                                            <div>{{ $operateur?->user?->name }}</div>
                                         </div>
                                         <div class="col-12 col-md-4 col-lg-4 mb-2">
                                             <div class="label">Email</div>
-                                            <div><a href="mailto:{{ $operateur->email2 }}">{{ $operateur->email2 }}</a>
+                                            <div><a
+                                                    href="mailto:{{ $operateur?->user?->email_responsable }}">{{ $operateur?->user?->email_responsable }}</a>
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-4 col-lg-4 mb-2">
                                             <div class="label">Téléphone</div>
                                             <div><a
-                                                    href="tel:+221{{ $operateur->telephone2 }}">{{ $operateur->telephone2 }}</a>
+                                                    href="tel:+221{{ $operateur?->user?->telephone }}">{{ $operateur?->user?->telephone }}</a>
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-4 col-lg-4 mb-2">
-                                            <div class="label">Fonction responsable</div>
-                                            <div>{{ $operateur->fonction_responsable }}</div>
+                                            <div class="label">Fonction</div>
+                                            <div>{{ $operateur?->user?->fonction_responsable }}
+                                            </div>
                                         </div>
                                     </form>
                                 </div>
