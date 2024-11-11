@@ -31,7 +31,7 @@
                                     <img src="{{ asset($poste->getPoste()) }}" class="d-block w-100"
                                         alt="{{ $poste->legende }}">
                                 </div>
-                                <p>{{ $poste->name }}
+                                <p>{{ $poste->name }}</p>
 
                             </div>
                             <div class="modal-footer mt-5">

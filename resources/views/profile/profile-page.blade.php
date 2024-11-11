@@ -30,7 +30,7 @@
                                     {{ Auth::user()->username }}
                                 @endif
                             </h2>
-                            <span><a href="mailto:{{ Auth::user()->email }}">{{ Auth::user()->email }}</a></span>
+                            <span><a href="">{{ Auth::user()->situation_professionnelle }}</a></span>
                             {{-- <h3>
                             @foreach (Auth::user()->roles as $role)
                                 <span>{{ $role->name }} |</span>

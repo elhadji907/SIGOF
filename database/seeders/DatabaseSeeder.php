@@ -344,6 +344,7 @@ class DatabaseSeeder extends Seeder
             ConventionSeeder::class,
             ReferentielSeeder::class,
             AntenneSeeder::class,
+            ServiceSeeder::class,
             IndividuelleSeeder::class,
         ]);
     }

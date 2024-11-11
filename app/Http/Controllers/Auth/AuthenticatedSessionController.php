@@ -9,7 +9,9 @@ use App\Models\Collective;
 use App\Models\Contact;
 use App\Models\Individuelle;
 use App\Models\Operateur;
+use App\Models\Poste;
 use App\Models\Projet;
+use App\Models\Service;
 use App\Models\Une;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
@@ -33,6 +35,9 @@ class AuthenticatedSessionController extends Controller
 
         $annee = date('Y');
         $anciennete = date('Y') - '1987';
+
+        $services = Service::get();
+        $postes = Poste::orderBy("created_at", "desc")->limit(5)->get();
 
         $count_today = Individuelle::where("created_at", "LIKE",  "{$today}%")->count();
         $count_individuelles = Individuelle::count();
@@ -61,6 +66,8 @@ class AuthenticatedSessionController extends Controller
                 'count_collectives',
                 'anciennete',
                 'antennes',
+                'services',
+                'postes',
             )
         );
     }

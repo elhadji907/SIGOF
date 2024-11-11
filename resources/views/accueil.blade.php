@@ -195,6 +195,7 @@
                                     </a>
                                 @endif
                             </div>
+
                         </div>
                     </div>
 
@@ -231,36 +232,43 @@
                 </div>
 
                 <div class="row stats-row gy-4 mt-5" data-aos="fade-up" data-aos-delay="500">
-                    <div class="col-lg-4 col-md-6">
+                    {{-- <div class="col-lg-4 col-md-6">
                         <div class="stat-item">
                             <div class="stat-icon">
                                 <i class="bi bi-book"></i>
                             </div>
                             <div class="stat-content">
                                 <h6>Formation | Qualification</h6>
-                                {{-- <p class="mb-0">Formation | Qualification</p> --}}
+                                <p class="mb-0">Formation | Qualification</p>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="stat-item">
-                            <div class="stat-icon">
-                                <i class="bi bi-briefcase"></i>
-                            </div>
-                            <div class="stat-content">
-                                <h6>Evaluation | Certification</h6>
-                                {{-- <p class="mb-0">Evaluation | Certification</p> --}}
-                            </div>
+                    </div> --}}
+                    @foreach ($postes as $poste)
+                        <div class="col-lg-4 col-md-6">
+                            <a href="#" data-bs-toggle="modal"
+                                data-bs-target="#ShowPostModal{{ $poste->id }}">
+                                <div class="stat-item">
+                                    {{--  <div class="stat-icon"> --}}
+                                    {{-- <i class="bi bi-briefcase"></i> --}}
+                                    <img class="rounded-circle" alt="{{ $poste->legende }}"
+                                        src="{{ asset($poste->getPoste()) }}" width="50" height="auto">
+                                    {{-- </div> --}}
+                                    <div class="stat-content">
+                                        <h6>{{ $poste?->legende }}</h6>
+                                        {{-- <p>{{ $poste->name }}</p> --}}
+                                        {{-- <p class="mb-0">Evaluation | Certification</p> --}}
+                                    </div>
+                                </div>
+                            </a>
                         </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
+                    @endforeach
+                    {{-- <div class="col-lg-4 col-md-6">
                         <div class="stat-item">
                             <div class="stat-icon">
                                 <i class="bi bi-graph-up"></i>
                             </div>
                             <div class="stat-content">
                                 <h6>Construction | Equipement</h6>
-                                {{-- <p class="mb-0">Construction | Equipement</p> --}}
                             </div>
                         </div>
                     </div>
@@ -271,7 +279,6 @@
                             </div>
                             <div class="stat-content">
                                 <h6>Suivi-Insertion</h6>
-                                {{-- <p class="mb-0">Suivi-Insertion</p> --}}
                             </div>
                         </div>
                     </div>
@@ -282,7 +289,6 @@
                             </div>
                             <div class="stat-content">
                                 <h6>Documentation | Edition</h6>
-                                {{-- <p class="mb-0">Documentation | Edition</p> --}}
                             </div>
                         </div>
                     </div>
@@ -293,10 +299,9 @@
                             </div>
                             <div class="stat-content">
                                 <h6>Etude | Recherche</h6>
-                                {{-- <p class="mb-0">Etude | Recherche</p> --}}
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
 
             </div>
@@ -965,22 +970,23 @@
             <div class="container" data-aos="fade-up" data-aos-delay="100">
 
                 <div class="row g-4">
-
-                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                        <div class="service-card d-flex">
-                            <div class="icon flex-shrink-0">
-                                <i class="bi bi-activity"></i>
-                            </div>
-                            <div>
-                                <h3>Nesciunt Mete</h3>
-                                <p>Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus
-                                    dolores iure perferendis tempore et consequatur.</p>
-                                <a href="service-details.html" class="read-more">En savoir plus <i
-                                        class="bi bi-arrow-right"></i></a>
+                    @foreach ($services as $service)
+                        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                            <div class="service-card d-flex">
+                                <div class="icon flex-shrink-0">
+                                    <i class="bi bi-easel"></i>
+                                </div>
+                                <div>
+                                    <h3>{{ $service?->titre }}</h3>
+                                    <p>{{ $service?->name }}</p>
+                                    <a href="{{ $service?->lien }}" class="read-more" target="_blank">En savoir plus
+                                        <i class="bi bi-arrow-right"></i></a>
+                                </div>
                             </div>
                         </div>
-                    </div><!-- End Service Card -->
-
+                    @endforeach
+                    <!-- End Service Card -->
+                    {{-- 
                     <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
                         <div class="service-card d-flex">
                             <div class="icon flex-shrink-0">
@@ -1024,8 +1030,9 @@
                                         class="bi bi-arrow-right"></i></a>
                             </div>
                         </div>
-                    </div><!-- End Service Card -->
-
+                    </div>
+                    <!-- End Service Card -->
+                    --}}
                 </div>
 
             </div>
@@ -1909,6 +1916,72 @@
                 </div>
             </div>
         </div>
+
+
+        {{-- Antennes modal --}}
+        @foreach ($antennes as $antenne)
+            <div
+                class="col-12 col-md-12 col-lg-12 col-sm-12 col-xs-12 col-xxl-12 d-flex flex-column align-items-center justify-content-center">
+                <div class="modal fade" id="antenneModal{{ $antenne?->id }}" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="w-100  text-center">{{ $antenne?->name }}</h3>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row g-3">
+                                    <?php $i = 1; ?>
+                                    <b><u>Régions</u>:</b>
+                                    @foreach ($antenne?->regions as $region)
+                                        <div>{{ $i++ . '. ' . $region?->nom }}</div>
+                                    @endforeach
+                                    <div>
+                                        <b><u>Contact</u>:</b> {{ $antenne?->contact }}
+                                    </div>
+                                    <div>
+                                        <b><u>Adresse</u>:</b> {{ $antenne?->adresse }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+        @foreach ($postes as $poste)
+            <div
+                class="col-12 col-md-12 col-lg-12 col-sm-12 col-xs-12 col-xxl-12 d-flex flex-column align-items-center justify-content-center">
+                <div class="modal fade" id="ShowPostModal{{ $poste->id }}" tabindex="-1">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                            <form method="post" action="#" enctype="multipart/form-data">
+                                @csrf
+                                <div class="card-header text-center bg-gradient-default">
+                                    <h1 class="h4 text-black mb-0">{{ $poste->legende }}</h1>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row g-3">
+
+                                        <div class="col-12 col-md-12 col-lg-12 col-sm-12 col-xs-12 col-xxl-12">
+                                            <img src="{{ asset($poste->getPoste()) }}" class="d-block w-100"
+                                                alt="{{ $poste->legende }}">
+                                        </div>
+                                        <p>{{ $poste->name }}</p>
+
+                                    </div>
+                                    <div class="modal-footer mt-5">
+                                        <button type="button" class="btn btn-secondary btn-sm"
+                                            data-bs-dismiss="modal">Fermer</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
         @include('sweetalert::alert')
     </main>
 
@@ -1920,7 +1993,8 @@
                     <a href="{{ url('/') }}" class="logo d-flex align-items-center">
                         <span class="sitename">SIGOF</span>
                     </a>
-                    <div class="footer-contact pt-3">
+                    <div class="footer-contact pt-0">
+                        <p>Direction générale (Dakar & Thiès)</p>
                         <p>Sipres 1, lot 2</p>
                         <p>2 voies liberté 6, extension VDN</p>
                         <p class="mt-3"><strong>Téléphone:</strong> <span><a href="tel:+2211338279251">+221 33 827
@@ -1967,7 +2041,8 @@
                     <h4>Nos antennes</h4>
                     <ul>
                         @foreach ($antennes as $antenne)
-                            <li><a href="#">{{ $antenne?->name }}</a></li>
+                            <li><a href="#" data-bs-toggle="modal"
+                                    data-bs-target="#antenneModal{{ $antenne?->id }}">{{ $antenne?->name }}</a></li>
                         @endforeach
                     </ul>
                 </div>
@@ -2060,6 +2135,7 @@
         </div>
 
         @include('user.termes')
+
         <div class="container copyright text-center mt-4">
             <p>© <span>Copyright</span> <strong class="px-1 sitename">SIGOF</strong> <span></span></p>
             <div class="credits">
