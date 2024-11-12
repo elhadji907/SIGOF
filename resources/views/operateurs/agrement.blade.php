@@ -42,7 +42,8 @@
                             <ul class="nav nav-tabs nav-tabs-bordered">
 
                                 <li class="nav-item">
-                                    <span class="nav-link"><a href="{{ route('commissionagrements.show', $operateur->commissionagrement->id) }}"
+                                    <span class="nav-link"><a
+                                            href="{{ route('commissionagrements.show', $operateur->commissionagrement->id) }}"
                                             class="btn btn-secondary btn-sm" title="retour"><i
                                                 class="bi bi-arrow-counterclockwise"></i></a>
                                     </span>
@@ -78,6 +79,10 @@
                                         data-bs-target="#localites-overview">Localités</button>
                                 </li>
 
+                                <li class="nav-item">
+                                    <button class="nav-link" data-bs-toggle="tab"
+                                        data-bs-target="#observations-overview">Observations</button>
+                                </li>
 
                             </ul>
                             <div class="d-flex justify-content-between align-items-center">
@@ -207,7 +212,7 @@
 
                                         <div class="d-flex justify-content-between align-items-center">
                                             <h5 class="card-title">EXPERIENCES ET REFERENCES PROFESSIONNELLES</h5>
-                                           {{--  <h5 class="card-title">
+                                            {{--  <h5 class="card-title">
                                                 <a href="{{ route('showReference', ['id' => $operateur->id]) }}"
                                                     class="btn btn-outline-primary float-end btn-rounded btn-sm"
                                                     target="_blank">
@@ -247,7 +252,7 @@
                                         @method('PUT')
                                         <div class="d-flex justify-content-between align-items-center">
                                             <h5 class="card-title">INFRASTRUCTURES / EQUIPEMENTS</h5>
-                                           {{--  <h5 class="card-title">
+                                            {{--  <h5 class="card-title">
                                                 <a href="{{ route('showEquipement', ['id' => $operateur->id]) }}"
                                                     class="btn btn-outline-primary float-end btn-rounded btn-sm"
                                                     target="_blank">
@@ -330,7 +335,7 @@
                                         @method('PUT')
                                         <div class="d-flex justify-content-between align-items-center">
                                             <h5 class="card-title">LOCALITES</h5>
-                                           {{--  <h5 class="card-title">
+                                            {{--  <h5 class="card-title">
                                                 <a href="{{ route('showLocalite', ['id' => $operateur->id]) }}"
                                                     class="btn btn-outline-primary float-end btn-rounded btn-sm"
                                                     target="_blank">
@@ -475,6 +480,21 @@
                                     </div>
                                 </div>
                             </div>
+
+                            {{-- Détail Observations --}}
+                            <div class="tab-content">
+                                <div class="tab-pane fade profile-overview pt-0" id="observations-overview">
+                                    <div class="d-flex justify-content-between align-items-center mt-0">
+                                        <h5 class="card-title">Observations</h5>
+                                        <a href="#" class="btn btn-success btn-sm float-end" data-bs-toggle="modal"
+                                            data-bs-target="#addobservations" title="Ajouter">Ajouter</a>
+                                    </div>
+                                    @if (!empty($operateur?->observations))
+                                        <textarea name="observation" id="observation" rows="10" @readonly(true)
+                                            class="form-control form-control-sm @error('date_reponse') is-invalid @enderror" placeholder="Observations">{{ $operateur?->observations ?? old('observation') }}</textarea>
+                                    @endif
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -510,8 +530,8 @@
                                         value="{{ $operateurmodule->module ?? old('module') }}"
                                         class="form-control form-control-sm @error('module') is-invalid @enderror"
                                         placeholder="module">
-                                        <div id="moduleListEdit"></div>
-                                        {{ csrf_field() }}
+                                    <div id="moduleListEdit"></div>
+                                    {{ csrf_field() }}
                                     @error('module')
                                         <span class="invalid-feedback" role="alert">
                                             <div>{{ $message }}</div>
@@ -731,7 +751,44 @@
                 </div>
             </div>
         @endforeach
+        <div class="modal fade" id="addobservations" tabindex="-1" role="dialog"
+            aria-labelledby="addobservationsLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Observations</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form method="post" action="{{ route('observations', ['id' => $operateur->id]) }}"
+                        enctype="multipart/form-data" class="row g-3">
+                        @csrf
+                        @method('PUT')
+                        <div class="modal-body">
+                            <div class="row g-3">
+                                <div class="col-12 col-md-12 col-lg-12 col-sm-12 col-xs-12 col-xxl-12">
+                                    {{--  <label for="observation" class="form-label">Observations</label> --}}
+                                    <textarea name="observation" id="observation" rows="10"
+                                        class="form-control form-control-sm @error('date_reponse') is-invalid @enderror" placeholder="Observations">{{ $operateur?->observations ?? old('observation') }}</textarea>
+                                    @error('observation')
+                                        <span class="invalid-feedback" role="alert">
+                                            <div>{{ $message }}</div>
+                                        </span>
+                                    @enderror
+                                </div>
 
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary btn-sm"
+                                        data-bs-dismiss="modal">Fermer</button>
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-primary btn-sm">Enregistrer</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </section>
 
 @endsection

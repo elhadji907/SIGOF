@@ -80,7 +80,7 @@
 
                                 <li class="nav-item">
                                     <button class="nav-link" data-bs-toggle="tab"
-                                        data-bs-target="#formation-overview">Formations</button>
+                                        data-bs-target="#observations-overview">Observations</button>
                                 </li>
 
                             </ul>
@@ -666,100 +666,19 @@
                                     </div>
                                 </div>
                             </div>
-                            {{-- Détail Formations --}}
+                            {{-- Détail Observations --}}
                             <div class="tab-content">
-                                <div class="tab-pane fade profile-overview pt-0" id="formation-overview">
-                                    <h5 class="card-title">FORMATIONS</h5>
-                                    <table
-                                        class="table table-bordered table-hover datatables  align-middle justify-content-center"
-                                        id="table-formations">
-                                        <thead>
-                                            <tr>
-                                                <th>Code</th>
-                                                <th>Type</th>
-                                                <th>Intitulé formation</th>
-                                                <th>Localité</th>
-                                                <th>Modules</th>
-                                                {{-- <th>Niveau qualification</th> --}}
-                                                <th>Effectif</th>
-                                                <th>Statut</th>
-                                                <th class="text-center"><i class="bi bi-gear"></i></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php $i = 1; ?>
-                                            @foreach ($operateur?->formations as $formation)
-                                                <tr>
-                                                    <td>{{ $formation?->code }}</td>
-                                                    <td><a href="#">{{ $formation->types_formation?->name }}</a>
-                                                    </td>
-                                                    <td>{{ $formation?->name }}</td>
-                                                    <td>{{ $formation->departement?->region?->nom }}</td>
-                                                    @isset($formation?->collectivemodule?->module)
-                                                        <td>{{ $formation->collectivemodule->module }}</td>
-                                                        <td class="text-center">
-                                                            @foreach ($formation->listecollectives as $listecollective)
-                                                                @if ($loop->last)
-                                                                    <a class="text-primary fw-bold"
-                                                                        href="{{ route('formations.show', $formation->id) }}">{!! $loop->count ?? '0' !!}</a>
-                                                                @endif
-                                                            @endforeach
-                                                        </td>
-                                                    @endisset
-                                                    @isset($formation?->module?->name)
-                                                        <td>{{ $formation->module->name }}</td>
-                                                        <td class="text-center">
-                                                            @foreach ($formation->individuelles as $individuelle)
-                                                                @if ($loop->last)
-                                                                    <a class="text-primary fw-bold"
-                                                                        href="{{ route('formations.show', $formation->id) }}">{!! $loop->count ?? '0' !!}</a>
-                                                                @endif
-                                                            @endforeach
-                                                        </td>
-                                                    @endisset
-                                                    <td><a href="#">
-                                                            <span
-                                                                class="{{ $formation?->statut }}">{{ $formation?->statut }}</span>
-                                                        </a>
-                                                    </td>
-                                                    <td>
-                                                        <span class="d-flex align-items-baseline"><a
-                                                                href="{{ route('formations.show', $formation->id) }}"
-                                                                class="btn btn-primary btn-sm" title="voir détails"><i
-                                                                    class="bi bi-eye"></i></a>
-                                                            <div class="filter">
-                                                                <a class="icon" href="#"
-                                                                    data-bs-toggle="dropdown"><i
-                                                                        class="bi bi-three-dots"></i></a>
-                                                                <ul
-                                                                    class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                                                    <li><a class="dropdown-item btn btn-sm"
-                                                                            href="{{ route('formations.edit', $formation->id) }}"
-                                                                            class="mx-1" title="Modifier"><i
-                                                                                class="bi bi-pencil"></i>Modifier</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <form
-                                                                            action="{{ route('formations.destroy', $formation->id) }}"
-                                                                            method="post">
-                                                                            @csrf
-                                                                            @method('DELETE')
-                                                                            <button type="submit"
-                                                                                class="dropdown-item show_confirm"
-                                                                                title="Supprimer"><i
-                                                                                    class="bi bi-trash"></i>Supprimer</button>
-                                                                        </form>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </span>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-
-                                        </tbody>
-                                    </table>
-                                    <!-- End Table with stripped rows -->
+                                <div class="tab-pane fade profile-overview pt-0" id="observations-overview">
+                                    <div class="d-flex justify-content-between align-items-center mt-0">
+                                        <h5 class="card-title">Observations</h5>
+                                        <a href="#" class="btn btn-success btn-sm float-end" data-bs-toggle="modal"
+                                            data-bs-target="#addobservations" title="Ajouter">Ajouter</a>
+                                    </div>
+                                    @if (!empty($operateur?->observations))
+                                        
+                                    <textarea name="observation" id="observation" rows="10" @readonly(true)
+                                        class="form-control form-control-sm @error('date_reponse') is-invalid @enderror" placeholder="Observations">{{ $operateur?->observations ?? old('observation') }}</textarea>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -1159,6 +1078,45 @@
             </div>
         @endforeach --}}
         <!-- End Edit References-->
+
+        <div class="modal fade" id="addobservations" tabindex="-1" role="dialog"
+            aria-labelledby="addobservationsLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Observations</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form method="post" action="{{ route('observations', ['id' => $operateur->id]) }}"
+                        enctype="multipart/form-data" class="row g-3">
+                        @csrf
+                        @method('PUT')
+                        <div class="modal-body">
+                            <div class="row g-3">
+                                <div class="col-12 col-md-12 col-lg-12 col-sm-12 col-xs-12 col-xxl-12">
+                                    {{--  <label for="observation" class="form-label">Observations</label> --}}
+                                    <textarea name="observation" id="observation" rows="10"
+                                        class="form-control form-control-sm @error('date_reponse') is-invalid @enderror" placeholder="Observations">{{ $operateur?->observations ?? old('observation') }}</textarea>
+                                    @error('observation')
+                                        <span class="invalid-feedback" role="alert">
+                                            <div>{{ $message }}</div>
+                                        </span>
+                                    @enderror
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary btn-sm"
+                                        data-bs-dismiss="modal">Fermer</button>
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-primary btn-sm">Enregistrer</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </section>
 
 @endsection

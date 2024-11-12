@@ -37,7 +37,7 @@ class AuthenticatedSessionController extends Controller
         $anciennete = date('Y') - '1987';
 
         $services = Service::get();
-        $postes = Poste::orderBy("created_at", "desc")->limit(5)->get();
+        $postes = Poste::orderBy("created_at", "desc")->limit(4)->get();
 
         $count_today = Individuelle::where("created_at", "LIKE",  "{$today}%")->count();
         $count_individuelles = Individuelle::count();

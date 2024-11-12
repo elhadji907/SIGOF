@@ -415,6 +415,10 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     Route::put('/alaunes', [UneController::class, 'alaUne'])->name('alaunes');
     Route::put('/uneContacts', [ContactController::class, 'uneContacts'])->name('uneContacts');
+    
+    Route::put('observations/{id}', [OperateurController::class, 'observations'])->name('observations');
+    
+    Route::post('ficheSynthese', [OperateurController::class, 'ficheSynthese'])->name('ficheSynthese');
     /* Vues ressouces */
     Route::resource('/users', UserController::class);
     Route::resource('/permissions', PermissionController::class);

@@ -61,6 +61,7 @@ class CreateOperateursTable extends Migration
             $table->unsignedInteger('regions_id')->nullable();
             $table->unsignedInteger('commissionagrements_id')->nullable();
             $table->unsignedInteger('historiqueagrements_id')->nullable();
+            $table->longText('observations')->nullable();
             $table->string('file1', 200)->nullable();
             $table->string('file2', 200)->nullable();
             $table->string('file3', 200)->nullable();

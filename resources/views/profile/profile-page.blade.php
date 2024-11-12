@@ -20,39 +20,41 @@
                     <div class="card">
                         <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
                             {{-- <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle"> --}}
-                            <img class="rounded-circle w-25" alt="Profil" src="{{ asset(Auth::user()->getImage()) }}"
+                            <img class="rounded-circle w-25" alt="Profil" src="{{ asset(Auth::user()?->getImage()) }}"
                                 width="50" height="auto">
 
                             <h2>
-                                @if (isset(Auth::user()->name))
-                                    {{ Auth::user()->civilite . ' ' . Auth::user()->firstname . ' ' . Auth::user()->name }}
+                                @if (!empty(Auth::user()?->name))
+                                    {{ Auth::user()?->civilite . ' ' . Auth::user()?->firstname . ' ' . Auth::user()?->name }}
                                 @else
-                                    {{ Auth::user()->username }}
+                                    {{ Auth::user()?->username }}
                                 @endif
                             </h2>
-                            <span><a href="">{{ Auth::user()->situation_professionnelle }}</a></span>
+                            @if (!empty(Auth::user()?->situation_professionnelle))
+                                <span><a href="">{{ Auth::user()?->situation_professionnelle }}</a></span>
+                            @endif
                             {{-- <h3>
                             @foreach (Auth::user()->roles as $role)
                                 <span>{{ $role->name }} |</span>
                             @endforeach
                         </h3> --}}
                             <div class="social-links mt-2">
-                                @isset(Auth::user()->twitter)
-                                    <a href="{{ Auth::user()->twitter }}" class="twitter" target="_blank"><i
+                                @if (!empty(Auth::user()?->twitter))
+                                    <a href="{{ Auth::user()?->twitter }}" class="twitter" target="_blank"><i
                                             class="bi bi-twitter"></i></a>
-                                @endisset
-                                @isset(Auth::user()->facebook)
-                                    <a href="{{ Auth::user()->facebook }}" class="facebook" target="_blank"><i
+                                @endif
+                                @if (!empty(Auth::user()?->facebook))
+                                    <a href="{{ Auth::user()?->facebook }}" class="facebook" target="_blank"><i
                                             class="bi bi-facebook"></i></a>
-                                @endisset
-                                @isset(Auth::user()->instagram)
-                                    <a href="{{ Auth::user()->instagram }}" class="instagram" target="_blank"><i
+                                @endif
+                                @if (!empty(Auth::user()?->instagram))
+                                    <a href="{{ Auth::user()?->instagram }}" class="instagram" target="_blank"><i
                                             class="bi bi-instagram"></i></a>
-                                @endisset
-                                @isset(Auth::user()->linkedin)
-                                    <a href="{{ Auth::user()->linkedin }}" class="linkedin" target="_blank"><i
+                                @endif
+                                @if (!empty(Auth::user()?->linkedin))
+                                    <a href="{{ Auth::user()?->linkedin }}" class="linkedin" target="_blank"><i
                                             class="bi bi-linkedin"></i></a>
-                                @endisset
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -1327,7 +1329,7 @@
                                         <div class="alert alert-info"> {{ __("Vous n'avez pas de courrier à votre nom") }} </div>
                                     @endif
                                 @else
-                                    <div class="alert alert-info"> {{ __("Vous n'êtes pas encore employé") }} </div>
+                                    <div class="alert alert-info"> {{ __("Vous n'êtes pas encore employé(e)") }} </div>
                                 @endif
 
                             </div>

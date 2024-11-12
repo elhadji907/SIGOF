@@ -45,7 +45,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property int|null $courriers_id
  * @property int|null $communes_id
  * @property int|null $commissionagrements_id
- * @property string|null $file1
+ * @property string|null $observations
  * @property string|null $file2
  * @property string|null $file3
  * @property string|null $file4
@@ -146,7 +146,7 @@ class Operateur extends Model
 		'departements_id',
 		'regions_id',
 		'commissionagrements_id',
-		'file1',
+		'observations',
 		'file2',
 		'file3',
 		'file4',

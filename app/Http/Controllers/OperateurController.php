@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Intervention\Image\Facades\Image;
 use RealRashid\SweetAlert\Facades\Alert;
+use Dompdf\Dompdf;
 
 class OperateurController extends Controller
 {
@@ -503,7 +504,7 @@ class OperateurController extends Controller
         if ($operateur->statut_agrement != 'nouveau') {
             Alert::warning('Attention ! ', 'action impossible');
             return redirect()->back();
-        } 
+        }
         foreach (Auth::user()->roles as $key => $role) {
             if (!empty($role?->name) && ($role?->name != 'super-admin') && ($role?->name != 'admin') && ($role?->name != 'DIOF') && ($role?->name != 'DEC')) {
                 $this->authorize('delete', $operateur);
@@ -970,5 +971,53 @@ class OperateurController extends Controller
             'title',
             'regions'
         ));
+    }
+
+    public function observations(Request $request, $id)
+    {
+        $this->validate($request, [
+            'observation' => 'required|string',
+        ]);
+
+        $operateur = Operateur::findOrFail($id);
+
+        $operateur->update([
+            'observations' => $request->input('observation')
+        ]);
+
+        $operateur->save();
+
+        Alert::success('Félicitations', 'Observations enregistrées');
+        return redirect()->back();
+    }
+
+
+    public function ficheSynthese(Request $request)
+    {
+        $commission = Commissionagrement::find($request->input('id'));
+
+        $title = 'Fiche de synthèse ' . $commission?->commission . ' du ' . $commission?->date?->format('d/m/Y') . ' à ' . $commission?->lieu;
+
+        $dompdf = new Dompdf();
+        $options = $dompdf->getOptions();
+        $options->setDefaultFont('Formation');
+        $dompdf->setOptions($options);
+
+
+        $dompdf->loadHtml(view('operateurs.fichesynthese', compact(
+            'commission',
+            'title'
+        )));
+
+        // (Optional) Setup the paper size and orientation (portrait ou landscape)
+        $dompdf->setPaper('A4', 'landscape');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        $name = 'Fiche de synthèse ' . $commission?->commission . ' du ' . $commission?->date?->format('d/m/Y') . ' à ' . $commission?->lieu . '.pdf';
+
+        // Output the generated PDF to Browser
+        $dompdf->stream($name, ['Attachment' => false]);
     }
 }
