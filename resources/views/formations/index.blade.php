@@ -290,11 +290,15 @@
                         @csrf --}}
                         <form method="post" action="{{ route('formations.store') }}" enctype="multipart/form-data">
                             @csrf
-                            <div class="modal-header">
+                            {{-- <div class="modal-header">
                                 <h5 class="modal-title"><i class="bi bi-plus" title="Ajouter"></i> Créer une nouvelle
                                     formation</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
+                            </div> --}}
+
+                            <div class="card-header text-center bg-gradient-default">
+                                <h1 class="h4 text-black mb-0">CRÉER FORMATION</h1>
                             </div>
                             <div class="modal-body">
                                 <div class="row g-3">
@@ -500,7 +504,7 @@
                                         @enderror
                                     </div>
 
-                                   {{--  <div class="col-12 col-md-12 col-lg-6 col-sm-12 col-xs-12 col-xxl-6">
+                                    {{--  <div class="col-12 col-md-12 col-lg-6 col-sm-12 col-xs-12 col-xxl-6">
                                         <label for="titre" class="form-label">Titre (convention)</label>
                                         <input type="text" name="titre" value="{{ old('titre') }}"
                                             class="form-control form-control-sm @error('titre') is-invalid @enderror"
@@ -684,9 +688,9 @@
 
                                 </div>
                                 <div class="modal-footer mt-5">
-                                    <button type="button" class="btn btn-secondary"
+                                    <button type="button" class="btn btn-secondary btn-sm"
                                         data-bs-dismiss="modal">Fermer</button>
-                                    <button type="submit" class="btn btn-primary"><i class="bi bi-printer"></i>
+                                    <button type="submit" class="btn btn-primary btn-sm"><i class="bi bi-printer"></i>
                                         Enregistrer</button>
                                 </div>
                             </div>

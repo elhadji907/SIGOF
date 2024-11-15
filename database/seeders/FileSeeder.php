@@ -113,5 +113,14 @@ class FileSeeder extends Seeder
             'updated_at' => now(),
             'uuid' => Str::uuid(),
         ]);
+
+        DB::table('files')->insert([
+            "legende" => "Arrêté création",
+            "sigle" => "Arrêté",
+            "users_id" => null,
+            'created_at' => now(),
+            'updated_at' => now(),
+            'uuid' => Str::uuid(),
+        ]);
     }
 }

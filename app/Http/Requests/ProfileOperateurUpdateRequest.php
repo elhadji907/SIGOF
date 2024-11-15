@@ -31,6 +31,7 @@ class ProfileOperateurUpdateRequest extends FormRequest
             'email'                     => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
             'email_responsable'         => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
             'telephone'                 => ['required', 'string', 'max:25', 'min:9'],
+            'telephone_parent'          => ['required', 'string', 'max:25', 'min:9'],
             'adresse'                   => ['required', 'string', 'max:255'],
             'situation_familiale'       => ['nullable', 'max:15', 'string'],
             'situation_professionnelle' => ['nullable', 'max:25', 'string'],

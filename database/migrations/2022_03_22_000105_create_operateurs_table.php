@@ -24,6 +24,8 @@ class CreateOperateursTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->char('uuid', 36);
+            $table->string('numero_dossier', 200)->nullable();
+            $table->string('numero_arrive', 200)->nullable();
             $table->string('numero_agrement', 200)->nullable();
             $table->timestamp('date_depot')->nullable();
             $table->timestamp('annee_agrement')->nullable();
@@ -62,13 +64,11 @@ class CreateOperateursTable extends Migration
             $table->unsignedInteger('commissionagrements_id')->nullable();
             $table->unsignedInteger('historiqueagrements_id')->nullable();
             $table->longText('observations')->nullable();
-            $table->string('file1', 200)->nullable();
-            $table->string('file2', 200)->nullable();
-            $table->string('file3', 200)->nullable();
-            $table->string('file4', 200)->nullable();
-            $table->string('file5', 200)->nullable();
-            $table->string('file6', 200)->nullable();
-            $table->string('file7', 200)->nullable();
+            $table->string('visite_conformite', 200)->nullable();
+            $table->string('arrete_creation', 200)->nullable();
+            $table->string('file_arrete_creation', 200)->nullable();
+            $table->string('demande_signe', 200)->nullable();
+            $table->string('formulaire_signe', 200)->nullable();
             $table->string('file8', 200)->nullable();
             $table->string('file9', 200)->nullable();
             $table->string('file10', 200)->nullable();

@@ -56,10 +56,10 @@ class OperateurmoduleController extends Controller
             ]);
 
             $operateurmodule->save();
-        } elseif ($operateur->user->categorie == 'Privé' && $total_module >= 3) {
+        } elseif ($operateur->user->categorie == 'Privé' && $total_module >= 10) {
             Alert::warning('Attention ! ', 'Vous avez atteint le nombre de modules autorisés');
             return redirect()->back();
-        } elseif ($total_module >= 10) {
+        } elseif ($total_module >= 15) {
             Alert::warning('Attention ! ', 'Vous avez atteint le nombre de modules autorisés');
             return redirect()->back();
         } else {

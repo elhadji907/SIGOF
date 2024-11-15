@@ -228,7 +228,7 @@ class ArriveController extends Controller
             "annee_agrement"       =>       date('Y-m-d'),
             "statut_agrement"      =>       'nouveau',
             "users_id"             =>       $user->id,
-            'courriers_id'         =>      $courrier->id
+            'courriers_id'         =>       $courrier->id
         ]);
 
         $operateur->save();

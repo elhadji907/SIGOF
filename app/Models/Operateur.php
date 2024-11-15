@@ -46,12 +46,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property int|null $communes_id
  * @property int|null $commissionagrements_id
  * @property string|null $observations
- * @property string|null $file2
- * @property string|null $file3
- * @property string|null $file4
- * @property string|null $file5
- * @property string|null $file6
- * @property string|null $file7
+ * @property string|null $visite_conformite
+ * @property string|null $numero_dossier
+ * @property string|null $numero_arrive
+ * @property string|null $arrete_creation
+ * @property string|null $file_arrete_creation
+ * @property string|null $demande_signe
+ * @property string|null $formulaire_signe
  * @property string|null $file8
  * @property string|null $file9
  * @property string|null $file10
@@ -147,12 +148,13 @@ class Operateur extends Model
 		'regions_id',
 		'commissionagrements_id',
 		'observations',
-		'file2',
-		'file3',
-		'file4',
-		'file5',
-		'file6',
-		'file7',
+		'visite_conformite',
+		'numero_dossier',
+		'numero_arrive',
+		'arrete_creation',
+		'file_arrete_creation',
+		'demande_signe',
+		'formulaire_signe',
 		'file8',
 		'file9',
 		'file10'
@@ -162,6 +164,12 @@ class Operateur extends Model
 	{
 		$quitusPath = $this->quitus;
 		return "/storage/" . $quitusPath;
+	}
+
+	public function getArreteCreation()
+	{
+		$arretePath = $this->file_arrete_creation;
+		return "/storage/" . $arretePath;
 	}
 
 	public function historiqueagrements()

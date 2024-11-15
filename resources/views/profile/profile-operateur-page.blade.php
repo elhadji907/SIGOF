@@ -509,6 +509,25 @@
                                                 @enderror
                                             </div>
                                         </div>
+                                        
+
+                                        {{-- Telephone portable --}}
+                                        <div class="row mb-3">
+                                            <label for="telephone" class="col-md-4 col-lg-3 col-form-label">Téléphone portable<span
+                                                    class="text-danger mx-1">*</span></label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <input name="telephone" type="text"
+                                                    class="form-control form-control-sm @error('telephone') is-invalid @enderror"
+                                                    id="telephone" value="{{ $user->telephone ?? old('telephone') }}"
+                                                    autocomplete="telephone" placeholder="N° de téléphone">
+                                                @error('telephone')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <div>{{ $message }}</div>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
                                         {{-- Adresse --}}
                                         <div class="row mb-3">
                                             <label for="adresse" class="col-md-4 col-lg-3 col-form-label">Adresse<span
@@ -691,16 +710,16 @@
                                             </div>
                                         </div>
 
-                                        {{-- Telephone --}}
+                                        {{-- telephone_parent --}}
                                         <div class="row mb-3">
-                                            <label for="telephone" class="col-md-4 col-lg-3 col-form-label">Téléphone<span
+                                            <label for="telephone_parent" class="col-md-4 col-lg-3 col-form-label">Téléphone responsable<span
                                                     class="text-danger mx-1">*</span></label>
                                             <div class="col-md-8 col-lg-9">
-                                                <input name="telephone" type="text"
-                                                    class="form-control form-control-sm @error('telephone') is-invalid @enderror"
-                                                    id="telephone" value="{{ $user->telephone ?? old('telephone') }}"
-                                                    autocomplete="telephone" placeholder="N° de téléphone">
-                                                @error('telephone')
+                                                <input name="telephone_parent" type="text"
+                                                    class="form-control form-control-sm @error('telephone_parent') is-invalid @enderror"
+                                                    id="telephone_parent" value="{{ $user->telephone_parent ?? old('telephone_parent') }}"
+                                                    autocomplete="telephone_parent" placeholder="N° de téléphone">
+                                                @error('telephone_parent')
                                                     <span class="invalid-feedback" role="alert">
                                                         <div>{{ $message }}</div>
                                                     </span>
@@ -1020,7 +1039,7 @@
                                         @method('patch')
 
                                         <h5 class="card-title">{{ __("Ajouter d'autres fichiers") }}</h5>
-                                        <span style="color:red;">NB:</span> <span>Seule l'acte de création</span> <span
+                                        <span style="color:red;">NB:</span> <span>Seule l'acte ou arrêté de création</span> <span
                                             style="color:red;"> est obligatoire</span>
                                         <!-- Profile Edit Form -->
 

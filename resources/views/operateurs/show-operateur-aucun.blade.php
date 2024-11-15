@@ -138,11 +138,26 @@
                                             <option value="Association">
                                                 Association
                                             </option>
-                                            <option value="Entreprise">
-                                                Entreprise
+                                            <option value="Entreprise individuelle">
+                                                Entreprise individuelle
                                             </option>
-                                            <option value="Institution">
-                                                Institution
+                                            <option value="SA">
+                                                SA
+                                            </option>
+                                            <option value="SUARL">
+                                                SUARL
+                                            </option>
+                                            <option value="SARL">
+                                                SARL
+                                            </option>
+                                            <option value="SNC">
+                                                SNC
+                                            </option>
+                                            <option value="SCS">
+                                                SCS
+                                            </option>
+                                            <option value="Etablissement public">
+                                                Etablissement public
                                             </option>
                                             <option value="Autre">
                                                 Autre
