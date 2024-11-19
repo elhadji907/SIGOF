@@ -39,15 +39,18 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
                             <h5 class="card-title">INFRASTRUCTURES / EQUIPEMENTS</h5>
-                            <h5 class="card-title">
-                                <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#AddRefModal">
-                                    <i class="bi bi-plus" title="Ajouter une référence"></i>
-                                </button>
-                            </h5>
+                            @can('devenir-operateur-agrement-ouvert')
+                                <h5 class="card-title">
+                                    <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#AddRefModal">
+                                        <i class="bi bi-plus" title="Ajouter une référence"></i>
+                                    </button>
+                                </h5>
+                            @endcan
                         </div>
                         <!-- Table with stripped rows -->
-                        <table class="table table-bordered table-hover datatables align-middle justify-content-center table-borderless">
+                        <table
+                            class="table table-bordered table-hover datatables align-middle justify-content-center table-borderless">
                             <thead>
                                 <tr>
                                     <th class="text-center">N°</th>
@@ -68,32 +71,35 @@
                                         <td style="text-align: center;">{{ $operateurequipement->etat }}</td>
                                         <td style="text-align: center;">{{ $operateurequipement->type }}</td>
                                         <td style="text-align: center;">
-                                            <span class="d-flex align-items-baseline justify-content-center"><a href=""
-                                                    class="btn btn-outline-info btn-sm mx-1" title="Voir détails">
+                                            <span class="d-flex align-items-baseline justify-content-center"><a
+                                                    href="" class="btn btn-outline-info btn-sm mx-1"
+                                                    title="Voir détails">
                                                     <i class="bi bi-eye"></i></a>
-                                                <div class="filter">
-                                                    <a class="icon" href="#" data-bs-toggle="dropdown"><i
-                                                            class="bi bi-three-dots"></i></a>
-                                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                                        <li>
-                                                            <button type="button" class="dropdown-item btn btn-sm mx-1"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#EditoperateurequipementModal{{ $operateurequipement->id }}">
-                                                                <i class="bi bi-pencil" title="Modifier"></i> Modifier
-                                                            </button>
-                                                        </li>
-                                                        <li>
-                                                            <form
-                                                                action="{{ route('operateurequipements.destroy', $operateurequipement->id) }}"
-                                                                method="post">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit" class="dropdown-item show_confirm"><i
-                                                                        class="bi bi-trash"></i>Supprimer</button>
-                                                            </form>
-                                                        </li>
-                                                    </ul>
-                                                </div>
+                                                @can('devenir-operateur-agrement-ouvert')
+                                                    <div class="filter">
+                                                        <a class="icon" href="#" data-bs-toggle="dropdown"><i
+                                                                class="bi bi-three-dots"></i></a>
+                                                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                                            <li>
+                                                                <button type="button" class="dropdown-item btn btn-sm mx-1"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#EditoperateurequipementModal{{ $operateurequipement->id }}">
+                                                                    <i class="bi bi-pencil" title="Modifier"></i> Modifier
+                                                                </button>
+                                                            </li>
+                                                            <li>
+                                                                <form
+                                                                    action="{{ route('operateurequipements.destroy', $operateurequipement->id) }}"
+                                                                    method="post">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="submit" class="dropdown-item show_confirm"><i
+                                                                            class="bi bi-trash"></i>Supprimer</button>
+                                                                </form>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                @endcan
                                             </span>
                                         </td>
                                     </tr>
@@ -207,7 +213,8 @@
             <div class="modal fade" id="EditoperateurequipementModal{{ $operateurequipement->id }}" tabindex="-1">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
-                        <form method="post" action="{{ route('operateurequipements.update', $operateurequipement->id) }}"
+                        <form method="post"
+                            action="{{ route('operateurequipements.update', $operateurequipement->id) }}"
                             enctype="multipart/form-data" class="row g-3">
                             @csrf
                             @method('patch')
@@ -219,7 +226,8 @@
                                 <div class="col-12 col-md-12 col-lg-12 mb-2">
                                     <label for="designation" class="form-label">Désignation<span
                                             class="text-danger mx-1">*</span></label>
-                                    <input type="text" name="designation" value="{{ $operateurequipement->designation ?? old('designation') }}"
+                                    <input type="text" name="designation"
+                                        value="{{ $operateurequipement->designation ?? old('designation') }}"
                                         class="form-control form-control-sm @error('designation') is-invalid @enderror"
                                         placeholder="Désignation">
                                     @error('designation')
@@ -231,7 +239,8 @@
                                 <div class="col-12 col-md-12 col-lg-12 mb-2">
                                     <label for="quantite" class="form-label">Quantité<span
                                             class="text-danger mx-1">*</span></label>
-                                    <input type="number" min="0" name="quantite" value="{{ $operateurequipement->quantite ?? old('quantite') }}"
+                                    <input type="number" min="0" name="quantite"
+                                        value="{{ $operateurequipement->quantite ?? old('quantite') }}"
                                         class="form-control form-control-sm @error('quantite') is-invalid @enderror"
                                         placeholder="Quantité">
                                     @error('quantite')
@@ -247,7 +256,7 @@
                                     <select name="etat" class="form-select selectpicker"
                                         data-live-search="true @error('etat') is-invalid @enderror" aria-label="Select"
                                         id="select-field-etat-update" data-placeholder="Choisir etat">
-                                        <option value="{{  $operateurequipement->etat }}">
+                                        <option value="{{ $operateurequipement->etat }}">
                                             {{ $operateurequipement->etat ?? old('etat') }}
                                         </option>
                                         <option value="Neuf(ve)">
@@ -272,7 +281,7 @@
                                     <select name="type" class="form-select selectpicker"
                                         data-live-search="true @error('type') is-invalid @enderror" aria-label="Select"
                                         id="select-field-type-update" data-placeholder="Choisir type">
-                                        <option value="{{  $operateurequipement->type }}">
+                                        <option value="{{ $operateurequipement->type }}">
                                             {{ $operateurequipement->type ?? old('type') }}
                                         </option>
                                         <option value="Infrastructure">

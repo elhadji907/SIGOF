@@ -56,12 +56,12 @@
                                         <th width="2%" class="text-center">Année</th>
                                         <th width="5%" class="text-center">Module</th>
                                         <th width="5%" class="text-center">Référence</th>
-                                        <th width="18%" class="text-center">Equipements & Infras.</th>
+                                        <th class="text-center">Equi. & Infras.</th>
                                         <th width="5%" class="text-center">Formateurs</th>
                                         <th width="5%" class="text-center">Localités</th>
-                                        <th width="10%" class="text-center">Type demande</th>
+                                        <th class="text-center">Type demande</th>
                                         <th width="10%" class="text-center">Etat</th>
-                                        <th width="5%" class="text-center">Statut</th>
+                                        <th width="10%" class="text-center">Statut</th>
                                         <th width="5%" class="text-center">Quitus</th>
                                         <th width="5%" class="text-center"><i class="bi bi-gear"></i></th>
                                     </tr>

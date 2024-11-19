@@ -804,12 +804,15 @@
                                 enctype="multipart/form-data" class="row g-3">
                                 @csrf
                                 @method('patch')
-                                <div class="modal-header" id="EditOperateurmoduleModalLabel{{ $operateurmodule->id }}">
+                                {{-- <div class="modal-header" id="EditOperateurmoduleModalLabel{{ $operateurmodule->id }}">
                                     <h5 class="modal-title">Modification module
                                         opérateur</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
-                                </div>
+                                </div> --}}
+                        <div class="card-header text-center bg-gradient-default">
+                            <h1 class="h4 text-black mb-0">Modification module opérateur</h1>
+                        </div>
                                 <div class="modal-body">
                                     <input type="hidden" name="id" value="{{ $operateurmodule->id }}">
 
@@ -883,9 +886,8 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                                    <button type="submit" class="btn btn-primary"><i class="bi bi-printer"></i>
-                                        Modifier</button>
+                                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Fermer</button>
+                                    <button type="submit" class="btn btn-primary btn-sm">Modifier</button>
                                 </div>
                             </form>
                         </div>

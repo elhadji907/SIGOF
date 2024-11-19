@@ -39,12 +39,14 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
                             <h5 class="card-title">EXPERIENCES ET REFERENCES PROFESSIONNELLES</h5>
-                            <h5 class="card-title">
-                                <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#AddRefModal">
-                                    <i class="bi bi-plus" title="Ajouter une référence"></i>
-                                </button>
-                            </h5>
+                            @can('devenir-operateur-agrement-ouvert')
+                                <h5 class="card-title">
+                                    <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#AddRefModal">
+                                        <i class="bi bi-plus" title="Ajouter une référence"></i>
+                                    </button>
+                                </h5>
+                            @endcan
                         </div>
                         <!-- Table with stripped rows -->
                         <table
@@ -71,29 +73,31 @@
                                                     href="" class="btn btn-outline-info btn-sm mx-1"
                                                     title="Voir détails">
                                                     <i class="bi bi-eye"></i></a>
-                                                <div class="filter">
-                                                    <a class="icon" href="#" data-bs-toggle="dropdown"><i
-                                                            class="bi bi-three-dots"></i></a>
-                                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                                        <li>
-                                                            <button type="button" class="dropdown-item btn btn-sm mx-1"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#EditoperateureferenceModal{{ $operateureference->id }}">
-                                                                <i class="bi bi-pencil" title="Modifier"></i> Modifier
-                                                            </button>
-                                                        </li>
-                                                        <li>
-                                                            <form
-                                                                action="{{ route('operateureferences.destroy', $operateureference->id) }}"
-                                                                method="post">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit" class="dropdown-item show_confirm"><i
-                                                                        class="bi bi-trash"></i>Supprimer</button>
-                                                            </form>
-                                                        </li>
-                                                    </ul>
-                                                </div>
+                                                @can('devenir-operateur-agrement-ouvert')
+                                                    <div class="filter">
+                                                        <a class="icon" href="#" data-bs-toggle="dropdown"><i
+                                                                class="bi bi-three-dots"></i></a>
+                                                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                                            <li>
+                                                                <button type="button" class="dropdown-item btn btn-sm mx-1"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#EditoperateureferenceModal{{ $operateureference->id }}">
+                                                                    <i class="bi bi-pencil" title="Modifier"></i> Modifier
+                                                                </button>
+                                                            </li>
+                                                            <li>
+                                                                <form
+                                                                    action="{{ route('operateureferences.destroy', $operateureference->id) }}"
+                                                                    method="post">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="submit" class="dropdown-item show_confirm"><i
+                                                                            class="bi bi-trash"></i>Supprimer</button>
+                                                                </form>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                @endcan
                                             </span>
                                         </td>
                                     </tr>
@@ -170,7 +174,8 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Fermer</button>
+                            <button type="button" class="btn btn-secondary btn-sm"
+                                data-bs-dismiss="modal">Fermer</button>
                             <button type="submit" class="btn btn-primary btn-sm">Ajouter</button>
                         </div>
                     </form>
@@ -246,7 +251,8 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Fermer</button>
+                                <button type="button" class="btn btn-secondary btn-sm"
+                                    data-bs-dismiss="modal">Fermer</button>
                                 <button type="submit" class="btn btn-primary btn-sm">Modifier</button>
                             </div>
                         </form>

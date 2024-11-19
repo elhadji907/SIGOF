@@ -39,15 +39,18 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
                             <h5 class="card-title">LOCALITES</h5>
-                            <h5 class="card-title">
-                                <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#AddlocaliteModal">
-                                    <i class="bi bi-plus" title="Ajouter une référence"></i>
-                                </button>
-                            </h5>
+                            @can('devenir-operateur-agrement-ouvert')
+                                <h5 class="card-title">
+                                    <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#AddlocaliteModal">
+                                        <i class="bi bi-plus" title="Ajouter une référence"></i>
+                                    </button>
+                                </h5>
+                            @endcan
                         </div>
                         <!-- Table with stripped rows -->
-                        <table class="table table-bordered table-hover datatables align-middle justify-content-center table-borderless">
+                        <table
+                            class="table table-bordered table-hover datatables align-middle justify-content-center table-borderless">
                             <thead>
                                 <tr>
                                     <th class="text-center">N°</th>
@@ -64,32 +67,35 @@
                                         <td>{{ $operateurlocalite->name }}</td>
                                         <td>{{ $operateurlocalite->region }}</td>
                                         <td style="text-align: center;">
-                                            <span class="d-flex align-items-baseline justify-content-center"><a href=""
-                                                    class="btn btn-outline-info btn-sm mx-1" title="Voir détails">
+                                            <span class="d-flex align-items-baseline justify-content-center"><a
+                                                    href="" class="btn btn-outline-info btn-sm mx-1"
+                                                    title="Voir détails">
                                                     <i class="bi bi-eye"></i></a>
-                                                <div class="filter">
-                                                    <a class="icon" href="#" data-bs-toggle="dropdown"><i
-                                                            class="bi bi-three-dots"></i></a>
-                                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                                        <li>
-                                                            <button type="button" class="dropdown-item btn btn-sm mx-1"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#EditoperateurlocaliteModal{{ $operateurlocalite->id }}">
-                                                                <i class="bi bi-pencil" title="Modifier"></i> Modifier
-                                                            </button>
-                                                        </li>
-                                                        <li>
-                                                            <form
-                                                                action="{{ route('operateurlocalites.destroy', $operateurlocalite->id) }}"
-                                                                method="post">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit" class="dropdown-item show_confirm"><i
-                                                                        class="bi bi-trash"></i>Supprimer</button>
-                                                            </form>
-                                                        </li>
-                                                    </ul>
-                                                </div>
+                                                @can('devenir-operateur-agrement-ouvert')
+                                                    <div class="filter">
+                                                        <a class="icon" href="#" data-bs-toggle="dropdown"><i
+                                                                class="bi bi-three-dots"></i></a>
+                                                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                                            <li>
+                                                                <button type="button" class="dropdown-item btn btn-sm mx-1"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#EditoperateurlocaliteModal{{ $operateurlocalite->id }}">
+                                                                    <i class="bi bi-pencil" title="Modifier"></i> Modifier
+                                                                </button>
+                                                            </li>
+                                                            <li>
+                                                                <form
+                                                                    action="{{ route('operateurlocalites.destroy', $operateurlocalite->id) }}"
+                                                                    method="post">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="submit" class="dropdown-item show_confirm"><i
+                                                                            class="bi bi-trash"></i>Supprimer</button>
+                                                                </form>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                @endcan
                                             </span>
                                         </td>
                                     </tr>
@@ -121,37 +127,39 @@
                                 <input type="text" name="name" value="{{ old('name') }}"
                                     class="form-control form-control-sm @error('name') is-invalid @enderror"
                                     placeholder="Localités (régions, départements, communes)">
-                                    <p class="small fst-italic">
-                                        <small>{{ __('NB: Ici vous pouvez mettre directement la région') }}</small>
-                                    </p>
+                                <p class="small fst-italic">
+                                    <small>{{ __('NB: Ici vous pouvez mettre directement la région') }}</small>
+                                </p>
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <div>{{ $message }}</div>
                                     </span>
                                 @enderror
                             </div>
-                           
+
                             <div class="col-12 col-md-12 col-lg-12 mb-2">
                                 <label for="region" class="form-label">Region<span
                                         class="text-danger mx-1">*</span></label>
-                                        <select name="region" class="form-select  @error('region') is-invalid @enderror"
-                                        aria-label="Select" id="select-field-operateur-localite" data-placeholder="Choisir la région">
-                                        <option value="">--Choisir la région--</option>
-                                        @foreach ($regions as $region)
-                                            <option value="{{ $region->nom }}">
-                                                {{ $region->nom }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    @error('region')
-                                        <span class="invalid-feedback" role="alert">
-                                            <div>{{ $message }}</div>
-                                        </span>
-                                    @enderror
+                                <select name="region" class="form-select  @error('region') is-invalid @enderror"
+                                    aria-label="Select" id="select-field-operateur-localite"
+                                    data-placeholder="Choisir la région">
+                                    <option value="">--Choisir la région--</option>
+                                    @foreach ($regions as $region)
+                                        <option value="{{ $region->nom }}">
+                                            {{ $region->nom }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('region')
+                                    <span class="invalid-feedback" role="alert">
+                                        <div>{{ $message }}</div>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Fermer</button>
+                            <button type="button" class="btn btn-secondary btn-sm"
+                                data-bs-dismiss="modal">Fermer</button>
                             <button type="submit" class="btn btn-primary btn-sm">Ajouter</button>
                         </div>
                     </form>
@@ -176,7 +184,8 @@
                                 <div class="col-12 col-md-12 col-lg-12 mb-2">
                                     <label for="name" class="form-label">Localité<span
                                             class="text-danger mx-1">*</span></label>
-                                    <input type="text" name="name" value="{{ $operateurlocalite->name ?? old('name') }}"
+                                    <input type="text" name="name"
+                                        value="{{ $operateurlocalite->name ?? old('name') }}"
                                         class="form-control form-control-sm @error('name') is-invalid @enderror"
                                         placeholder="Localités (régions, départements, communes)">
                                     @error('name')
@@ -185,28 +194,31 @@
                                         </span>
                                     @enderror
                                 </div>
-                               
+
                                 <div class="col-12 col-md-12 col-lg-12 mb-2">
                                     <label for="region" class="form-label">Region<span
                                             class="text-danger mx-1">*</span></label>
-                                            <select name="region" class="form-select  @error('region') is-invalid @enderror"
-                                            aria-label="Select" id="select-field-operateur-localite" data-placeholder="Choisir la région">
-                                            <option value="{{ $operateurlocalite->region }}">{{ $operateurlocalite->region }}</option>
-                                            @foreach ($regions as $region)
-                                                <option value="{{ $region->nom }}">
-                                                    {{ $region->nom }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                        @error('region')
-                                            <span class="invalid-feedback" role="alert">
-                                                <div>{{ $message }}</div>
-                                            </span>
-                                        @enderror
+                                    <select name="region" class="form-select  @error('region') is-invalid @enderror"
+                                        aria-label="Select" id="select-field-operateur-localite"
+                                        data-placeholder="Choisir la région">
+                                        <option value="{{ $operateurlocalite->region }}">{{ $operateurlocalite->region }}
+                                        </option>
+                                        @foreach ($regions as $region)
+                                            <option value="{{ $region->nom }}">
+                                                {{ $region->nom }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('region')
+                                        <span class="invalid-feedback" role="alert">
+                                            <div>{{ $message }}</div>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Fermer</button>
+                                <button type="button" class="btn btn-secondary btn-sm"
+                                    data-bs-dismiss="modal">Fermer</button>
                                 <button type="submit" class="btn btn-primary btn-sm">Modifier</button>
                             </div>
                         </form>

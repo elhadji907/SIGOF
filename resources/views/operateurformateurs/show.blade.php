@@ -39,15 +39,18 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
                             <h5 class="card-title">FORMATEURS</h5>
-                            <h5 class="card-title">
-                                <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#AddformateurModal">
-                                    <i class="bi bi-plus" title="Ajouter une référence"></i>
-                                </button>
-                            </h5>
+                            @can('devenir-operateur-agrement-ouvert')
+                                <h5 class="card-title">
+                                    <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#AddformateurModal">
+                                        <i class="bi bi-plus" title="Ajouter une référence"></i>
+                                    </button>
+                                </h5>
+                            @endcan
                         </div>
                         <!-- Table with stripped rows -->
-                        <table class="table table-bordered table-hover datatables align-middle justify-content-center table-borderless">
+                        <table
+                            class="table table-bordered table-hover datatables align-middle justify-content-center table-borderless">
                             <thead>
                                 <tr>
                                     <th class="text-center">N°</th>
@@ -65,35 +68,39 @@
                                         <td style="text-align: center;">{{ $i++ }}</td>
                                         <td>{{ $operateurformateur->name }}</td>
                                         <td>{{ $operateurformateur->domaine }}</td>
-                                        <td style="text-align: center;">{{ $operateurformateur->nbre_annees_experience }}</td>
+                                        <td style="text-align: center;">{{ $operateurformateur->nbre_annees_experience }}
+                                        </td>
                                         <td>{{ $operateurformateur->references }}</td>
                                         <td style="text-align: center;">
-                                            <span class="d-flex align-items-baseline justify-content-center"><a href=""
-                                                    class="btn btn-outline-info btn-sm mx-1" title="Voir détails">
+                                            <span class="d-flex align-items-baseline justify-content-center"><a
+                                                    href="" class="btn btn-outline-info btn-sm mx-1"
+                                                    title="Voir détails">
                                                     <i class="bi bi-eye"></i></a>
-                                                <div class="filter">
-                                                    <a class="icon" href="#" data-bs-toggle="dropdown"><i
-                                                            class="bi bi-three-dots"></i></a>
-                                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                                        <li>
-                                                            <button type="button" class="dropdown-item btn btn-sm mx-1"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#EditoperateurformateurModal{{ $operateurformateur->id }}">
-                                                                <i class="bi bi-pencil" title="Modifier"></i> Modifier
-                                                            </button>
-                                                        </li>
-                                                        <li>
-                                                            <form
-                                                                action="{{ route('operateurformateurs.destroy', $operateurformateur->id) }}"
-                                                                method="post">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit" class="dropdown-item show_confirm"><i
-                                                                        class="bi bi-trash"></i>Supprimer</button>
-                                                            </form>
-                                                        </li>
-                                                    </ul>
-                                                </div>
+                                                @can('devenir-operateur-agrement-ouvert')
+                                                    <div class="filter">
+                                                        <a class="icon" href="#" data-bs-toggle="dropdown"><i
+                                                                class="bi bi-three-dots"></i></a>
+                                                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                                            <li>
+                                                                <button type="button" class="dropdown-item btn btn-sm mx-1"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#EditoperateurformateurModal{{ $operateurformateur->id }}">
+                                                                    <i class="bi bi-pencil" title="Modifier"></i> Modifier
+                                                                </button>
+                                                            </li>
+                                                            <li>
+                                                                <form
+                                                                    action="{{ route('operateurformateurs.destroy', $operateurformateur->id) }}"
+                                                                    method="post">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="submit" class="dropdown-item show_confirm"><i
+                                                                            class="bi bi-trash"></i>Supprimer</button>
+                                                                </form>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                @endcan
                                             </span>
                                         </td>
                                     </tr>
@@ -170,7 +177,8 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Fermer</button>
+                            <button type="button" class="btn btn-secondary btn-sm"
+                                data-bs-dismiss="modal">Fermer</button>
                             <button type="submit" class="btn btn-primary btn-sm">Ajouter</button>
                         </div>
                     </form>
@@ -195,7 +203,8 @@
                                 <div class="col-12 col-md-12 col-lg-12 mb-2">
                                     <label for="name" class="form-label">Prénom(s) et Nom formateur<span
                                             class="text-danger mx-1">*</span></label>
-                                    <input type="text" name="name" value="{{ $operateurformateur->name ?? old('name') }}"
+                                    <input type="text" name="name"
+                                        value="{{ $operateurformateur->name ?? old('name') }}"
                                         class="form-control form-control-sm @error('name') is-invalid @enderror"
                                         placeholder="Prénom(s) et Nom formateur">
                                     @error('name')
@@ -207,7 +216,8 @@
                                 <div class="col-12 col-md-12 col-lg-12 mb-2">
                                     <label for="domaine" class="form-label">Domaine<span
                                             class="text-danger mx-1">*</span></label>
-                                    <input type="text" name="domaine" value="{{ $operateurformateur->domaine ?? old('domaine') }}"
+                                    <input type="text" name="domaine"
+                                        value="{{ $operateurformateur->domaine ?? old('domaine') }}"
                                         class="form-control form-control-sm @error('domaine') is-invalid @enderror"
                                         placeholder="Domaine">
                                     @error('domaine')
@@ -232,7 +242,8 @@
                                 <div class="col-12 col-md-12 col-lg-12 mb-2">
                                     <label for="reference" class="form-label">Référence<span
                                             class="text-danger mx-1">*</span></label>
-                                    <input type="text" name="reference" value="{{ $operateurformateur->references ?? old('reference') }}"
+                                    <input type="text" name="reference"
+                                        value="{{ $operateurformateur->references ?? old('reference') }}"
                                         class="form-control form-control-sm @error('reference') is-invalid @enderror"
                                         placeholder="Référence">
                                     @error('reference')
@@ -243,7 +254,8 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Fermer</button>
+                                <button type="button" class="btn btn-secondary btn-sm"
+                                    data-bs-dismiss="modal">Fermer</button>
                                 <button type="submit" class="btn btn-primary btn-sm">Modifier</button>
                             </div>
                         </form>
