@@ -44,6 +44,14 @@
                             </a>
                         </li>
                     @endcan
+
+                    @can('interne-view')
+                        <li class="nav-item">
+                            <a class="nav-link collapsed" href="{{ route('arrivesop') }}">
+                                <span>Operateurs</span>
+                            </a>
+                        </li>
+                    @endcan
                 </ul>
             </li>
         @endcan

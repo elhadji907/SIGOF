@@ -361,7 +361,7 @@ class OperateurController extends Controller
         }
 
         if (request('file_arrete_creation')) {
-            
+
             $file_arrete_creation = request('file_arrete_creation')->store('uploads', 'public');
 
             $file = $request->file('file_arrete_creation');
@@ -536,6 +536,11 @@ class OperateurController extends Controller
 
             $courrier = $arrive->courrier;
 
+            $courrier->update([
+                'numero'                =>      $request->input("numero_arrive"),
+            ]);
+
+            $courrier->save();
         } else {
             /* $anneeEnCours = date('Y');
             $an = date('y');

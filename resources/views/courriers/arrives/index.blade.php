@@ -43,13 +43,13 @@
                     <!-- Sales Card -->
                     <div class="col-12 col-md-4 col-lg-3 col-sm-12 col-xs-12 col-xxl-3">
                         <div class="card info-card sales-card">
-                            <div class="filter">
+                           {{--  <div class="filter">
                                 <a class="icon" href="#" data-bs-toggle="dropdown"><i
                                         class="bi bi-three-dots"></i></a>
-                            </div>
+                            </div> --}}
                             <a href="#">
                                 <div class="card-body">
-                                    <h5 class="card-title">Arrivés <span>| Aujourd'hui</span></h5>
+                                    <h5 class="card-title">Courriers <span>| Arrivés</span></h5>
                                     <div class="d-flex align-items-center">
                                         <div
                                             class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -69,13 +69,13 @@
                     </div>
                     <div class="col-12 col-md-4 col-lg-3 col-sm-12 col-xs-12 col-xxl-3">
                         <div class="card info-card sales-card">
-                            <div class="filter">
+                            {{-- <div class="filter">
                                 <a class="icon" href="#" data-bs-toggle="dropdown"><i
                                         class="bi bi-three-dots"></i></a>
-                            </div>
+                            </div> --}}
                             <a href="#">
                                 <div class="card-body">
-                                    <h5 class="card-title">Arrivés <span>| tous</span></h5>
+                                    <h5 class="card-title">Courriers <span>| Arrivés</span></h5>
                                     <div class="d-flex align-items-center">
                                         <div
                                             class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -224,10 +224,13 @@
                         <p class="text-center small">enregister un nouveau courrier arrivé</p>
                     </div> --}}
 
-                    <div class="modal-header">
+                    <div class="card-header text-center bg-gradient-default">
+                        <h1 class="h4 text-black mb-0">Ajouter un nouveau courrier arrivé</h1>
+                    </div>
+                 {{--    <div class="modal-header">
                         <h5 class="modal-title">Ajouter un nouveau courrier arrivé</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
+                    </div> --}}
                     <form method="post" action="{{ route('arrives.store') }}" enctype="multipart/form-data"
                         class="row g-3">
                         @csrf
@@ -388,10 +391,10 @@
                                 </div>
 
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
+                                    <button type="button" class="btn btn-secondary btn-sm"
                                         data-bs-dismiss="modal">Fermer</button>
                                     <div class="text-center">
-                                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                                        <button type="submit" class="btn btn-primary btn-sm">Enregistrer</button>
                                     </div>
                                 </div>
                             </div>

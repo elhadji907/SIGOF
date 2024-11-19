@@ -9,7 +9,7 @@
                     {{-- <h1>Data Tables</h1> --}}
                     <nav>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ url('/home') }}">Accueil</a></li>
+                            <li class="breadcrumb-item"><a href="#">Accueil</a></li>
                             <li class="breadcrumb-item">Tables</li>
                             <li class="breadcrumb-item active">Références</li>
                         </ol>
@@ -170,9 +170,8 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                            <button type="submit" class="btn btn-primary"><i class="bi bi-printer"></i>
-                                Ajouter</button>
+                            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Fermer</button>
+                            <button type="submit" class="btn btn-primary btn-sm">Ajouter</button>
                         </div>
                     </form>
                 </div>
@@ -247,9 +246,8 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                                <button type="submit" class="btn btn-primary"><i class="bi bi-printer"></i>
-                                    Modifier</button>
+                                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Fermer</button>
+                                <button type="submit" class="btn btn-primary btn-sm">Modifier</button>
                             </div>
                         </form>
                     </div>

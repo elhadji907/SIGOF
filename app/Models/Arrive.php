@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * 
  * @property int $id
  * @property string|null $numero
+ * @property string|null $type
  * @property string $uuid
  * @property int $courriers_id
  * @property string|null $deleted_at
@@ -42,6 +43,7 @@ class Arrive extends Model
 		'numero',
 		'uuid',
 		'courriers_id',
+		'type',
 	];
 
 	public function courrier()

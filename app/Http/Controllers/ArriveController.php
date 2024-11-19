@@ -70,10 +70,10 @@ class ArriveController extends Controller
 
         /* $arrives = Arrive::orderBy('created_at', 'desc')->get(); */
 
-        $total_count = Arrive::get();
+        $total_count = Arrive::where('type', null)->get();
         $total_count = number_format($total_count->count(), 0, ',', ' ');
 
-        $arrives = Arrive::take(100)
+        $arrives = Arrive::where('type', null)->take(100)
             ->latest()
             ->get();
 
@@ -88,7 +88,8 @@ class ArriveController extends Controller
         }
 
         $today = date('Y-m-d');
-        $count_today = Arrive::where("created_at", "LIKE",  "{$today}%")->count();
+
+        $count_today = Arrive::where('type', null)->where("created_at", "LIKE",  "{$today}%")->count();
 
         return view("courriers.arrives.index", compact("arrives", "count_today", "anneeEnCours", "numCourrier", "title"));
     }
@@ -195,7 +196,7 @@ class ArriveController extends Controller
         $anneeEnCours = date('y');
         $annee = date('Y');
         $numero_agrement = $request->input("numero_arrive") . '.' . $anneeEnCours . '/ONFP/DG/DEC/' . $annee;
-        $numero_coreespondance = $request->input("numero_arrive") . '.' . $anneeEnCours;
+        $numero_coreespondance = $request->input("numero_arrive");
 
         $courrier = new Courrier([
             'date_recep'            =>      $request->input('date_arrivee'),
@@ -217,6 +218,7 @@ class ArriveController extends Controller
 
         $arrive = new Arrive([
             'numero'             =>      $request->input('numero_arrive'),
+            'type'               =>      'operateur',
             'courriers_id'       =>      $courrier->id
         ]);
 
@@ -225,6 +227,7 @@ class ArriveController extends Controller
         $operateur = Operateur::create([
             "numero_agrement"      =>       $numero_agrement,
             "type_demande"         =>       $request->input("type_demande"),
+            "numero_dossier"       =>       $request->input("numero_dossier"),
             "annee_agrement"       =>       date('Y-m-d'),
             "statut_agrement"      =>       'nouveau',
             "users_id"             =>       $user->id,
@@ -619,5 +622,102 @@ class ArriveController extends Controller
             'arrives',
             'title'
         ));
+    }
+
+    public function arrivesop(Request $request)
+    {
+        $anneeEnCours = date('Y');
+        $an = date('y');
+
+        $numCourrier = Arrive::join('courriers', 'courriers.id', 'arrives.courriers_id')
+            ->select('arrives.*')
+            ->where('courriers.annee', $anneeEnCours)
+            ->get()->last();
+
+        $numDossier = Arrive::join('courriers', 'courriers.id', 'arrives.courriers_id')
+            ->select('arrives.*')
+            ->where('courriers.annee', $anneeEnCours)
+            ->where('arrives.type', 'operateur')
+            ->get()->last();
+
+        if (isset($numCourrier) && isset($numDossier)) {
+            $numCourrier = Arrive::join('courriers', 'courriers.id', 'arrives.courriers_id')
+                ->select('arrives.*')
+                ->get()->last()->numero;
+
+            $numDossier = Arrive::join('courriers', 'courriers.id', 'arrives.courriers_id')
+                ->select('arrives.*')
+                ->where('arrives.type', 'operateur')
+                ->get()->last()->numero_dossier;
+
+            $numCourrier = ++$numCourrier;
+        } elseif (isset($numCourrier)) {
+            $numCourrier = Arrive::join('courriers', 'courriers.id', 'arrives.courriers_id')
+                ->select('arrives.*')
+                ->get()->last()->numero;
+
+            $numCourrier = ++$numCourrier;
+        } elseif (isset($numDossier)) {
+
+            $numDossier = Arrive::join('courriers', 'courriers.id', 'arrives.courriers_id')
+                ->select('arrives.*')
+                ->where('arrives.type', 'operateur')
+                ->get()->last()->numero_dossier;
+        } else {
+
+            $numCourrier = $an . "0001";
+            $numDossier = "0001";
+
+            $longueur = strlen($numCourrier);
+
+            if ($longueur <= 1) {
+                $numCourrier   =   strtolower("00000" . $numCourrier);
+            } elseif ($longueur >= 2 && $longueur < 3) {
+                $numCourrier   =   strtolower("0000" . $numCourrier);
+            } elseif ($longueur >= 3 && $longueur < 4) {
+                $numCourrier   =   strtolower("000" . $numCourrier);
+            } elseif ($longueur >= 4 && $longueur < 5) {
+                $numCourrier   =   strtolower("00" . $numCourrier);
+            } elseif ($longueur >= 5 && $longueur < 6) {
+                $numCourrier   =   strtolower("0" . $numCourrier);
+            } else {
+                $numCourrier   =   strtolower($numCourrier);
+            }
+        }
+
+        /* $arrives = Arrive::orderBy('created_at', 'desc')->get(); */
+
+        $total_count = Arrive::where('type', 'operateur')->get();
+        $total_count = number_format($total_count->count(), 0, ',', ' ');
+
+        $arrives = Arrive::where('type', 'operateur')->take(100)
+            ->latest()
+            ->get();
+
+        $count_courrier = number_format($arrives?->count(), 0, ',', ' ');
+
+        if ($count_courrier < "1") {
+            $title = 'Aucun courrier';
+        } elseif ($count_courrier == "1") {
+            $title = $count_courrier . ' courrier sur un total de ' . $total_count;
+        } else {
+            $title = 'Liste des ' . $count_courrier . ' derniers courriers sur un total de ' . $total_count;
+        }
+
+        $today = date('Y-m-d');
+
+        $count_today = Arrive::where('type', 'operateur')->where("created_at", "LIKE",  "{$today}%")->count();
+
+        return view(
+            "courriers.arrives.operateur",
+            compact(
+                "arrives",
+                "count_today",
+                "anneeEnCours",
+                "numCourrier",
+                "title",
+                "numDossier"
+            )
+        );
     }
 }

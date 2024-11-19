@@ -105,10 +105,14 @@
             aria-labelledby="addCourrierArriveLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    
+                    <div class="card-header text-center bg-gradient-default">
+                        <h1 class="h4 text-black mb-0">Ajouter un nouveau courrier interne</h1>
+                    </div>
+                    {{-- <div class="modal-header">
                         <h5 class="modal-title">Ajouter un nouveau courrier interne</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
+                    </div> --}}
                     <form method="post" action="{{ route('internes.store') }}" enctype="multipart/form-data"
                         class="row g-3">
                         @csrf

@@ -6,7 +6,7 @@
         {{-- <h1>Data Tables</h1> --}}
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ url('/home') }}">Accueil</a></li>
+                <li class="breadcrumb-item"><a href="#">Accueil</a></li>
                 <li class="breadcrumb-item">Tables</li>
                 <li class="breadcrumb-item active">Données</li>
             </ol>
@@ -20,13 +20,13 @@
                     <!-- Sales Card -->
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                         <div class="card info-card customers-card">
-                            <div class="filter">
+                            {{-- <div class="filter">
                                 <a class="icon" href="#" data-bs-toggle="dropdown"><i
                                         class="bi bi-three-dots"></i></a>
-                            </div>
+                            </div> --}}
                             <a href="#">
                                 <div class="card-body">
-                                    <h5 class="card-title">Formations<span> | aujourd'hui</span></h5>
+                                    <h5 class="card-title">Formations<span> | {{ date('d/m/Y') }}</span></h5>
                                     <div class="d-flex align-items-center">
                                         <div
                                             class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -46,10 +46,10 @@
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                         <div class="card info-card sales-card">
-                            <div class="filter">
+                            {{-- <div class="filter">
                                 <a class="icon" href="#" data-bs-toggle="dropdown"><i
                                         class="bi bi-three-dots"></i></a>
-                            </div>
+                            </div> --}}
                             <a href="#">
                                 <div class="card-body">
                                     <h5 class="card-title">Formations<span> | individuelles</span></h5>
@@ -63,7 +63,7 @@
                                                 <span
                                                     class="text-primary">{{ $individuelles_formations_count ?? '0' }}</span>
                                             </h6>
-                                            <span class="text-success small pt-1 fw-bold">individuelles</span>
+                                            <span class="text-success small pt-1 fw-bold"></span>
                                             {{-- <span class="text-muted small pt-2 ps-1">increase</span> --}}
                                         </div>
                                     </div>
@@ -73,10 +73,10 @@
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                         <div class="card info-card revenue-card">
-                            <div class="filter">
+                            {{-- <div class="filter">
                                 <a class="icon" href="#" data-bs-toggle="dropdown"><i
                                         class="bi bi-three-dots"></i></a>
-                            </div>
+                            </div> --}}
                             <a href="#">
                                 <div class="card-body">
                                     <h5 class="card-title">Formations<span> | collectives</span></h5>
@@ -89,7 +89,7 @@
                                             <h6>
                                                 <span class="text-primary">{{ $collectives_formations_count ?? '0' }}</span>
                                             </h6>
-                                            <span class="text-success small pt-1 fw-bold">collectives</span>
+                                            <span class="text-success small pt-1 fw-bold"></span>
                                             {{-- <span class="text-muted small pt-2 ps-1">increase</span> --}}
                                         </div>
                                     </div>
@@ -99,13 +99,13 @@
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                         <div class="card info-card sales-card">
-                            <div class="filter">
+                            {{-- <div class="filter">
                                 <a class="icon" href="#" data-bs-toggle="dropdown"><i
                                         class="bi bi-three-dots"></i></a>
-                            </div>
+                            </div> --}}
                             <a href="#">
                                 <div class="card-body">
-                                    <h5 class="card-title">Formations <span>| toutes</span></h5>
+                                    <h5 class="card-title">Formations <span>| Toutes</span></h5>
                                     <div class="d-flex align-items-center">
                                         <div
                                             class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -115,7 +115,7 @@
                                             <h6>
                                                 <span class="text-primary">{{ count($formations) ?? '0' }}</span>
                                             </h6>
-                                            <span class="text-success small pt-1 fw-bold">Tous</span>
+                                            <span class="text-success small pt-1 fw-bold">Toutes</span>
                                             {{-- <span class="text-muted small pt-2 ps-1">increase</span> --}}
                                         </div>
                                     </div>

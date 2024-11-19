@@ -26,6 +26,7 @@ class CreateArrivesTable extends Migration
             $table->string('numero', 200)->nullable();
             $table->char('uuid', 36);
             $table->unsignedInteger('courriers_id');
+            $table->string('type', 200)->nullable();
 
             $table->index(["courriers_id"], 'fk_arrives_courriers1_idx');
             $table->softDeletes();
