@@ -9,7 +9,17 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class UneController extends Controller
 {
-
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware(['role:super-admin|admin|DIOF|DEC|DPP']);
+        $this->middleware("permission:une-view", ["only" => ["index"]]);
+        $this->middleware("permission:une-create", ["only" => ["create", "store"]]);
+        $this->middleware("permission:une-update", ["only" => ["update", "edit"]]);
+        $this->middleware("permission:une-show", ["only" => ["show"]]);
+        $this->middleware("permission:une-delete", ["only" => ["destroy"]]);
+        $this->middleware("permission:give-role-permissions", ["only" => ["givePermissionsToRole"]]);
+    }
     public function index()
     {
         $unes = Une::orderBy("created_at", "desc")->get();

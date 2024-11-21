@@ -8,6 +8,17 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class ContactController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware(['role:super-admin|admin|DIOF|DEC|DPP']);
+        $this->middleware("permission:contact-view", ["only" => ["index"]]);
+        $this->middleware("permission:contact-create", ["only" => ["create", "store"]]);
+        $this->middleware("permission:contact-update", ["only" => ["update", "edit"]]);
+        $this->middleware("permission:contact-show", ["only" => ["show"]]);
+        $this->middleware("permission:contact-delete", ["only" => ["destroy"]]);
+        $this->middleware("permission:give-role-permissions", ["only" => ["givePermissionsToRole"]]);
+    }
     public function index()
     {
         $contacts = Contact::orderBy("created_at", "desc")->get();

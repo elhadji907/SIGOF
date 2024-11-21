@@ -365,7 +365,7 @@
                 </a>
             </li>
         @endcan
-        @can('projet-view')
+        @can('post-view')
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ url('postes') }}">
                     <i class="bi bi-file-post"></i>
@@ -381,7 +381,7 @@
                 </a>
             </li>
         @endcan
-        @can('une-view')
+        @can('contact-view')
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ url('contacts') }}">
                     <i class="bi bi-envelope"></i>

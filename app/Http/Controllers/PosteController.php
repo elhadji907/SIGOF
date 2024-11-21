@@ -9,6 +9,17 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class PosteController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware(['role:super-admin|admin|DIOF|DEC|DPP']);
+        $this->middleware("permission:post-view", ["only" => ["index"]]);
+        $this->middleware("permission:post-create", ["only" => ["create", "store"]]);
+        $this->middleware("permission:post-update", ["only" => ["update", "edit"]]);
+        $this->middleware("permission:post-show", ["only" => ["show"]]);
+        $this->middleware("permission:post-delete", ["only" => ["destroy"]]);
+        $this->middleware("permission:give-role-permissions", ["only" => ["givePermissionsToRole"]]);
+    }
     public function index()
     {
         $postes = Poste::orderBy("created_at", "desc")->get();
