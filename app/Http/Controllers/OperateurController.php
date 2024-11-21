@@ -116,7 +116,7 @@ class OperateurController extends Controller
                 ->where('courriers.annee', $anneeEnCours)
                 ->get()->last();
 
-            if (isset($numCourrier)) {
+            if (!empty($numCourrier)) {
                 $numCourrier = Arrive::join('courriers', 'courriers.id', 'arrives.courriers_id')
                     ->select('arrives.*')
                     ->get()->last()->numero;
@@ -140,6 +140,7 @@ class OperateurController extends Controller
                     $numCourrier   =   strtolower($numCourrier);
                 }
             }
+
             $courrier = new Courrier([
                 'date_recep'            =>      date('Y-m-d'),
                 'date_cores'            =>      date('Y-m-d'),
@@ -157,13 +158,16 @@ class OperateurController extends Controller
 
             $arrive = new Arrive([
                 'numero'             =>      $numCourrier,
+                'objet'              =>      $request->input("type_demande") . ' agrément opérateur',
+                'expediteur'         =>      Auth::user()->username,
+                "type"               =>      'operateur',
                 'courriers_id'       =>      $courrier->id
             ]);
 
             $arrive->save();
 
             $operateur = Operateur::create([
-                "numero_agrement"      =>       null,
+                "numero_agrement"      =>       $numCourrier . '/ONFP/DG/DEC/' . date('Y'),
                 "statut"               =>       $request->input("statut"),
                 "autre_statut"         =>       $request->input("autre_statut"),
                 "type_demande"         =>       $request->input("type_demande"),
@@ -324,7 +328,7 @@ class OperateurController extends Controller
 
         $operateur = Operateur::create([
             "numero_dossier"       =>       $request->input("numero_dossier"),
-            'numero_arrive'        =>      $request->input("numero_arrive"),
+            'numero_arrive'        =>       $request->input("numero_arrive"),
             "numero_agrement"      =>       $request->input("numero_agrement"),
             "statut"               =>       $request->input("statut"),
             "autre_statut"         =>       $request->input("autre_statut"),
@@ -384,7 +388,7 @@ class OperateurController extends Controller
         }
         $this->validate($request, [
             "quitus"                =>      ['image', 'required', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
-            "date_quitus"           =>      "required|string",
+            "date_quitus"           =>      ['required','string'],
         ]);
 
         foreach (Auth::user()->roles as $key => $role) {
@@ -393,8 +397,66 @@ class OperateurController extends Controller
             }
         }
 
+        $anneeEnCours = date('Y');
+        $an = date('y');
+
+        $numCourrier = Arrive::join('courriers', 'courriers.id', 'arrives.courriers_id')
+            ->select('arrives.*')
+            ->where('courriers.annee', $anneeEnCours)
+            ->get()->last();
+
+        if (!empty($numCourrier)) {
+            $numCourrier = Arrive::join('courriers', 'courriers.id', 'arrives.courriers_id')
+                ->select('arrives.*')
+                ->get()->last()->numero;
+
+            $numCourrier = ++$numCourrier;
+        } else {
+            $numCourrier = $an . "0001";
+            $longueur = strlen($numCourrier);
+
+            if ($longueur <= 1) {
+                $numCourrier   =   strtolower("00000" . $numCourrier);
+            } elseif ($longueur >= 2 && $longueur < 3) {
+                $numCourrier   =   strtolower("0000" . $numCourrier);
+            } elseif ($longueur >= 3 && $longueur < 4) {
+                $numCourrier   =   strtolower("000" . $numCourrier);
+            } elseif ($longueur >= 4 && $longueur < 5) {
+                $numCourrier   =   strtolower("00" . $numCourrier);
+            } elseif ($longueur >= 5 && $longueur < 6) {
+                $numCourrier   =   strtolower("0" . $numCourrier);
+            } else {
+                $numCourrier   =   strtolower($numCourrier);
+            }
+        }
+
+        $courrier = new Courrier([
+            'date_recep'            =>      date('Y-m-d'),
+            'date_cores'            =>      date('Y-m-d'),
+            'numero'                =>      $numCourrier,
+            'annee'                 =>      date('Y'),
+            'objet'                 =>      Auth::user()->operateur,
+            'expediteur'            =>      Auth::user()->username,
+            'type'                  =>      'arrive',
+            "user_create_id"        =>      Auth::user()->id,
+            "user_update_id"        =>      Auth::user()->id,
+            'users_id'              =>      Auth::user()->id,
+        ]);
+
+        $courrier->save();
+
+        $arrive = new Arrive([
+            'numero'             =>      $numCourrier,
+            'objet'              =>      $request->input("type_demande") . ' agrément opérateur',
+            'expediteur'         =>      Auth::user()->username,
+            "type"               =>      'operateur',
+            'courriers_id'       =>      $courrier->id
+        ]);
+
+        $arrive->save();
+        
         $op = Operateur::create([
-            "numero_agrement"      =>       null,
+            "numero_agrement"      =>       $numCourrier . '/ONFP/DG/DEC/' . date('Y'),
             "categorie"            =>       $operateur?->categorie,
             "statut"               =>       $operateur?->statut,
             "statut_agrement"      =>       'nouveau',
@@ -491,12 +553,6 @@ class OperateurController extends Controller
     {
         $operateur = Operateur::findOrFail($id);
         $user      = $operateur->user;
-        $departement = Departement::findOrFail($request->input("departement"));
-        foreach (Auth::user()->roles as $key => $role) {
-            if (!empty($role?->name) && ($role?->name != 'super-admin') && ($role?->name != 'admin') && ($role?->name != 'DIOF') && ($role?->name != 'DEC')) {
-                $this->authorize('update', $operateur);
-            }
-        }
 
         $this->validate($request, [
             "operateur"             =>      ['required', 'string', Rule::unique(User::class)->ignore($user->id)->whereNull('deleted_at')],
@@ -512,13 +568,21 @@ class OperateurController extends Controller
             "ninea"                 =>      ['required', 'string'],
             "registre_commerce"     =>      ['required', 'string'],
             "quitus"                =>      ['sometimes', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
-            "date_quitus"           =>      ['required', 'string'],
+            "date_quitus"           =>      ['sometimes', 'string'],
             "type_demande"          =>      ['required', 'string'],
-            "arrete_creation"       =>      "nullable|string",
+            "arrete_creation"       =>      ['sometimes', 'string'],
             "file_arrete_creation"  =>      ['file', 'sometimes', 'mimes:jpeg,png,jpg,gif,svg,pdf', 'max:2048'],
-            "demande_signe"         =>      "nullable|string",
-            "formulaire_signe"      =>      "nullable|string",
+            "demande_signe"         =>      ['sometimes', 'string'],
+            "formulaire_signe"      =>      ['sometimes', 'string'],
         ]);
+
+        $departement = Departement::where('nom', $request->input("departement"))->firstOrFail();
+
+        foreach (Auth::user()->roles as $key => $role) {
+            if (!empty($role?->name) && ($role?->name != 'super-admin') && ($role?->name != 'admin') && ($role?->name != 'DIOF') && ($role?->name != 'DEC')) {
+                $this->authorize('update', $operateur);
+            }
+        }
 
         $arrive = Arrive::where('numero', $request->input("numero_arrive"))->first();
 

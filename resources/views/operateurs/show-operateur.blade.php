@@ -339,8 +339,7 @@
                                 <div class="modal-footer mt-5">
                                     <button type="button" class="btn btn-secondary btn-sm"
                                         data-bs-dismiss="modal">Fermer</button>
-                                    <button type="submit" class="btn btn-primary btn-sm"><i class="bi bi-printer"></i>
-                                        Renouveler agrément</button>
+                                    <button type="submit" class="btn btn-primary btn-sm">Renouveler agrément</button>
                                 </div>
                             </div>
                         </form>
@@ -452,7 +451,7 @@
                                             class="form-select form-select-sm @error('categorie') is-invalid @enderror"
                                             aria-label="Select" id="select-field-categorie_op"
                                             data-placeholder="Choisir">
-                                            <option value="{{ $operateur?->user?->categorie }}">
+                                            <option value="{{ $operateur?->user?->categorie ?? old('categorie') }}">
                                                 {{ $operateur?->user?->categorie ?? old('categorie') }}
                                             </option>
                                             <option value="Publique">
@@ -478,7 +477,7 @@
                                         <select name="statut"
                                             class="form-select form-select-sm @error('statut') is-invalid @enderror"
                                             aria-label="Select" id="select-field-juridique" data-placeholder="Choisir">
-                                            <option value="{{ $operateur?->statut }}">
+                                            <option value="{{ $operateur?->statut ?? old('statut') }}">
                                                 {{ $operateur?->statut ?? old('statut') }}
                                             </option>
                                             <option value="GIE">
@@ -553,11 +552,11 @@
                                             class="form-select form-select-sm @error('departement') is-invalid @enderror"
                                             aria-label="Select" id="select-field-departement-update"
                                             data-placeholder="Choisir">
-                                            <option value="{{ $operateur->departement?->id }}">
+                                            <option value="{{ $operateur->departement?->nom ?? old('departement') }}">
                                                 {{ $operateur->departement?->nom ?? old('departement') }}
                                             </option>
                                             @foreach ($departements as $departement)
-                                                <option value="{{ $departement->id }}">
+                                                <option value="{{ $departement->nom }}">
                                                     {{ $departement->nom }}
                                                 </option>
                                             @endforeach
@@ -576,7 +575,7 @@
                                             class="form-select form-select-sm @error('registre_commerce') is-invalid @enderror"
                                             aria-label="Select" id="select-field-registre-update"
                                             data-placeholder="Choisir">
-                                            <option value="{{ $operateur?->user?->rccm }}">
+                                            <option value="{{ $operateur?->user?->rccm ?? old('registre_commerce') }}">
                                                 {{ $operateur->user->rccm ?? old('registre_commerce') }}
                                             </option>
                                             <option value="Registre de commerce">
@@ -646,7 +645,7 @@
                                         <select name="type_demande"
                                             class="form-select form-select-sm @error('type_demande') is-invalid @enderror"
                                             aria-label="Select" id="select-field-registre" data-placeholder="Choisir">
-                                            <option value="{{ $operateur?->type_demande }}">
+                                            <option value="{{ $operateur?->type_demande ?? old('type_demande') }}">
                                                 {{ $operateur?->type_demande ?? old('type_demande') }}
                                             </option>
                                             <option value="Nouvelle">
@@ -666,8 +665,7 @@
                                 <div class="modal-footer mt-3">
                                     <button type="button" class="btn btn-secondary btn-sm"
                                         data-bs-dismiss="modal">Fermer</button>
-                                    <button type="submit" class="btn btn-primary btn-sm"><i class="bi bi-printer"></i>
-                                        Enregistrer modifications</button>
+                                    <button type="submit" class="btn btn-primary btn-sm">Enregistrer modifications</button>
                                 </div>
                             </div>
                         </form>

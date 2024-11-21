@@ -168,7 +168,7 @@
                                                 data-live-search="true @error('categorie') is-invalid @enderror"
                                                 aria-label="Select" id="select-field-categorie-update"
                                                 data-placeholder="Choisir categorie">
-                                                <option value="{{ $operateur?->user?->categorie }}">
+                                                <option value="{{ $operateur?->user?->categorie ?? old('categorie') }}">
                                                     {{ $operateur?->user?->categorie ?? old('categorie') }}
                                                 </option>
                                                 <option value="Publique">
@@ -194,7 +194,7 @@
                                             <select name="statut" class="form-select  @error('statut') is-invalid @enderror"
                                                 aria-label="Select" id="select-field-statut-update"
                                                 data-placeholder="Choisir statut">
-                                                <option value="{{ $operateur->statut }}">
+                                                <option value="{{ $operateur->statut ?? old('statut') }}">
                                                     {{ $operateur->statut ?? old('statut') }}
                                                 </option>
                                                 <option value="GIE">
@@ -292,11 +292,11 @@
                                                 class="form-select form-select-sm @error('departement') is-invalid @enderror"
                                                 aria-label="Select" id="select-field-departement-update"
                                                 data-placeholder="Choisir">
-                                                <option value="{{ $operateur->departement?->id }}">
+                                                <option value="{{ $operateur->departement?->nom ?? old('departement') }}">
                                                     {{ $operateur->departement?->nom ?? old('departement') }}
                                                 </option>
                                                 @foreach ($departements as $departement)
-                                                    <option value="{{ $departement->id }}">
+                                                    <option value="{{ $departement->nom }}">
                                                         {{ $departement->nom }}
                                                     </option>
                                                 @endforeach
@@ -315,7 +315,7 @@
                                                 class="form-select form-select-sm @error('registre_commerce') is-invalid @enderror"
                                                 aria-label="Select" id="select-field-registre-update"
                                                 data-placeholder="Choisir">
-                                                <option value="{{ $operateur?->user?->rccm }}">
+                                                <option value="{{ $operateur?->user?->rccm ?? old('registre_commerce') }}">
                                                     {{ $operateur?->user?->rccm ?? old('registre_commerce') }}
                                                 </option>
                                                 <option value="Registre de commerce">
