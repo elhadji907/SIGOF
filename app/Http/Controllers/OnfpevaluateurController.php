@@ -16,13 +16,13 @@ class OnfpevaluateurController extends Controller
 {
     public function __construct()
     {
-        // examples:
         $this->middleware('auth');
         $this->middleware(['role:super-admin|admin|DIOF|ADIOF|Evaluateur']);
         $this->middleware("permission:onfpevaluateur-view", ["only" => ["index"]]);
-        /* $this->middleware(['permission:arrive-show']); */
-        // or with specific guard
-        /* $this->middleware(['role_or_permission:super-admin']); */
+        $this->middleware("permission:onfpevaluateur-create", ["only" => ["create", "store"]]);
+        $this->middleware("permission:onfpevaluateur-update", ["only" => ["update", "edit"]]);
+        $this->middleware("permission:onfpevaluateur-show", ["only" => ["show"]]);
+        $this->middleware("permission:onfpevaluateur-delete", ["only" => ["destroy"]]);
     }
     public function index()
     {

@@ -16,9 +16,11 @@ class RegionController extends Controller
         // examples:
         $this->middleware('auth');
         $this->middleware(['role:super-admin|admin']);
-        /* $this->middleware(['permission:arrive-show']); */
-        // or with specific guard
-        /* $this->middleware(['role_or_permission:super-admin']); */
+        $this->middleware("permission:region-view", ["only" => ["index"]]);
+        $this->middleware("permission:region-create", ["only" => ["create", "store"]]);
+        $this->middleware("permission:region-update", ["only" => ["update", "edit"]]);
+        $this->middleware("permission:region-show", ["only" => ["show"]]);
+        $this->middleware("permission:region-delete", ["only" => ["destroy"]]);
     }
     public function index()
     {

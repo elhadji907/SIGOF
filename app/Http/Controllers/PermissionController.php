@@ -15,11 +15,11 @@ class PermissionController extends Controller
     {
         $this->middleware("auth");
         $this->middleware(['role:super-admin|admin']);
-        $this->middleware("permission:role-view", ["only"=> ["index"]]);
-        $this->middleware("permission:role-create", ["only"=> ["create","store"]]);
-        $this->middleware("permission:role-update", ["only"=> ["update", "edit"]]);
-        $this->middleware("permission:role-show", ["only"=> ["show"]]);
-        $this->middleware("permission:role-delete", ["only"=> ["destroy"]]);
+        $this->middleware("permission:permission-view", ["only"=> ["index"]]);
+        $this->middleware("permission:permission-create", ["only"=> ["create","store"]]);
+        $this->middleware("permission:permission-update", ["only"=> ["update", "edit"]]);
+        $this->middleware("permission:permission-show", ["only"=> ["show"]]);
+        $this->middleware("permission:permission-delete", ["only"=> ["destroy"]]);
         $this->middleware("permission:give-role-permissions", ["only"=> ["givePermissionsToRole"]]);
     }
     

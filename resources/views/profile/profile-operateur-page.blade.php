@@ -509,12 +509,12 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                        
+
 
                                         {{-- Telephone portable --}}
                                         <div class="row mb-3">
-                                            <label for="telephone" class="col-md-4 col-lg-3 col-form-label">Téléphone portable<span
-                                                    class="text-danger mx-1">*</span></label>
+                                            <label for="telephone" class="col-md-4 col-lg-3 col-form-label">Téléphone
+                                                portable<span class="text-danger mx-1">*</span></label>
                                             <div class="col-md-8 col-lg-9">
                                                 <input name="telephone" type="text"
                                                     class="form-control form-control-sm @error('telephone') is-invalid @enderror"
@@ -712,12 +712,14 @@
 
                                         {{-- telephone_parent --}}
                                         <div class="row mb-3">
-                                            <label for="telephone_parent" class="col-md-4 col-lg-3 col-form-label">Téléphone responsable<span
+                                            <label for="telephone_parent"
+                                                class="col-md-4 col-lg-3 col-form-label">Téléphone responsable<span
                                                     class="text-danger mx-1">*</span></label>
                                             <div class="col-md-8 col-lg-9">
                                                 <input name="telephone_parent" type="text"
                                                     class="form-control form-control-sm @error('telephone_parent') is-invalid @enderror"
-                                                    id="telephone_parent" value="{{ $user->telephone_parent ?? old('telephone_parent') }}"
+                                                    id="telephone_parent"
+                                                    value="{{ $user->telephone_parent ?? old('telephone_parent') }}"
                                                     autocomplete="telephone_parent" placeholder="N° de téléphone">
                                                 @error('telephone_parent')
                                                     <span class="invalid-feedback" role="alert">
@@ -1039,19 +1041,13 @@
                                         @method('patch')
 
                                         <h5 class="card-title">{{ __("Ajouter d'autres fichiers") }}</h5>
-                                        <span style="color:red;">NB:</span> <span>Seule l'acte ou arrêté de création</span> <span
-                                            style="color:red;"> est obligatoire</span>
-                                        <!-- Profile Edit Form -->
-
+                                        <span style="color:red;"><b><u>NB</u></b> : </span> <span>Seule l'acte ou arrêté de
+                                            création</span> <span style="color:red;"> est obligatoire</span>
                                         <div class="row mb-3 mt-3">
                                             <label for="legende"
                                                 class="col-12 col-md-4 col-lg-4 col-sm-12 col-xs-12 col-xxl-4 col-form-label">Légende<span
                                                     class="text-danger mx-1">*</span></label>
                                             <div class="col-12 col-md-8 col-lg-8 col-sm-12 col-xs-12 col-xxl-8">
-                                                {{-- <input name="legende" type="text"
-                                                    class="form-control form-control-sm @error('legende') is-invalid @enderror"
-                                                    id="legende" value="{{ old('legende') }}" autocomplete="legende"
-                                                    placeholder="Légende"> --}}
                                                 <select name="legende"
                                                     class="form-select  @error('legende') is-invalid @enderror"
                                                     aria-label="Select" id="select-field-file"
@@ -1060,7 +1056,7 @@
                                                         {{ old('legende') }}
                                                     </option>
                                                     @foreach ($user_files as $file)
-                                                        <option value="{{ $file?->id }}">
+                                                        <option value="{{ $file?->sigle }}">
                                                             {{ $file?->legende }}
                                                         </option>
                                                     @endforeach
@@ -1088,8 +1084,13 @@
                                             </div>
                                         </div>
 
-                                        <div class="text-center mt-2">
-                                            <button type="submit" class="btn btn-info btn-sm">Ajouter</button>
+                                        <div class="row mt-5">
+                                            <label for="file"
+                                                class="col-12 col-md-4 col-lg-4 col-sm-12 col-xs-12 col-xxl-4 col-form-label"></label>
+                                            <div class="col-12 col-md-8 col-lg-8 col-sm-12 col-xs-12 col-xxl-8">
+                                                <button type="submit"
+                                                    class="btn btn-outline-info btn-sm">Ajouter</button>
+                                            </div>
                                         </div>
 
                                     </form>

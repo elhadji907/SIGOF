@@ -673,7 +673,6 @@ class IndividuelleController extends Controller
         $individuelle       = Individuelle::findOrFail($id);
         $user_id            = $individuelle?->users_id;
 
-
         $this->validate($request, [
             'telephone_secondaire'          => ['required', 'string', 'min:9', 'max:9'],
             'adresse'                       => ['required', 'string', 'max:255'],

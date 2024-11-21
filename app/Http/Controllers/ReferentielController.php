@@ -16,9 +16,10 @@ class ReferentielController extends Controller
         $this->middleware('auth');
         $this->middleware(['role:super-admin|admin|Demandeur|DIOF|ADIOF|DEC']);
         $this->middleware("permission:referentiel-view", ["only" => ["index"]]);
-        /* $this->middleware(['permission:arrive-show']); */
-        // or with specific guard
-        /* $this->middleware(['role_or_permission:super-admin']); */
+        $this->middleware("permission:referentiel-create", ["only" => ["create", "store"]]);
+        $this->middleware("permission:referentiel-update", ["only" => ["update", "edit"]]);
+        $this->middleware("permission:referentiel-show", ["only" => ["show"]]);
+        $this->middleware("permission:referentiel-delete", ["only" => ["destroy"]]);
     }
     public function index()
     {

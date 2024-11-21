@@ -291,6 +291,11 @@ class DatabaseSeeder extends Seeder
         'antenne-create',
         'antenne-update',
         'antenne-delete',
+        'operateurmodule-view',
+        'operateurmodule-show',
+        'operateurmodule-create',
+        'operateurmodule-update',
+        'operateurmodule-delete',
     ];
 
     public function run(): void

@@ -33,11 +33,11 @@ class UserController extends Controller
     {
         $this->middleware('auth');
         $this->middleware(['role:super-admin|admin|DIOF|DEC|DPP']);
-        $this->middleware("permission:role-view", ["only" => ["index"]]);
-        $this->middleware("permission:role-create", ["only" => ["create", "store"]]);
-        $this->middleware("permission:role-update", ["only" => ["update", "edit"]]);
-        $this->middleware("permission:role-show", ["only" => ["show"]]);
-        $this->middleware("permission:role-delete", ["only" => ["destroy"]]);
+        $this->middleware("permission:user-view", ["only" => ["index"]]);
+        $this->middleware("permission:user-create", ["only" => ["create", "store"]]);
+        $this->middleware("permission:user-update", ["only" => ["update", "edit"]]);
+        $this->middleware("permission:user-show", ["only" => ["show"]]);
+        $this->middleware("permission:user-delete", ["only" => ["destroy"]]);
         $this->middleware("permission:give-role-permissions", ["only" => ["givePermissionsToRole"]]);
     }
 
@@ -294,7 +294,7 @@ class UserController extends Controller
                 'name'             => ['required', 'string', 'max:50'],
                 'date_naissance'   => ['string', 'nullable'],
                 'lieu_naissance'   => ['string', 'nullable'],
-                'image'            => ['image', 'max:255', 'nullable', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
+                'image'            => ['image', 'nullable', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
                 'telephone'        => ['required', 'string', 'max:25', 'min:9'],
                 'adresse'          => ['required', 'string', 'max:255'],
                 'password'         => ['string', 'max:255', 'nullable'],

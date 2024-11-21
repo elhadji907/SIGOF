@@ -11,6 +11,16 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class OperateurmoduleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware(['role:super-admin|admin|DIOF|DEC|DPP']);
+        $this->middleware("permission:operateurmodule-view", ["only" => ["index"]]);
+        $this->middleware("permission:operateurmodule-create", ["only" => ["create", "store"]]);
+        $this->middleware("permission:operateurmodule-update", ["only" => ["update", "edit"]]);
+        $this->middleware("permission:operateurmodule-show", ["only" => ["show"]]);
+        $this->middleware("permission:operateurmodule-delete", ["only" => ["destroy"]]);
+    }
     public function index()
     {
         $operateurmodules = Operateurmodule::orderBy('created_at', 'desc')->get();

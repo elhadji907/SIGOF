@@ -2,13 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\File;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class FileController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware(['role:super-admin|admin|DIOF|DEC|DPP|Operateur']);
+    }
     public function index()
     {
         $files = File::get();
@@ -20,10 +26,10 @@ class FileController extends Controller
     {
         $this->validate($request, [
             'legende'           => 'required |string',
-            'file'              => 'required|file|mimes:jpg,png,pdf|max:2048',
+            'file'              => 'required|file|mimes:jpeg,png,jpg,gif,svg,pdf|max:2048',
         ]);
 
-        $file = File::findOrFail($request->legende);
+        $file = File::where('sigle', $request->legende)->where('users_id', Auth::user()->id)->firstOrFail();
 
         // Check if the file is valid
         if ($request->file('file')->isValid()) {
@@ -33,8 +39,11 @@ class FileController extends Controller
             $file->update([
                 'file'      =>   $filePath,
             ]);
+
             $file->save();
+
             Alert::success('réussi !', 'Fichier téléchargé avec succès');
+            
             return redirect()->back();
         }
         // Return error response
@@ -81,7 +90,7 @@ class FileController extends Controller
         ]);
 
         $file?->save();
-        
+
         Alert::success('Félicitations !!!', 'fichier ajouté avec succès');
         return redirect()->back();
     }

@@ -21,10 +21,11 @@ class ProjetController extends Controller
         // examples:
         $this->middleware('auth');
         $this->middleware(['role:super-admin|admin|Demandeur|DIOF|ADIOF']);
-        $this->middleware("permission:user-view", ["only" => ["index"]]);
-        /* $this->middleware(['permission:arrive-show']); */
-        // or with specific guard
-        /* $this->middleware(['role_or_permission:super-admin']); */
+        $this->middleware("permission:projet-view", ["only" => ["index"]]);
+        $this->middleware("permission:projet-create", ["only" => ["create", "store"]]);
+        $this->middleware("permission:projet-update", ["only" => ["update", "edit"]]);
+        $this->middleware("permission:projet-show", ["only" => ["show"]]);
+        $this->middleware("permission:projet-delete", ["only" => ["destroy"]]);
     }
     public function index()
     {

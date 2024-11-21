@@ -153,10 +153,10 @@
                         </li>
                     @endcan
 
-                    @can('agrement-module')
+                    @can('operateurmodule-view')
                         <li class="nav-item">
                             <a class="nav-link collapsed" href="{{ url('operateurmodules') }}">
-                                <span>Modules</span>
+                                <span>Modules opérateurs</span>
                             </a>
                         </li>
                     @endcan
