@@ -54,7 +54,7 @@
                             </div>
 
                             <div class="text-center">
-                                <button type="submit" class="btn btn-primary">Ajouter</button>
+                                <button type="submit" class="btn btn-primary btn-sm">Valider les modifications</button>
                             </div>
                         </form><!-- End role -->
                     </div>

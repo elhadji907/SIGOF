@@ -148,7 +148,7 @@ class OperateurController extends Controller
                 'annee'                 =>      date('Y'),
                 'objet'                 =>      $request->input("operateur"),
                 'expediteur'            =>      $request->input("username"),
-                'type'                  =>      'arrive',
+                'type'                  =>      'operateur',
                 "user_create_id"        =>      Auth::user()->id,
                 "user_update_id"        =>      Auth::user()->id,
                 'users_id'              =>      Auth::user()->id,
@@ -284,7 +284,7 @@ class OperateurController extends Controller
             'annee'                 =>      date('Y'),
             'objet'                 =>      $request->input("operateur"),
             'expediteur'            =>      $request->input("username"),
-            'type'                  =>      'arrive',
+            'type'                  =>      'operateur',
             "user_create_id"        =>      Auth::user()->id,
             "user_update_id"        =>      Auth::user()->id,
             'users_id'              =>      Auth::user()->id,
@@ -294,6 +294,7 @@ class OperateurController extends Controller
 
         $arrive = new Arrive([
             'numero'             =>      $request->input("numero_arrive"),
+            'type'               =>      'operateur',
             'courriers_id'       =>      $courrier->id
         ]);
 
@@ -388,7 +389,7 @@ class OperateurController extends Controller
         }
         $this->validate($request, [
             "quitus"                =>      ['image', 'required', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
-            "date_quitus"           =>      ['required','string'],
+            "date_quitus"           =>      ['required', 'string'],
         ]);
 
         foreach (Auth::user()->roles as $key => $role) {
@@ -437,7 +438,7 @@ class OperateurController extends Controller
             'annee'                 =>      date('Y'),
             'objet'                 =>      Auth::user()->operateur,
             'expediteur'            =>      Auth::user()->username,
-            'type'                  =>      'arrive',
+            'type'                  =>      'operateur',
             "user_create_id"        =>      Auth::user()->id,
             "user_update_id"        =>      Auth::user()->id,
             'users_id'              =>      Auth::user()->id,
@@ -454,7 +455,7 @@ class OperateurController extends Controller
         ]);
 
         $arrive->save();
-        
+
         $op = Operateur::create([
             "numero_agrement"      =>       $numCourrier . '/ONFP/DG/DEC/' . date('Y'),
             "categorie"            =>       $operateur?->categorie,
@@ -554,6 +555,11 @@ class OperateurController extends Controller
         $operateur = Operateur::findOrFail($id);
         $user      = $operateur->user;
 
+        /* if ($operateur->statut_agrement != 'nouveau') {
+            Alert::warning('Attention ! ', 'action impossible');
+            return redirect()->back();
+        } */
+
         $this->validate($request, [
             "operateur"             =>      ['required', 'string', Rule::unique(User::class)->ignore($user->id)->whereNull('deleted_at')],
             "username"              =>      ['required', 'string', Rule::unique(User::class)->ignore($user->id)->whereNull('deleted_at')],
@@ -582,8 +588,12 @@ class OperateurController extends Controller
             if (!empty($role?->name) && ($role?->name != 'super-admin') && ($role?->name != 'admin') && ($role?->name != 'DIOF') && ($role?->name != 'DEC')) {
                 $this->authorize('update', $operateur);
             }
+            if (!empty($role?->name) && ($operateur->statut_agrement != 'nouveau') && ($role?->name != 'super-admin') && ($role?->name != 'admin') && ($role?->name != 'DIOF') && ($role?->name != 'DEC')) {
+                Alert::warning('Attention ! ', 'action impossible');
+                return redirect()->back();
+            }
         }
-
+        
         $arrive = Arrive::where('numero', $request->input("numero_arrive"))->first();
 
         if (!empty($arrive)) {
@@ -641,7 +651,7 @@ class OperateurController extends Controller
                 'annee'                 =>      date('Y'),
                 'objet'                 =>      $request->input("operateur"),
                 'expediteur'            =>      $request->input("username"),
-                'type'                  =>      'arrive',
+                'type'                  =>      'operateur',
                 "user_create_id"        =>      Auth::user()->id,
                 "user_update_id"        =>      Auth::user()->id,
                 'users_id'              =>      Auth::user()->id,
@@ -651,6 +661,7 @@ class OperateurController extends Controller
 
             $arrive = new Arrive([
                 'numero'             =>      $request->input("numero_arrive"),
+                'type'               =>      'operateur',
                 'courriers_id'       =>      $courrier->id
             ]);
 
@@ -876,11 +887,11 @@ class OperateurController extends Controller
 
                 $operateur->save();
 
-                Alert::success("Effectué !", "l'opérateur " . $operateur?->sigle . ' a été retenu');
+                Alert::success("Effectué !", "l'opérateur " . $operateur?->user?->username . ' a été retenu');
 
                 return redirect()->back();
             } else {
-                Alert::warning("Imopssible ", "Car l'opérateur " . $operateur?->sigle . ' a déjà été validé');
+                Alert::warning("Imopssible ", "Car l'opérateur " . $operateur?->user?->username . ' a déjà été validé');
 
                 return redirect()->back();
             }
@@ -905,7 +916,7 @@ class OperateurController extends Controller
                 'motif'              => null,
                 'date'               =>  date('Y-m-d'),
             ]);
-            Alert::success("Effectué !", "l'opérateur " . $operateur->sigle . ' a été agréé');
+            Alert::success("Effectué !", "l'opérateur " . $operateur?->user?->username . ' a été agréé');
         } elseif ($count_nouveau > 0) {
             Alert::warning('Désolez ! ', 'il reste des module à traiter');
             return redirect()->back();
@@ -915,7 +926,7 @@ class OperateurController extends Controller
                 'motif'              => 'rejeter',
                 'date'               =>  date('Y-m-d'),
             ]);
-            Alert::warning("Dommage !", "l'opérateur " . $operateur->sigle . " n'a pas été agréé");
+            Alert::warning("Dommage !", "l'opérateur " . $operateur?->user?->username . " n'a pas été agréé");
         } else {
             Alert::warning('Désolez ! ', 'action impossible');
             return redirect()->back();
@@ -952,11 +963,11 @@ class OperateurController extends Controller
 
             $validationoperateur->save();
 
-            Alert::success('Effectué !', $operateur->sigle . " n'a pas été retenu");
+            Alert::success('Effectué !', $operateur?->user?->username . " n'a pas été retenu");
 
             return redirect()->back();
         } else {
-            Alert::warning("Imopssible ", "Car l'opérateur " . $operateur?->sigle . ' a déjà été validé');
+            Alert::warning("Imopssible ", "Car l'opérateur " . $operateur?->user?->username . ' a déjà été validé');
 
             return redirect()->back();
         }
@@ -971,7 +982,7 @@ class OperateurController extends Controller
         $count_nouveau = $operateur->operateurmodules->where('statut', 'nouveau')->count();
 
         if ($count_nouveau > 0) {
-            Alert::warning('Désolez ! ', 'il reste des module à traiter');
+            Alert::warning('Désolez ! ', 'il reste de(s) module(s) à traiter');
             return redirect()->back();
         } elseif ($moduleoperateur_count <= '0') {
             Alert::warning('Désolez ! ', 'aucun module disponible pour cet opérateur');
@@ -995,7 +1006,7 @@ class OperateurController extends Controller
 
             $validateoperateur->save();
 
-            Alert::success("Effectué !", "l'opérateur " . $operateur?->sigle . ' a été agréé');
+            Alert::success("Effectué !", "l'opérateur " . $operateur?->user?->username . ' a été agréé');
             return redirect()->back();
         }
     }
@@ -1030,11 +1041,11 @@ class OperateurController extends Controller
     }
     public function devenirOperateur()
     {
-        $departements = Departement::orderBy("created_at", "desc")->get();
         $user = Auth::user();
         $operateur = Operateur::where('users_id', $user->id)->orderBy("created_at", "desc")->get();
         $operateurs = Operateur::get();
         $operateur_total = $operateur->count();
+        $departements = Departement::orderBy("created_at", "desc")->get();
 
         if ($operateur_total >= 1) {
             foreach ($user?->operateurs as $operateur_module) {

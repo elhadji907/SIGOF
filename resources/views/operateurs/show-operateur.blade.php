@@ -1,5 +1,5 @@
 @extends('layout.user-layout')
-@section('title', 'Mon dossier de demandes operateurs')
+@section('title', 'Mon dossier de demandes agréments')
 @section('space-work')
     <section class="section">
         <div class="row justify-content-center">
@@ -142,7 +142,6 @@
                                             <td style="text-align: center;">
                                                 {{-- <span
                                                     class="{{ $localite_count }}">{{ count($operateur->operateurlocalites) }}</span> --}}
-
                                                 <span class="badge bg-info">
                                                     {{ count($operateur->operateurlocalites) }}
                                                 </span>
@@ -159,6 +158,28 @@
                                                 <span class="{{ $statut_demande }} mb-2">
                                                     {{ $statut_demande }}
                                                 </span>
+
+                                                {{-- @foreach ($operateur?->operateurmodules as $operateurmodule)
+                                                @endforeach
+                                                @foreach ($operateur?->operateureferences as $operateureference)
+                                                @endforeach
+                                                @foreach ($operateur?->operateurequipements as $operateurequipement)
+                                                @endforeach
+                                                @foreach ($operateur?->operateurformateurs as $operateurformateur)
+                                                @endforeach
+                                                @foreach ($operateur?->operateurlocalites as $operateurlocalite)
+                                                @endforeach
+                                                @if (
+                                                    !empty($operateurmodule) &&
+                                                        !empty($operateureference) &&
+                                                        !empty($operateurequipement) &&
+                                                        !empty($operateurformateur) &&
+                                                        !empty($operateurlocalite))
+                                                    <span class="badge bg-success text-white">Complètes</span>
+                                                @else
+                                                    <span class="badge bg-warning text-white">Incomplètes</span>
+                                                @endif --}}
+
                                             </td>
                                             <td style="text-align: center;">
                                                 <span class="{{ $operateur?->statut_agrement }} mb-2">
@@ -665,7 +686,8 @@
                                 <div class="modal-footer mt-3">
                                     <button type="button" class="btn btn-secondary btn-sm"
                                         data-bs-dismiss="modal">Fermer</button>
-                                    <button type="submit" class="btn btn-primary btn-sm">Enregistrer modifications</button>
+                                    <button type="submit" class="btn btn-primary btn-sm">Enregistrer
+                                        modifications</button>
                                 </div>
                             </div>
                         </form>

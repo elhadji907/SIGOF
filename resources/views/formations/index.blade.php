@@ -343,7 +343,7 @@
                                             <input type="text" name="code"
                                                 value="{{ $numFormation ?? old('code') }}"
                                                 class="form-control form-control-sm @error('code') is-invalid @enderror"
-                                                id="code" placeholder="Numéro de correspondance">
+                                                id="code" placeholder="code">
                                             @error('code')
                                                 <span class="invalid-feedback" role="alert">
                                                     <div>{{ $message }}</div>

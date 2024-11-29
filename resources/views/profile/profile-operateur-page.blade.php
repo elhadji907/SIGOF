@@ -168,13 +168,13 @@
                                             Informations personnelles
                                         </div>
                                         <div class="col-12 col-md-9 col-lg-9 col-sm-12 col-xs-12 col-xxl-9">
-                                            @if (isset(Auth::user()?->operateur) &&
-                                                    isset(Auth::user()?->username) &&
-                                                    isset(Auth::user()?->ninea) &&
-                                                    isset(Auth::user()?->rccm) &&
-                                                    isset(Auth::user()?->email_responsable) &&
-                                                    isset(Auth::user()?->fonction_responsable) &&
-                                                    isset(Auth::user()?->email))
+                                            @if (!empty(Auth::user()?->operateur) &&
+                                                    !empty(Auth::user()?->username) &&
+                                                    !empty(Auth::user()?->ninea) &&
+                                                    !empty(Auth::user()?->rccm) &&
+                                                    !empty(Auth::user()?->email_responsable) &&
+                                                    !empty(Auth::user()?->fonction_responsable) &&
+                                                    !empty(Auth::user()?->email))
                                                 <span class="badge bg-success text-white">Complètes</span>
                                             @else
                                                 <span class="badge bg-warning text-white">Incomplètes</span>, cliquez sur

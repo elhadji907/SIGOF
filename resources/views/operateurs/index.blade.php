@@ -201,7 +201,7 @@
                                     <tr>
                                         <th width="15%" class="text-center">N° agrément</th>
                                         <th width="45%">Opérateurs</th>
-                                        <th width="10%" class="text-center">Sigle</th>
+                                        <th width="10%">Sigle</th>
                                         <th width="5%" class="text-center">Modules</th>
                                         <th width="5%" class="text-center">Formations</th>
                                         <th width="15%" class="text-center">Statut</th>
@@ -826,8 +826,7 @@
                                 <div class="modal-footer mt-5">
                                     <button type="button" class="btn btn-secondary btn-sm"
                                         data-bs-dismiss="modal">Fermer</button>
-                                    <button type="submit" class="btn btn-primary btn-sm"><i class="bi bi-printer"></i>
-                                        Enregistrer</button>
+                                    <button type="submit" class="btn btn-primary btn-sm">Enregistrer</button>
                                 </div>
                             </div>
                         </form>

@@ -148,10 +148,13 @@
                     <form method="post" action="{{ route('commissionagrements.store') }}" enctype="multipart/form-data"
                         class="row g-3">
                         @csrf
-                        <div class="modal-header">
+                        <div class="card-header text-center bg-gradient-default">
+                            <h1 class="h4 text-black mb-0">AJOUTER COMMISSION</h1>
+                        </div>
+                       {{--  <div class="modal-header">
                             <h5 class="modal-title">Ajouter un agrément</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
+                        </div> --}}
                         <div class="modal-body">
                             <div class="mb-3">
                                 <label for="floatingInput">Commission<span class="text-danger mx-1">*</span></label>
@@ -222,9 +225,8 @@
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                            <button type="submit" class="btn btn-primary"><i class="bi bi-printer"></i>
-                                Enregistrer</button>
+                            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Fermer</button>
+                            <button type="submit" class="btn btn-primary btn-sm">Enregistrer</button>
                         </div>
                     </form>
                 </div>
@@ -236,17 +238,20 @@
         @foreach ($commissionagrements as $commissionagrement)
             <div class="modal fade" id="EditagrementModal{{ $commissionagrement->id }}" tabindex="-1" role="dialog"
                 aria-labelledby="EditagrementModalLabel{{ $commissionagrement->id }}" aria-hidden="true">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <form method="post" action="{{ route('commissionagrements.update', $commissionagrement->id) }}"
                             enctype="multipart/form-data" class="row g-3">
                             @csrf
                             @method('patch')
-                            <div class="modal-header" id="EditagrementModalLabel{{ $commissionagrement->id }}">
+                            <div class="card-header text-center bg-gradient-default">
+                                <h1 class="h4 text-black mb-0">MODIFICATION COMMISSION</h1>
+                            </div>
+                            {{-- <div class="modal-header" id="EditagrementModalLabel{{ $commissionagrement->id }}">
                                 <h5 class="modal-title"><i class="bi bi-pencil" title="Ajouter"></i> Modifier région</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
-                            </div>
+                            </div> --}}
                             <div class="modal-body">
                                 <div class="mb-3">
                                     <label for="floatingInput">Commission<span class="text-danger mx-1">*</span></label>
@@ -321,9 +326,8 @@
 
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                                <button type="submit" class="btn btn-primary"><i class="bi bi-printer"></i>
-                                    Modifier</button>
+                                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Fermer</button>
+                                <button type="submit" class="btn btn-primary btn-sm">Modifier</button>
                             </div>
                         </form>
                     </div>

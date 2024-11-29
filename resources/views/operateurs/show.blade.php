@@ -78,11 +78,14 @@
                                         <button class="nav-link" data-bs-toggle="tab"
                                             data-bs-target="#localites-overview">Localités</button>
                                     </li>
-
-                                    <li class="nav-item">
-                                        <button class="nav-link" data-bs-toggle="tab"
-                                            data-bs-target="#formation-overview">Formations</button>
-                                    </li>
+                                    @foreach ($operateur?->formations as $item)
+                                    @endforeach
+                                    @if (!empty($item))
+                                        <li class="nav-item">
+                                            <button class="nav-link" data-bs-toggle="tab"
+                                                data-bs-target="#formation-overview">Formations</button>
+                                        </li>
+                                    @endif
 
                                 </ul>
                                 <div class="d-flex justify-content-between align-items-center">
@@ -810,9 +813,9 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div> --}}
-                        <div class="card-header text-center bg-gradient-default">
-                            <h1 class="h4 text-black mb-0">Modification module opérateur</h1>
-                        </div>
+                                <div class="card-header text-center bg-gradient-default">
+                                    <h1 class="h4 text-black mb-0">Modification module opérateur</h1>
+                                </div>
                                 <div class="modal-body">
                                     <input type="hidden" name="id" value="{{ $operateurmodule->id }}">
 
@@ -886,7 +889,8 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Fermer</button>
+                                    <button type="button" class="btn btn-secondary btn-sm"
+                                        data-bs-dismiss="modal">Fermer</button>
                                     <button type="submit" class="btn btn-primary btn-sm">Modifier</button>
                                 </div>
                             </form>
