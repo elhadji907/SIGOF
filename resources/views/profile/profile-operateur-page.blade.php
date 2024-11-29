@@ -461,6 +461,58 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        {{-- Statut juridique --}}
+                                        <div class="row mb-3">
+                                            <label for="statut" class="col-md-4 col-lg-3 col-form-label">Statut juridique<span class="text-danger mx-1">*</span>
+                                            </label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <div class="pt-2">
+                                                    <select name="statut"
+                                                        class="form-select form-select-sm @error('statut') is-invalid @enderror"
+                                                        aria-label="Select" id="statut-operateur" data-placeholder="Choisir statut">
+                                                        <option value="{{ $user?->statut ?? old('statut') }}">
+                                                            {{ $user?->statut ?? old('statut') }}
+                                                        </option>
+                                                        <option value="GIE">
+                                                            GIE
+                                                        </option>
+                                                        <option value="Association">
+                                                            Association
+                                                        </option>
+                                                        <option value="Entreprise individuelle">
+                                                            Entreprise individuelle
+                                                        </option>
+                                                        <option value="SA">
+                                                            SA
+                                                        </option>
+                                                        <option value="SUARL">
+                                                            SUARL
+                                                        </option>
+                                                        <option value="SARL">
+                                                            SARL
+                                                        </option>
+                                                        <option value="SNC">
+                                                            SNC
+                                                        </option>
+                                                        <option value="SCS">
+                                                            SCS
+                                                        </option>
+                                                        <option value="Etablissement public">
+                                                            Etablissement public
+                                                        </option>
+                                                        <option value="Autre">
+                                                            Autre
+                                                        </option>
+                                                    @error('statut')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <div>{{ $message }}</div>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         {{-- N° RCCM / Ninea --}}
                                         <div class="row mb-3">
                                             <label for="ninea" class="col-md-4 col-lg-3 col-form-label">N° RCCM /

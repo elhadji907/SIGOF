@@ -91,7 +91,7 @@ class OperateurController extends Controller
     {
         $this->validate($request, [
             /* "categorie"             =>      "required|string", */
-            "statut"                =>      "required|string",
+            /* "statut"                =>      "required|string", */
             "departement"           =>      "required|string",
             "quitus"                =>      ['image', 'required', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
             "date_quitus"           =>      "required|string",
@@ -168,8 +168,8 @@ class OperateurController extends Controller
 
             $operateur = Operateur::create([
                 "numero_agrement"      =>       $numCourrier . '/ONFP/DG/DEC/' . date('Y'),
-                "statut"               =>       $request->input("statut"),
-                "autre_statut"         =>       $request->input("autre_statut"),
+                /* "statut"               =>       $request->input("statut"),
+                "autre_statut"         =>       $request->input("autre_statut"), */
                 "type_demande"         =>       $request->input("type_demande"),
                 "debut_quitus"         =>       $request->input("date_quitus"),
                 "annee_agrement"       =>       date('Y-m-d'),
@@ -555,11 +555,6 @@ class OperateurController extends Controller
         $operateur = Operateur::findOrFail($id);
         $user      = $operateur->user;
 
-        /* if ($operateur->statut_agrement != 'nouveau') {
-            Alert::warning('Attention ! ', 'action impossible');
-            return redirect()->back();
-        } */
-
         $this->validate($request, [
             "operateur"             =>      ['required', 'string', Rule::unique(User::class)->ignore($user->id)->whereNull('deleted_at')],
             "username"              =>      ['required', 'string', Rule::unique(User::class)->ignore($user->id)->whereNull('deleted_at')],
@@ -593,7 +588,7 @@ class OperateurController extends Controller
                 return redirect()->back();
             }
         }
-        
+
         $arrive = Arrive::where('numero', $request->input("numero_arrive"))->first();
 
         if (!empty($arrive)) {
@@ -644,6 +639,7 @@ class OperateurController extends Controller
                     $numCourrier   =   strtolower($numCourrier);
                 }
             } */
+
             $courrier = new Courrier([
                 'date_recep'            =>      date('Y-m-d'),
                 'date_cores'            =>      date('Y-m-d'),
@@ -694,8 +690,8 @@ class OperateurController extends Controller
             'numero_arrive'        =>      $request->input("numero_arrive"),
             "numero_dossier"       =>       $request->input("numero_dossier"),
             "numero_agrement"      =>       $request->input("numero_agrement"),
-            "statut"               =>       $request->input("statut"),
-            "autre_statut"         =>       $request->input("autre_statut"),
+            /* "statut"               =>       $request->input("statut"), */
+            /* "autre_statut"         =>       $request->input("autre_statut"), */
             "type_demande"         =>       $request->input("type_demande"),
             "debut_quitus"         =>       $request->input("date_quitus"),
             "departements_id"      =>       $departement?->id,
@@ -736,6 +732,55 @@ class OperateurController extends Controller
         return redirect()->back();
     }
 
+
+    public function updated(Request $request, $id)
+    {
+        $operateur = Operateur::findOrFail($id);
+        $user      = $operateur->user;
+        $departement = Departement::where('nom', $request->input("departement"))->firstOrFail();
+
+        $this->validate($request, [
+            "departement"           =>      ['required', 'string'],
+            "quitus"                =>      ['sometimes', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
+            "date_quitus"           =>      ['sometimes', 'string'],
+            "type_demande"          =>      ['required', 'string'],
+        ]);
+        
+        foreach (Auth::user()->roles as $key => $role) {
+            if (!empty($role?->name) && ($role?->name != 'super-admin') && ($role?->name != 'admin') && ($role?->name != 'DIOF') && ($role?->name != 'DEC')) {
+                $this->authorize('update', $operateur);
+            }
+            if (!empty($role?->name) && ($operateur->statut_agrement != 'nouveau') && ($role?->name != 'super-admin') && ($role?->name != 'admin') && ($role?->name != 'DIOF') && ($role?->name != 'DEC')) {
+                Alert::warning('Attention ! ', 'action impossible');
+                return redirect()->back();
+            }
+        }
+
+        $operateur->update([
+            "type_demande"         =>       $request->input("type_demande"),
+            "debut_quitus"         =>       $request->input("date_quitus"),
+            "departements_id"      =>       $departement?->id,
+            "regions_id"           =>       $departement?->region?->id,
+            "users_id"             =>       $user->id,
+        ]);
+
+        $operateur->save();
+
+        if (request('quitus')) {
+            $quitusPath = request('quitus')->store('quitus', 'public');
+            $quitus = Image::make(public_path("/storage/{$quitusPath}"));
+
+            $quitus->save();
+
+            $operateur->update([
+                'quitus' => $quitusPath
+            ]);
+        }
+
+        Alert::success("Effectuée ! ", 'demande modifiée avec succès');
+
+        return redirect()->back();
+    }
     public function edit($id)
     {
         $operateur = Operateur::findOrFail($id);

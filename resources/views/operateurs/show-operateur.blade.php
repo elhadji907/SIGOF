@@ -373,7 +373,7 @@
                 aria-labelledby="EditOperateurModalLabel{{ $operateur->id }}" aria-hidden="true">
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
-                        <form method="post" action="{{ route('operateurs.update', $operateur->id) }}"
+                        <form method="post" action="{{ route('operateurs.updated', $operateur->id) }}"
                             enctype="multipart/form-data" class="row g-3">
                             @csrf
                             @method('patch')
@@ -383,7 +383,7 @@
                             <div class="modal-body">
                                 <input type="hidden" name="id" value="{{ $operateur->id }}">
                                 <div class="row g-3">
-                                    <div class="col-12 col-md-12 col-lg-12 col-sm-12 col-xs-12 col-xxl-12">
+                                    {{-- <div class="col-12 col-md-12 col-lg-12 col-sm-12 col-xs-12 col-xxl-12">
                                         <label for="operateur" class="form-label">Raison sociale opérateur<span
                                                 class="text-danger mx-1">*</span></label>
                                         <textarea name="operateur" id="operateur" rows="1"
@@ -408,9 +408,9 @@
                                                 <div>{{ $message }}</div>
                                             </span>
                                         @enderror
-                                    </div>
+                                    </div> --}}
 
-                                    <div class="col-12 col-md-12 col-lg-6 col-sm-12 col-xs-12 col-xxl-4">
+                                    {{-- <div class="col-12 col-md-12 col-lg-6 col-sm-12 col-xs-12 col-xxl-4">
                                         <label for="email" class="form-label">Email<span
                                                 class="text-danger mx-1">*</span></label>
                                         <input type="text" name="email"
@@ -450,9 +450,9 @@
                                                 <div>{{ $message }}</div>
                                             </span>
                                         @enderror
-                                    </div>
+                                    </div> --}}
 
-                                    <div class="col-12 col-md-12 col-lg-6 col-sm-12 col-xs-12 col-xxl-4">
+                                   {{--  <div class="col-12 col-md-12 col-lg-6 col-sm-12 col-xs-12 col-xxl-4">
                                         <label for="bp" class="form-label">Boite postal</label>
                                         <input type="text" name="bp"
                                             value="{{ $operateur?->user?->bp ?? old('bp') }}"
@@ -463,9 +463,9 @@
                                                 <div>{{ $message }}</div>
                                             </span>
                                         @enderror
-                                    </div>
+                                    </div> --}}
 
-                                    <div class="col-12 col-md-12 col-lg-6 col-sm-12 col-xs-12 col-xxl-4">
+                                    {{-- <div class="col-12 col-md-12 col-lg-6 col-sm-12 col-xs-12 col-xxl-4">
                                         <label for="categorie" class="form-label">Catégorie<span
                                                 class="text-danger mx-1">*</span></label>
                                         <select name="categorie"
@@ -490,9 +490,9 @@
                                                 <div>{{ $message }}</div>
                                             </span>
                                         @enderror
-                                    </div>
+                                    </div> --}}
 
-                                    <div class="col-12 col-md-12 col-lg-6 col-sm-12 col-xs-12 col-xxl-4">
+                                    {{-- <div class="col-12 col-md-12 col-lg-6 col-sm-12 col-xs-12 col-xxl-4">
                                         <label for="statut" class="form-label">Statut juridique<span
                                                 class="text-danger mx-1">*</span></label>
                                         <select name="statut"
@@ -537,9 +537,9 @@
                                                 <div>{{ $message }}</div>
                                             </span>
                                         @enderror
-                                    </div>
+                                    </div> --}}
 
-                                    <div class="col-12 col-md-12 col-lg-6 col-sm-12 col-xs-12 col-xxl-4">
+                                 {{--    <div class="col-12 col-md-12 col-lg-6 col-sm-12 col-xs-12 col-xxl-4">
                                         <label for="autre_statut" class="form-label">Si autre ?
                                             précisez</label>
                                         <input type="text" name="autre_statut"
@@ -551,9 +551,9 @@
                                                 <div>{{ $message }}</div>
                                             </span>
                                         @enderror
-                                    </div>
+                                    </div> --}}
 
-                                    <div class="col-12 col-md-12 col-lg-6 col-sm-12 col-xs-12 col-xxl-4">
+                                    {{-- <div class="col-12 col-md-12 col-lg-6 col-sm-12 col-xs-12 col-xxl-4">
                                         <label for="adresse" class="form-label">Adresse<span
                                                 class="text-danger mx-1">*</span></label>
                                         <textarea name="adresse" id="adresse" rows="1"
@@ -564,9 +564,9 @@
                                                 <div>{{ $message }}</div>
                                             </span>
                                         @enderror
-                                    </div>
+                                    </div> --}}
 
-                                    <div class="col-12 col-md-12 col-lg-6 col-sm-12 col-xs-12 col-xxl-4">
+                                    <div class="col-12 col-md-12 col-lg-6 col-sm-12 col-xs-12 col-xxl-6">
                                         <label for="departement" class="form-label">Siège social<span
                                                 class="text-danger mx-1">*</span></label>
                                         <select name="departement"
@@ -589,7 +589,7 @@
                                         @enderror
                                     </div>
 
-                                    <div class="col-12 col-md-12 col-lg-6 col-sm-12 col-xs-12 col-xxl-4">
+                                    {{-- <div class="col-12 col-md-12 col-lg-6 col-sm-12 col-xs-12 col-xxl-4">
                                         <label for="registre_commerce" class="form-label">RCCM / Ninéa<span
                                                 class="text-danger mx-1">*</span></label>
                                         <select name="registre_commerce"
@@ -625,9 +625,9 @@
                                                 <div>{{ $message }}</div>
                                             </span>
                                         @enderror
-                                    </div>
+                                    </div> --}}
 
-                                    <div class="col-12 col-md-12 col-lg-3 col-sm-12 col-xs-12 col-xxl-3">
+                                    <div class="col-12 col-md-12 col-lg-3 col-sm-12 col-xs-12 col-xxl-5">
                                         <label for="quitus" class="form-label">Quitus fiscal<span
                                                 class="text-danger mx-1">*</span></label>
 
@@ -646,7 +646,7 @@
                                             </a>
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-12 col-lg-6 col-sm-12 col-xs-12 col-xxl-4">
+                                    <div class="col-12 col-md-12 col-lg-6 col-sm-12 col-xs-12 col-xxl-6">
                                         <label for="date_quitus" class="form-label">Date visa quitus<span
                                                 class="text-danger mx-1">*</span></label>
                                         <input type="date" name="date_quitus"
@@ -660,7 +660,7 @@
                                         @enderror
                                     </div>
 
-                                    <div class="col-12 col-md-12 col-lg-6 col-sm-12 col-xs-12 col-xxl-4">
+                                    <div class="col-12 col-md-12 col-lg-6 col-sm-12 col-xs-12 col-xxl-6">
                                         <label for="type_demande" class="form-label">Type demande<span
                                                 class="text-danger mx-1">*</span></label>
                                         <select name="type_demande"

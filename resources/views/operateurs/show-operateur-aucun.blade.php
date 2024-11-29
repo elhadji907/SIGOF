@@ -125,8 +125,7 @@
                                         @enderror
                                     </div>
 
-
-                                    <div class="col-12 col-md-12 col-lg-6 col-sm-12 col-xs-12 col-xxl-6">
+                                    {{-- <div class="col-12 col-md-12 col-lg-6 col-sm-12 col-xs-12 col-xxl-6">
                                         <label for="statut" class="form-label">Statut juridique<span
                                                 class="text-danger mx-1">*</span></label>
                                         <select name="statut" class="form-select  @error('statut') is-invalid @enderror"
@@ -184,8 +183,7 @@
                                                 <div>{{ $message }}</div>
                                             </span>
                                         @enderror
-                                    </div>
-
+                                    </div> --}}
 
                                     <div class="col-12 col-md-12 col-lg-6 col-sm-12 col-xs-12 col-xxl-6">
                                         <label for="quitus" class="form-label">Quitus fiscal<span

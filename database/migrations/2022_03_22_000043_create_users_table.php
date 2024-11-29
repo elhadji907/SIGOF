@@ -64,6 +64,8 @@ class CreateUsersTable extends Migration
             $table->string('categorie', 200)->nullable();
             $table->string('ninea', 200)->nullable();
             $table->string('rccm', 200)->nullable();
+            $table->string('statut', 200)->nullable();
+            $table->string('autre_statut', 200)->nullable();
             $table->string('email_responsable', 200)->nullable();
             $table->string('fonction_responsable', 200)->nullable();
 
