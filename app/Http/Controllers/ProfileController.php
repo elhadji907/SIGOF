@@ -75,7 +75,6 @@ class ProfileController extends Controller
                 $user_files = File::where('users_id', $user->id)
                     ->where('file', null)
                     ->where('sigle', 'AC')
-                    ->orwhere('sigle', 'Ninea/RC')
                     ->distinct()
                     ->get()
                     ->unique('sigle');

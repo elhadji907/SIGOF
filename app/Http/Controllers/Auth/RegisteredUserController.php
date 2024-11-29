@@ -90,9 +90,9 @@ class RegisteredUserController extends Controller
             'users_id' => $user->id,
         ]); */
 
-        Alert::success('Félicitations ! ' . $user->username, ' Votre compte est créé, merci de vérifier votre boite e-mail, pour activer votre compte');
-
         $user->assignRole($request->input('role'));
+        
+        Alert::success('Félicitations ! ' . $user->username, ' Votre compte est créé, merci de vérifier votre boite e-mail, pour activer votre compte');
 
         event(new Registered($user));
         /* event(new Registered($demandeur));

@@ -29,7 +29,9 @@ class FileController extends Controller
             'file'              => 'required|file|mimes:jpeg,png,jpg,gif,svg,pdf|max:2048',
         ]);
 
-        $file = File::where('sigle', $request->legende)->where('users_id', Auth::user()->id)->firstOrFail();
+        $file = File::where('id', $request->legende)
+            ->where('users_id', Auth::user()->id)
+            ->firstOrFail();
 
         // Check if the file is valid
         if ($request->file('file')->isValid()) {
@@ -43,7 +45,7 @@ class FileController extends Controller
             $file->save();
 
             Alert::success('réussi !', 'Fichier téléchargé avec succès');
-            
+
             return redirect()->back();
         }
         // Return error response

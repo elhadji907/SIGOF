@@ -123,7 +123,7 @@
                                         </td> --}}
 
                                             <td>
-                                                @can('user-show')
+                                                {{-- @can('user-show') --}}
                                                     <span class="d-flex mt-2 align-items-baseline"><a
                                                             href="{{ route('users.show', $user->id) }}"
                                                             class="btn btn-info btn-sm mx-1" title="voir détails"><i
@@ -132,12 +132,12 @@
                                                             <a class="icon" href="#" data-bs-toggle="dropdown"><i
                                                                     class="bi bi-three-dots"></i></a>
                                                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                                                @can('user-update')
+                                                                {{-- @can('user-update') --}}
                                                                     <li><a class="dropdown-item btn btn-sm mx-1"
                                                                             href="{{ route('users.edit', $user->id) }}"
                                                                             class="mx-1"><i class="bi bi-pencil"></i> Modifier</a>
                                                                     </li>
-                                                                @endcan
+                                                                {{-- @endcan --}}
                                                                 @can('user-delete')
                                                                     <li>
                                                                         <form action="{{ route('users.destroy', $user->id) }}"
@@ -152,7 +152,7 @@
                                                             </ul>
                                                         </div>
                                                     </span>
-                                                @endcan
+                                              {{--   @endcan --}}
                                             </td>
                                         </tr>
                                     @endforeach

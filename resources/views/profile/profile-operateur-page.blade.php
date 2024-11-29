@@ -462,6 +462,23 @@
                                             </div>
                                         </div>
 
+                                        {{-- N° RCCM / Ninea --}}
+                                        <div class="row mb-3">
+                                            <label for="ninea" class="col-md-4 col-lg-3 col-form-label">N° RCCM /
+                                                Ninea<span class="text-danger mx-1">*</span></label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <input type="text" name="ninea"
+                                                    value="{{ $user?->ninea ?? old('ninea') }}"
+                                                    class="form-control form-control-sm @error('ninea') is-invalid @enderror"
+                                                    id="ninea" placeholder="Votre ninéa / Numéro RCCM">
+                                                @error('ninea')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <div>{{ $message }}</div>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
                                         {{-- Statut juridique --}}
                                         <div class="row mb-3">
                                             <label for="statut" class="col-md-4 col-lg-3 col-form-label">Statut juridique<span class="text-danger mx-1">*</span>
@@ -513,22 +530,6 @@
                                             </div>
                                         </div>
 
-                                        {{-- N° RCCM / Ninea --}}
-                                        <div class="row mb-3">
-                                            <label for="ninea" class="col-md-4 col-lg-3 col-form-label">N° RCCM /
-                                                Ninea<span class="text-danger mx-1">*</span></label>
-                                            <div class="col-md-8 col-lg-9">
-                                                <input type="text" name="ninea"
-                                                    value="{{ $user?->ninea ?? old('ninea') }}"
-                                                    class="form-control form-control-sm @error('ninea') is-invalid @enderror"
-                                                    id="ninea" placeholder="Votre ninéa / Numéro RCCM">
-                                                @error('ninea')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <div>{{ $message }}</div>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                        </div>
                                         {{-- Email --}}
                                         <div class="row mb-3">
                                             <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email<span
@@ -1105,10 +1106,10 @@
                                                     aria-label="Select" id="select-field-file"
                                                     data-placeholder="Choisir">
                                                     <option value="{{ old('legende') }}">
-                                                        {{ old('legende') }}
+                                                        
                                                     </option>
                                                     @foreach ($user_files as $file)
-                                                        <option value="{{ $file?->sigle }}">
+                                                        <option value="{{ $file?->id }}">
                                                             {{ $file?->legende }}
                                                         </option>
                                                     @endforeach
