@@ -74,10 +74,10 @@
                                             data-bs-target="#formateur-overview">Formateurs</button>
                                     </li>
 
-                                    <li class="nav-item">
+                                    {{-- <li class="nav-item">
                                         <button class="nav-link" data-bs-toggle="tab"
                                             data-bs-target="#localites-overview">Localités</button>
-                                    </li>
+                                    </li> --}}
                                     @foreach ($operateur?->formations as $item)
                                     @endforeach
                                     @if (!empty($item))
@@ -234,9 +234,9 @@
                                                 class="table table-bordered table-hover datatables align-middle justify-content-center table-borderless">
                                                 <thead>
                                                     <tr>
-                                                        <th scope="col">DENOMINATION L'ORGANISME</th>
-                                                        <th scope="col">CONTACTS</th>
-                                                        <th scope="col">PERIODES D'INTERVENTION</th>
+                                                        <th scope="col">ORGANISME</th>
+                                                        {{-- <th scope="col">CONTACTS</th> --}}
+                                                        <th scope="col">PERIODE</th>
                                                         <th scope="col">DESCRIPTION DES INTERVENTIONS</th>
                                                         {{-- <th class="col"><i class="bi bi-gear"></i></th> --}}
                                                     </tr>
@@ -246,7 +246,7 @@
                                                     @foreach ($operateur?->operateureferences as $operateureference)
                                                         <tr>
                                                             <td>{{ $operateureference?->organisme }}</td>
-                                                            <td>{{ $operateureference?->contact }}</td>
+                                                            {{-- <td>{{ $operateureference?->contact }}</td> --}}
                                                             <td>{{ $operateureference?->periode }}</td>
                                                             <td>{{ $operateureference?->description }}</td>
                                                             {{-- <td style="text-align: center;">

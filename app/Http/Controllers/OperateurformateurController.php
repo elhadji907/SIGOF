@@ -14,7 +14,7 @@ class OperateurformateurController extends Controller
             "name"                      =>      ["required", "string"],
             "domaine"                   =>      ["required", "string"],
             "nbre_annees_experience"    =>      ["required", "string"],
-            "reference"                 =>      ["required", "string"],
+            "reference"                 =>      ["nullable", "string"],
         ]);
 
 
@@ -39,7 +39,7 @@ class OperateurformateurController extends Controller
             "name"                      =>      ["required", "string"],
             "domaine"                   =>      ["required", "string"],
             "nbre_annees_experience"    =>      ["required", "string"],
-            "reference"                 =>      ["required", "string"],
+            "reference"                 =>      ["nullable", "string"],
         ]);
 
         $operateurformateur = Operateurformateur::findOrFail($id);

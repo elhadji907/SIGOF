@@ -618,8 +618,7 @@
                                     </div>
 
                                     <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xs-12 col-xxl-4">
-                                        <label for="rccm" class="form-label">RCCM / Ninea<span
-                                                class="text-danger mx-1">*</span></label>
+                                        <label for="rccm" class="form-label">RCCM / Ninea</label>
                                         <select name="rccm"
                                             class="form-select form-select-sm @error('rccm') is-invalid @enderror"
                                             aria-label="Select" id="select-field-registreop" data-placeholder="Choisir">
@@ -641,8 +640,7 @@
                                     </div>
 
                                     <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xs-12 col-xxl-4">
-                                        <label for="ninea" class="form-label">Numéro RCCM / Ninea<span
-                                                class="text-danger mx-1">*</span></label>
+                                        <label for="ninea" class="form-label">Numéro RCCM / Ninea</label>
                                         <input type="text" name="ninea" value="{{ old('ninea') }}"
                                             class="form-control form-control-sm @error('ninea') is-invalid @enderror"
                                             id="ninea" placeholder="Votre ninéa / Numéro RCCM">

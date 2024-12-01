@@ -73,10 +73,10 @@
                                         data-bs-target="#formateur-overview">Formateurs</button>
                                 </li>
 
-                                <li class="nav-item">
+                                {{-- <li class="nav-item">
                                     <button class="nav-link" data-bs-toggle="tab"
                                         data-bs-target="#localites-overview">Localités</button>
-                                </li>
+                                </li> --}}
 
                                 <li class="nav-item">
                                     <button class="nav-link" data-bs-toggle="tab"

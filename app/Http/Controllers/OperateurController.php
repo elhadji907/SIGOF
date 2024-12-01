@@ -219,8 +219,8 @@ class OperateurController extends Controller
             'bp'                        => ['nullable', 'string'],
             'categorie'                 => ['required', 'string'],
             'adresse'                   => ['required', 'string', 'max:255'],
-            'rccm'                      => ['required', 'string'],
-            'ninea'                     => ["required", "string", Rule::unique('users')->where(function ($query) {
+            'rccm'                      => ['nullable', 'string'],
+            'ninea'                     => ["nullable", "string", Rule::unique('users')->where(function ($query) {
                 return $query->whereNull('deleted_at');
             })],
             'web'                       => ['nullable', 'string', 'max:255'],
@@ -569,15 +569,15 @@ class OperateurController extends Controller
             "statut"                =>      ['required', 'string'],
             "departement"           =>      ['required', 'string'],
             "adresse"               =>      ['required', 'string'],
-            "ninea"                 =>      ['required', 'string'],
-            "registre_commerce"     =>      ['required', 'string'],
+            "ninea"                 =>      ['nullable', 'string'],
+            "registre_commerce"     =>      ['nullable', 'string'],
             "quitus"                =>      ['sometimes', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
             "date_quitus"           =>      ['nullable', 'date'],
             "type_demande"          =>      ['required', 'string'],
-            "arrete_creation"       =>      ['sometimes', 'string'],
+            "arrete_creation"       =>      ['nullable', 'string'],
             "file_arrete_creation"  =>      ['file', 'sometimes', 'mimes:jpeg,png,jpg,gif,svg,pdf', 'max:2048'],
-            "demande_signe"         =>      ['sometimes', 'string'],
-            "formulaire_signe"      =>      ['sometimes', 'string'],
+            "demande_signe"         =>      ['nullable', 'string'],
+            "formulaire_signe"      =>      ['nullable', 'string'],
             "web"                   =>      ['nullable', 'string'],
         ]);
 

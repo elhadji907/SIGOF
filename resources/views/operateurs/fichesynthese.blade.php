@@ -151,8 +151,7 @@
                                 {{ $operateur?->user?->name }}
                             @endif
                         </td>
-                        <td rowspan="{{ count($operateur?->operateurmodules) + 1 + 14 }}" colspan="1" width="10%"
-                            style="text-align: center;">
+                        <td rowspan="13" colspan="1" width="10%" style="text-align: center;">
                             @if (!empty($operateur?->visite_conformite))
                                 <span
                                     class="{{ $operateur?->visite_conformite }}">{{ $operateur?->visite_conformite }}</span>
@@ -195,7 +194,7 @@
                                     href="tel:+{{ $operateur?->user?->telephone }}">{{ $operateur?->user?->telephone }}</a>
                             @endif
                             <br>
-                            @if (!empty($operateur?->user?->telephone))
+                            @if (!empty($operateur?->user?->telephone_parent))
                                 Tél 2 : <a
                                     href="tel:+{{ $operateur?->user?->telephone_parent }}">{{ $operateur?->user?->telephone_parent }}</a>
                             @endif
@@ -255,7 +254,7 @@
                     </tr>
                     <tr class="item">
                         <td colspan="3">
-                            Numéro : {{ $operateur?->user?->ninea }}
+                            Numéro : <span style="color: red">{{ $operateur?->user?->ninea }}</span>
                         </td>
                     </tr>
                     <tr class="item">
@@ -277,143 +276,163 @@
                     <tr class="item">
                         <td colspan="6">
                             Quitus fiscal ou récépissé de dépôt du quitus fiscal :
-                            
                             {{ $operateur?->quitusfiscal }}
-                            {{-- @if (!empty($operateur?->quitus))
-                                Oui
-                            @else
-                                Non
-                            @endif --}}
-                        </td>
-                    </tr>
-                    <tr class="item">
-                        <td rowspan="{{ count($operateur?->operateurmodules) + 1 }}">
-                            <b>{{ __("DOMAINES D'INTERVENTION") }}</b>
-                        </td>
-
-                        <td colspan="3">
-                            <b>DOMAINE</b>
-                        </td>
-
-                        <td colspan="3">
-                            <b>MODULE</b>
-                        </td>
-                    </tr>
-                    @foreach ($operateur?->operateurmodules as $operateurmodule)
-                        <tr class="item">
-                            <td colspan="3">
-                                {{ $operateurmodule?->domaine }}
-                            </td>
-
-                            <td colspan="3">
-                                {{ $operateurmodule?->module }}
-                            </td>
-                        </tr>
-                    @endforeach
-                    <tr class="item">
-                        <td colspan="8">
-                        </td>
-                    </tr>
-                    <tr style="page-break-after: always;"></tr>
-                    <tr class="item">
-                        <td rowspan="{{ count($operateur->operateurformateurs) + 1 }}">
-                            <b>{{ __('COMPETENCES DISPONIBLES (formateurs)') }}</b>
-                        </td>
-
-                        <td colspan="3">
-                            <b>Nom formateur</b>
-                        </td>
-
-                        <td colspan="4">
-                            <b>Champs profes. et années d'expérience</b>
-                        </td>
-                    </tr>
-                    @foreach ($operateur?->operateurformateurs as $operateurformateur)
-                        <tr class="item">
-                            <td colspan="3">
-                                {{ $operateurformateur?->name }}
-                            </td>
-
-                            <td colspan="4">
-                                {{ $operateurformateur?->domaine . ' (' . $operateurformateur?->nbre_annees_experience . ' ans)' }}
-                            </td>
-                        </tr>
-                    @endforeach
-                    <tr class="item">
-                        <td rowspan="{{ count($operateur->operateurequipements) + 1 }}">
-                            <b>{{ __('MOYENS PEDAGOGIQUES') }}</b>
-                        </td>
-
-                        <td colspan="2">
-                            <b>Type</b>
-                        </td>
-
-                        <td colspan="3">
-                            <b>Désignation</b>
-                        </td>
-                        <td colspan="1" style="text-align: center">
-                            <b>Qté</b>
-                        </td>
-                        <td colspan="1" style="text-align: center">
-                            <b>Etat</b>
-                        </td>
-                    </tr>
-                    @foreach ($operateur?->operateurequipements as $operateurequipement)
-                        <tr class="item">
-                            <td colspan="2">
-                                {{ $operateurequipement?->type }}
-                            </td>
-
-                            <td colspan="3">
-                                {{ $operateurequipement?->designation }}
-                            </td>
-                            <td colspan="1" style="text-align: center">
-                                {{ $operateurequipement?->quantite }}
-                            </td>
-                            <td colspan="1" style="text-align: center">
-                                {{ $operateurequipement?->etat }}
-                            </td>
-                        </tr>
-                    @endforeach
-
-                    <tr class="item">
-                        <td rowspan="{{ count($operateur?->operateureferences) + 1 }}">
-                            <b>{{ __('EXPERIENCES') }}</b>
-                        </td>
-
-                        <td colspan="4">
-                            <b>Référence & Année</b>
-                        </td>
-
-                        <td colspan="3">
-                            <b>Activités</b>
-                        </td>
-                    </tr>
-                    @foreach ($operateur?->operateureferences as $operateureference)
-                        <tr class="item">
-                            <td colspan="4">
-                                {{ $operateureference?->organisme . ',' }}
-                                {{ $operateureference?->periode }} <br>
-                                Tél : <a
-                                    href="tel:+{{ $operateureference?->contact }}">{{ $operateureference?->contact }}</a>
-                            </td>
-
-                            <td colspan="3">
-                                {{ $operateureference?->description }}
-                            </td>
-                        </tr>
-                    @endforeach
-
-                    <tr class="item">
-                        <td><b>{{ __('OBSERVATIONS') }}</b></td>
-                        <td colspan="7">
-                            @if (!empty($operateur?->observations))
-                                {{ $operateur?->observations }}
-                            @endif
                         </td>
                     </tr>
                 </tbody>
             </table>
+
+            <div style="page-break-after: always;"></div>
+
+            <div class="invoice-box">
+                <table class="table table-responsive mt-10">
+                    <tbody>
+                        <tr class="item">
+                            <td rowspan="{{ count($operateur?->operateurmodules) + 1 }}">
+                                <b>{{ __("DOMAINES D'INTERVENTION") }}</b>
+                            </td>
+
+                            <td colspan="3">
+                                <b>DOMAINE</b>
+                            </td>
+
+                            <td colspan="4">
+                                <b>MODULE</b>
+                            </td>
+                        </tr>
+                        @foreach ($operateur?->operateurmodules as $operateurmodule)
+                            <tr class="item">
+                                <td colspan="3">
+                                    {{ $operateurmodule?->domaine }}
+                                </td>
+
+                                <td colspan="4">
+                                    {{ $operateurmodule?->module }}
+                                </td>
+                            </tr>
+                        @endforeach
+                        <tr class="item">
+                            <td rowspan="{{ count($operateur->operateurformateurs) + 1 }}">
+                                <b>{{ __('COMPETENCES DISPONIBLES (formateurs)') }}</b>
+                            </td>
+
+                            <td colspan="3">
+                                <b>Nom formateur</b>
+                            </td>
+
+                            <td colspan="4">
+                                <b>Champs profes. et années d'expérience</b>
+                            </td>
+                        </tr>
+                        @foreach ($operateur?->operateurformateurs as $operateurformateur)
+                            <tr class="item">
+                                <td colspan="3">
+                                    {{ $operateurformateur?->name }}
+                                </td>
+
+                                <td colspan="4">
+                                    {{ $operateurformateur?->domaine . ' (' . $operateurformateur?->nbre_annees_experience . ' ans)' }}
+                                </td>
+                            </tr>
+                        @endforeach
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="page-break-after: always;"></div>
+
+            <div class="invoice-box">
+                <table class="table table-responsive mt-10">
+                    <tbody>
+                        <tr class="item">
+                            <td rowspan="{{ count($operateur->operateurequipements) + 1 }}">
+                                <b>{{ __('MOYENS PEDAGOGIQUES') }}</b>
+                            </td>
+
+                            <td colspan="3" width="100%">
+                                <b>Type</b>
+                            </td>
+
+                            <td colspan="3" width="100%">
+                                <b>Désignation</b>
+                            </td>
+                            <td style="text-align: center">
+                                <b>Qté</b>
+                            </td>
+                            <td style="text-align: center">
+                                <b>Etat</b>
+                            </td>
+                        </tr>
+                        @foreach ($operateur?->operateurequipements as $operateurequipement)
+                            <tr class="item">
+                                <td colspan="3">
+                                    {{ $operateurequipement?->type }}
+                                </td>
+
+                                <td colspan="3">
+                                    {{ $operateurequipement?->designation }}
+                                </td>
+                                <td style="text-align: center">
+                                    {{ $operateurequipement?->quantite }}
+                                </td>
+                                <td style="text-align: center">
+                                    {{ $operateurequipement?->etat }}
+                                </td>
+                            </tr>
+                        @endforeach
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="page-break-after: always;"></div>
+
+            <div class="invoice-box">
+                <table class="table table-responsive mt-10">
+                    <tbody>
+
+                        <tr class="item">
+                            <td rowspan="{{ count($operateur?->operateureferences) + 1 }}">
+                                <b>{{ __('EXPERIENCES') }}</b>
+                            </td>
+
+                            <td colspan="4">
+                                <b>Référence & Année</b>
+                            </td>
+
+                            <td colspan="3">
+                                <b>Activités</b>
+                            </td>
+                        </tr>
+                        @foreach ($operateur?->operateureferences as $operateureference)
+                            <tr class="item">
+                                <td colspan="4">
+                                    {{ $operateureference?->organisme . ',' }}
+                                    {{ $operateureference?->periode }} <br>
+                                    Tél : <a
+                                        href="tel:+{{ $operateureference?->contact }}">{{ $operateureference?->contact }}</a>
+                                </td>
+
+                                <td colspan="3">
+                                    {{ $operateureference?->description }}
+                                </td>
+                            </tr>
+                        @endforeach
+
+                        <tr class="item">
+                            <td><b>{{ __('OBSERVATIONS') }}</b></td>
+                            <td colspan="7">
+                                @if (!empty($operateur?->observations))
+                                    {{ nl2br($operateur?->observations) }}
+                                @endif
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            {{-- <div style="page-break-after: always;"></div> --}}
         </div>
         <div style="page-break-after: always;"></div>
     @endforeach

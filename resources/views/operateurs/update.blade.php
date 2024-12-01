@@ -349,8 +349,7 @@
                                         </div>
 
                                         <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xs-12 col-xxl-4">
-                                            <label for="registre_commerce" class="form-label">RCCM / Ninéa<span
-                                                    class="text-danger mx-1">*</span></label>
+                                            <label for="registre_commerce" class="form-label">RCCM / Ninéa</label>
                                             <select name="registre_commerce"
                                                 class="form-select form-select-sm @error('registre_commerce') is-invalid @enderror"
                                                 aria-label="Select" id="select-field-registre-update"
@@ -373,8 +372,7 @@
                                         </div>
 
                                         <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xs-12 col-xxl-4">
-                                            <label for="ninea" class="form-label">Numéro RCCM / Ninéa<span
-                                                    class="text-danger mx-1">*</span></label>
+                                            <label for="ninea" class="form-label">Numéro RCCM / Ninéa</label>
                                             <input type="text" name="ninea"
                                                 value="{{ $operateur?->user?->ninea ?? old('ninea') }}"
                                                 class="form-control form-control-sm @error('ninea') is-invalid @enderror"
