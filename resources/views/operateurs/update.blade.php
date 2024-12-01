@@ -194,8 +194,8 @@
                                             <select name="statut" class="form-select  @error('statut') is-invalid @enderror"
                                                 aria-label="Select" id="select-field-statut-update"
                                                 data-placeholder="Choisir statut">
-                                                <option value="{{ $operateur->statut ?? old('statut') }}">
-                                                    {{ $operateur->statut ?? old('statut') }}
+                                                <option value="{{ $operateur?->user?->statut ?? old('statut') }}">
+                                                    {{ $operateur?->user?->statut ?? old('statut') }}
                                                 </option>
                                                 <option value="GIE">
                                                     GIE
@@ -208,6 +208,9 @@
                                                 </option>
                                                 <option value="SA">
                                                     SA
+                                                </option>
+                                                <option value="SAS">
+                                                    SAS
                                                 </option>
                                                 <option value="SUARL">
                                                     SUARL
@@ -239,7 +242,7 @@
                                             <label for="autre_statut" class="form-label">Si autre ?
                                                 précisez</label>
                                             <input type="text" name="autre_statut"
-                                                value="{{ $operateur?->autre_statut ?? old('autre_statut') }}"
+                                                value="{{ $operateur?->user?->autre_statut ?? old('autre_statut') }}"
                                                 class="form-control form-control-sm @error('autre_statut') is-invalid @enderror"
                                                 id="autre_statut" placeholder="autre statut juridique">
                                             @error('autre_statut')
@@ -272,19 +275,6 @@
                                             @enderror
                                         </div>
 
-                                        <div class="col-12 col-md-12 col-lg-12 col-sm-12 col-xs-12 col-xxl-12">
-                                            <label for="adresse" class="form-label">Adresse<span
-                                                    class="text-danger mx-1">*</span></label>
-                                            <textarea name="adresse" id="adresse" rows="1"
-                                                class="form-control form-control-sm @error('adresse') is-invalid @enderror"
-                                                placeholder="Adresse exacte opérateur">{{ $operateur->user->adresse ?? old('adresse') }}</textarea>
-                                            @error('adresse')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <div>{{ $message }}</div>
-                                                </span>
-                                            @enderror
-                                        </div>
-
                                         <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xs-12 col-xxl-4">
                                             <label for="departement" class="form-label">Siège social<span
                                                     class="text-danger mx-1">*</span></label>
@@ -302,6 +292,56 @@
                                                 @endforeach
                                             </select>
                                             @error('departement')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <div>{{ $message }}</div>
+                                                </span>
+                                            @enderror
+                                        </div>
+
+
+                                        <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xs-12 col-xxl-4">
+                                            <label for="type_demande" class="form-label">TYPE Demande<span
+                                                    class="text-danger mx-1">*</span></label>
+                                            <select name="type_demande"
+                                                class="form-select form-select-sm @error('type_demande') is-invalid @enderror"
+                                                aria-label="Select" id="select-field-registre" data-placeholder="Choisir">
+                                                <option value="{{ $operateur?->type_demande }}">
+                                                    {{ $operateur?->type_demande ?? old('type_demande') }}
+                                                </option>
+                                                <option value="Nouvelle">
+                                                    Nouvelle
+                                                </option>
+                                                <option value="Renouvellement">
+                                                    Renouvellement
+                                                </option>
+                                            </select>
+                                            @error('type_demande')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <div>{{ $message }}</div>
+                                                </span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xs-12 col-xxl-4">
+                                            <label for="web" class="form-label">Site web<span
+                                                    class="text-danger mx-1">*</span></label>
+                                            <input type="text" name="web" value="{{ $operateur?->user?->web ??old('web') }}"
+                                                class="form-control form-control-sm @error('web') is-invalid @enderror"
+                                                id="web" placeholder="www.">
+                                            @error('web')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <div>{{ $message }}</div>
+                                                </span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-12 col-md-12 col-lg-12 col-sm-12 col-xs-12 col-xxl-12">
+                                            <label for="adresse" class="form-label">Adresse<span
+                                                    class="text-danger mx-1">*</span></label>
+                                            <textarea name="adresse" id="adresse" rows="1"
+                                                class="form-control form-control-sm @error('adresse') is-invalid @enderror"
+                                                placeholder="Adresse exacte opérateur">{{ $operateur?->user?->adresse ?? old('adresse') }}</textarea>
+                                            @error('adresse')
                                                 <span class="invalid-feedback" role="alert">
                                                     <div>{{ $message }}</div>
                                                 </span>
@@ -346,10 +386,32 @@
                                             @enderror
                                         </div>
 
-                                        <div class="col-12 col-md-6 col-lg-3 col-sm-12 col-xs-12 col-xxl-3">
-                                            <label for="quitus" class="form-label">N° quitus fiscal<span
+                                        <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xs-12 col-xxl-4">
+                                            <label for="quitusfiscal" class="form-label">Quitus fiscal<span
                                                     class="text-danger mx-1">*</span></label>
+                                            <select name="quitusfiscal"
+                                                class="form-select  @error('quitusfiscal') is-invalid @enderror"
+                                                aria-label="Select" id="select-field-quitusfiscalup"
+                                                data-placeholder="Choisir">
+                                                <option value="{{ $operateur?->quitusfiscal ?? old('quitusfiscal') }}">
+                                                    {{ $operateur?->quitusfiscal ?? old('quitusfiscal') }}
+                                                </option>
+                                                <option value="Oui">
+                                                    Oui
+                                                </option>
+                                                <option value="Non">
+                                                    Non
+                                                </option>
+                                            </select>
+                                            @error('quitusfiscal')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <div>{{ $message }}</div>
+                                                </span>
+                                            @enderror
+                                        </div>
 
+                                        <div class="col-12 col-md-6 col-lg-3 col-sm-12 col-xs-12 col-xxl-3">
+                                            <label for="quitus" class="form-label">Scan quitus fiscal</label>
                                             <input type="file" name="quitus" id="quitus"
                                                 class="form-control @error('quitus') is-invalid @enderror btn btn-outline-primary btn-sm">
                                             @error('quitus')
@@ -370,36 +432,12 @@
                                             @endif
                                         </div>
                                         <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xs-12 col-xxl-4">
-                                            <label for="date_quitus" class="form-label">Date délivrance<span
-                                                    class="text-danger mx-1">*</span></label>
+                                            <label for="date_quitus" class="form-label">Date délivrance </label>
                                             <input type="date" name="date_quitus"
                                                 value="{{ $operateur?->debut_quitus?->format('Y-m-d') ?? old('date_quitus') }}"
                                                 class="form-control form-control-sm @error('date_quitus') is-invalid @enderror"
                                                 id="date_quitus" placeholder="Date quitus">
                                             @error('date_quitus')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <div>{{ $message }}</div>
-                                                </span>
-                                            @enderror
-                                        </div>
-
-                                        <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xs-12 col-xxl-4">
-                                            <label for="type_demande" class="form-label">TYPE<span
-                                                    class="text-danger mx-1">*</span></label>
-                                            <select name="type_demande"
-                                                class="form-select form-select-sm @error('type_demande') is-invalid @enderror"
-                                                aria-label="Select" id="select-field-registre" data-placeholder="Choisir">
-                                                <option value="{{ $operateur?->type_demande }}">
-                                                    {{ $operateur?->type_demande ?? old('type_demande') }}
-                                                </option>
-                                                <option value="Nouvelle">
-                                                    Nouvelle
-                                                </option>
-                                                <option value="Renouvellement">
-                                                    Renouvellement
-                                                </option>
-                                            </select>
-                                            @error('type_demande')
                                                 <span class="invalid-feedback" role="alert">
                                                     <div>{{ $message }}</div>
                                                 </span>
@@ -482,6 +520,28 @@
                                             @enderror
                                         </div>
 
+                                        <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xs-12 col-xxl-4">
+                                            <label for="cvsigne" class="form-label">CV signés</label>
+                                            <select name="cvsigne"
+                                                class="form-select  @error('cvsigne') is-invalid @enderror"
+                                                aria-label="Select" id="select-field-cvsigneup" data-placeholder="Choisir">
+                                                <option value="{{ $operateur?->cvsigne ?? old('cvsigne') }}">
+                                                    {{ $operateur?->cvsigne ?? old('cvsigne') }}
+                                                </option>
+                                                <option value="Oui">
+                                                    Oui
+                                                </option>
+                                                <option value="Non">
+                                                    Non
+                                                </option>
+                                            </select>
+                                            @error('cvsigne')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <div>{{ $message }}</div>
+                                                </span>
+                                            @enderror
+                                        </div>
+
                                         <hr class="dropdown-divider mt-5">
 
                                         <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xs-12 col-xxl-4">
@@ -537,8 +597,21 @@
                                         </div>
 
                                         <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xs-12 col-xxl-4">
-                                            <label for="email_responsable" class="form-label">Adresse e-mail<span
+                                            <label for="fonction_responsable" class="form-label">Fonction responsable<span
                                                     class="text-danger mx-1">*</span></label>
+                                            <input type="text" name="fonction_responsable"
+                                                value="{{ $operateur?->user?->fonction_responsable ?? old('fonction_responsable') }}"
+                                                class="form-control form-control-sm @error('fonction_responsable') is-invalid @enderror"
+                                                id="fonction_responsable" placeholder="Fonction responsable">
+                                            @error('fonction_responsable')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <div>{{ $message }}</div>
+                                                </span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xs-12 col-xxl-4">
+                                            <label for="email_responsable" class="form-label">Adresse e-mail</label>
                                             <input type="email" name="email_responsable"
                                                 value="{{ $operateur?->user?->email_responsable ?? old('email_responsable') }}"
                                                 class="form-control form-control-sm @error('email_responsable') is-invalid @enderror"
@@ -551,27 +624,12 @@
                                         </div>
 
                                         <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xs-12 col-xxl-4">
-                                            <label for="telephone_parent" class="form-label">Téléphone responsable<span
-                                                    class="text-danger mx-1">*</span></label>
+                                            <label for="telephone_parent" class="form-label">Téléphone responsable</label>
                                             <input type="number" min="0" name="telephone_parent"
                                                 value="{{ $operateur?->user?->telephone_parent ?? old('telephone_parent') }}"
                                                 class="form-control form-control-sm @error('telephone_parent') is-invalid @enderror"
                                                 id="telephone_parent" placeholder="7xxxxxxxx">
                                             @error('telephone_parent')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <div>{{ $message }}</div>
-                                                </span>
-                                            @enderror
-                                        </div>
-
-                                        <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xs-12 col-xxl-4">
-                                            <label for="fonction_responsable" class="form-label">Fonction responsable<span
-                                                    class="text-danger mx-1">*</span></label>
-                                            <input type="text" name="fonction_responsable"
-                                                value="{{ $operateur?->user?->fonction_responsable ?? old('fonction_responsable') }}"
-                                                class="form-control form-control-sm @error('fonction_responsable') is-invalid @enderror"
-                                                id="fonction_responsable" placeholder="Fonction responsable">
-                                            @error('fonction_responsable')
                                                 <span class="invalid-feedback" role="alert">
                                                     <div>{{ $message }}</div>
                                                 </span>

@@ -36,13 +36,22 @@
                                         class="bi bi-arrow-counterclockwise"></i></a>&nbsp;
                                 <p> | Profil</p>
                             </span>
-                            <button type="button" class="btn btn-info btn-sm">
-                                <span class="badge bg-white text-info">{{ $operateur_total }}</span>
-                            </button>
-                            <button type="button" class="btn btn-primary btn-sm float-end btn-rounded"
-                                data-bs-toggle="modal" data-bs-target="#AddoperateurModal">
-                                <i class="bi bi-plus" title="Ajouter demande"></i>
-                            </button>
+                            @if (
+                                !empty(Auth::user()?->operateur) &&
+                                    !empty(Auth::user()?->username) &&
+                                    !empty(Auth::user()?->ninea) &&
+                                    !empty(Auth::user()?->rccm) &&
+                                    !empty(Auth::user()?->email_responsable) &&
+                                    !empty(Auth::user()?->fonction_responsable) &&
+                                    !empty(Auth::user()?->email))
+                                <button type="button" class="btn btn-info btn-sm">
+                                    <span class="badge bg-white text-info">{{ $operateur_total }}</span>
+                                </button>
+                                <button type="button" class="btn btn-primary btn-sm float-end btn-rounded"
+                                    data-bs-toggle="modal" data-bs-target="#AddoperateurModal">
+                                    <i class="bi bi-plus" title="Ajouter demande"></i>
+                                </button>
+                            @endif
                         </div>
 
                         @if (

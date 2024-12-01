@@ -271,16 +271,19 @@
                     <tr class="item">
                         <td colspan="6">
                             CV formateur(s) daté(s) et signé(s) :
+                            {{ $operateur?->cvsigne }}
                         </td>
                     </tr>
                     <tr class="item">
                         <td colspan="6">
                             Quitus fiscal ou récépissé de dépôt du quitus fiscal :
-                            @if (!empty($operateur?->quitus))
+                            
+                            {{ $operateur?->quitusfiscal }}
+                            {{-- @if (!empty($operateur?->quitus))
                                 Oui
                             @else
                                 Non
-                            @endif
+                            @endif --}}
                         </td>
                     </tr>
                     <tr class="item">

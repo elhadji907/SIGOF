@@ -464,7 +464,7 @@
                                         <label for="statut" class="form-label">Statut juridique<span
                                                 class="text-danger mx-1">*</span></label>
                                         <select name="statut" class="form-select  @error('statut') is-invalid @enderror"
-                                            aria-label="Select" id="select-field-statut"
+                                            aria-label="Select" id="select-field-statutop"
                                             data-placeholder="Choisir statut">
                                             <option value="{{ old('statut') }}">
                                                 {{ old('statut') }}
@@ -480,6 +480,9 @@
                                             </option>
                                             <option value="SA">
                                                 SA
+                                            </option>
+                                            <option value="SAS">
+                                                SAS
                                             </option>
                                             <option value="SUARL">
                                                 SUARL
@@ -543,25 +546,13 @@
                                         @enderror
                                     </div>
 
-                                    <div class="col-12 col-md-12 col-lg-12 col-sm-12 col-xs-12 col-xxl-12">
-                                        <label for="adresse" class="form-label">Adresse<span
-                                                class="text-danger mx-1">*</span></label>
-                                        <textarea name="adresse" id="adresse" rows="1"
-                                            class="form-control form-control-sm @error('adresse') is-invalid @enderror"
-                                            placeholder="Adresse exacte de l'opérateur">{{ old('adresse') }}</textarea>
-                                        @error('adresse')
-                                            <span class="invalid-feedback" role="alert">
-                                                <div>{{ $message }}</div>
-                                            </span>
-                                        @enderror
-                                    </div>
-
                                     <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xs-12 col-xxl-4">
                                         <label for="departement" class="form-label">Siège social<span
                                                 class="text-danger mx-1">*</span></label>
                                         <select name="departement"
                                             class="form-select form-select-sm @error('departement') is-invalid @enderror"
-                                            aria-label="Select" id="select-field-departement" data-placeholder="Choisir">
+                                            aria-label="Select" id="select-field-departementop"
+                                            data-placeholder="Choisir">
                                             <option value="{{ old('departement') }}">{{ old('departement') }}</option>
                                             @foreach ($departements as $departement)
                                                 <option value="{{ $departement->nom }}">
@@ -577,11 +568,61 @@
                                     </div>
 
                                     <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xs-12 col-xxl-4">
+                                        <label for="type_demande" class="form-label">TYPE Demande<span
+                                                class="text-danger mx-1">*</span></label>
+                                        <select name="type_demande"
+                                            class="form-select form-select-sm @error('type_demande') is-invalid @enderror"
+                                            aria-label="Select" id="select-fieldop"
+                                            data-placeholder="Choisir type de demande">
+                                            <option value="{{ old('type_demande') }}">
+                                                {{ old('type_demande') }}
+                                            </option>
+                                            <option value="Nouvelle">
+                                                Nouvelle
+                                            </option>
+                                            <option value="Renouvellement">
+                                                Renouvellement
+                                            </option>
+                                        </select>
+                                        @error('type_demande')
+                                            <span class="invalid-feedback" role="alert">
+                                                <div>{{ $message }}</div>
+                                            </span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xs-12 col-xxl-4">
+                                        <label for="web" class="form-label">Site web<span
+                                                class="text-danger mx-1">*</span></label>
+                                        <input type="text" name="web" value="{{ old('web') }}"
+                                            class="form-control form-control-sm @error('web') is-invalid @enderror"
+                                            id="web" placeholder="www.">
+                                        @error('web')
+                                            <span class="invalid-feedback" role="alert">
+                                                <div>{{ $message }}</div>
+                                            </span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="col-12 col-md-12 col-lg-12 col-sm-12 col-xs-12 col-xxl-12">
+                                        <label for="adresse" class="form-label">Adresse<span
+                                                class="text-danger mx-1">*</span></label>
+                                        <textarea name="adresse" id="adresse" rows="1"
+                                            class="form-control form-control-sm @error('adresse') is-invalid @enderror"
+                                            placeholder="Adresse exacte de l'opérateur">{{ old('adresse') }}</textarea>
+                                        @error('adresse')
+                                            <span class="invalid-feedback" role="alert">
+                                                <div>{{ $message }}</div>
+                                            </span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xs-12 col-xxl-4">
                                         <label for="rccm" class="form-label">RCCM / Ninea<span
                                                 class="text-danger mx-1">*</span></label>
                                         <select name="rccm"
                                             class="form-select form-select-sm @error('rccm') is-invalid @enderror"
-                                            aria-label="Select" id="select-field-registre" data-placeholder="Choisir">
+                                            aria-label="Select" id="select-field-registreop" data-placeholder="Choisir">
                                             <option value="{{ old('rccm') }}">
                                                 {{ old('rccm') }}
                                             </option>
@@ -613,7 +654,31 @@
                                     </div>
 
                                     <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xs-12 col-xxl-4">
-                                        <label for="quitus" class="form-label">Quitus fiscal</label>
+                                        <label for="quitusfiscal" class="form-label">Quitus fiscal<span
+                                                class="text-danger mx-1">*</span></label>
+                                        <select name="quitusfiscal"
+                                            class="form-select  @error('quitusfiscal') is-invalid @enderror"
+                                            aria-label="Select" id="select-field-quitusfiscal"
+                                            data-placeholder="Choisir">
+                                            <option value="{{ old('quitusfiscal') }}">
+                                                {{ old('quitusfiscal') }}
+                                            </option>
+                                            <option value="Oui">
+                                                Oui
+                                            </option>
+                                            <option value="Non">
+                                                Non
+                                            </option>
+                                        </select>
+                                        @error('quitusfiscal')
+                                            <span class="invalid-feedback" role="alert">
+                                                <div>{{ $message }}</div>
+                                            </span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xs-12 col-xxl-4">
+                                        <label for="quitus" class="form-label">Scan quitus fiscal</label>
                                         <input type="file" name="quitus" id="quitus" value="{{ old('quitus') }}"
                                             class="form-control @error('quitus') is-invalid @enderror btn btn-outline-success btn-sm">
                                         @error('quitus')
@@ -634,35 +699,11 @@
                                         @enderror
                                     </div> --}}
                                     <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xs-12 col-xxl-4">
-                                        <label for="date_quitus" class="form-label">Date délivrance<span
-                                                class="text-danger mx-1">*</span></label>
+                                        <label for="date_quitus" class="form-label">Date délivrance</label>
                                         <input type="date" name="date_quitus" value="{{ old('date_quitus') }}"
                                             class="form-control form-control-sm @error('date_quitus') is-invalid @enderror"
                                             id="date_quitus" placeholder="Date quitus">
                                         @error('date_quitus')
-                                            <span class="invalid-feedback" role="alert">
-                                                <div>{{ $message }}</div>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                    <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xs-12 col-xxl-4">
-                                        <label for="type_demande" class="form-label">TYPE<span
-                                                class="text-danger mx-1">*</span></label>
-                                        <select name="type_demande"
-                                            class="form-select form-select-sm @error('type_demande') is-invalid @enderror"
-                                            aria-label="Select" id="select-field"
-                                            data-placeholder="Choisir type de demande">
-                                            <option value="{{ old('type_demande') }}">
-                                                {{ old('type_demande') }}
-                                            </option>
-                                            <option value="Nouvelle">
-                                                Nouvelle
-                                            </option>
-                                            <option value="Renouvellement">
-                                                Renouvellement
-                                            </option>
-                                        </select>
-                                        @error('type_demande')
                                             <span class="invalid-feedback" role="alert">
                                                 <div>{{ $message }}</div>
                                             </span>
@@ -673,7 +714,7 @@
                                         <label for="arrete_creation" class="form-label">Arrêté création</label>
                                         <select name="arrete_creation"
                                             class="form-select  @error('arrete_creation') is-invalid @enderror"
-                                            aria-label="Select" id="select-field-arrete_creation-pro"
+                                            aria-label="Select" id="select-field-arrete_creation-op"
                                             data-placeholder="Choisir">
                                             <option value="{{ old('arrete_creation') }}">
                                                 {{ old('arrete_creation') }}
@@ -711,7 +752,7 @@
                                         <label for="formulaire_signe" class="form-label">Formulaire signée</label>
                                         <select name="formulaire_signe"
                                             class="form-select  @error('formulaire_signe') is-invalid @enderror"
-                                            aria-label="Select" id="select-field-formulaire_signe"
+                                            aria-label="Select" id="select-field-formulaire_signeop"
                                             data-placeholder="Choisir">
                                             <option value="{{ old('formulaire_signe') }}">
                                                 {{ old('formulaire_signe') }}
@@ -730,6 +771,28 @@
                                         @enderror
                                     </div>
 
+                                    <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xs-12 col-xxl-4">
+                                        <label for="cvsigne" class="form-label">CV signés</label>
+                                        <select name="cvsigne"
+                                            class="form-select  @error('cvsigne') is-invalid @enderror"
+                                            aria-label="Select" id="select-field-cvsigne" data-placeholder="Choisir">
+                                            <option value="{{ old('cvsigne') }}">
+                                                {{ old('cvsigne') }}
+                                            </option>
+                                            <option value="Oui">
+                                                Oui
+                                            </option>
+                                            <option value="Non">
+                                                Non
+                                            </option>
+                                        </select>
+                                        @error('cvsigne')
+                                            <span class="invalid-feedback" role="alert">
+                                                <div>{{ $message }}</div>
+                                            </span>
+                                        @enderror
+                                    </div>
+
                                     <hr class="dropdown-divider mt-5">
 
                                     <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xs-12 col-xxl-4">
@@ -737,7 +800,7 @@
                                                 class="text-danger mx-1">*</span></label>
                                         <select name="civilite"
                                             class="form-select form-select-sm @error('civilite') is-invalid @enderror"
-                                            aria-label="Select" id="select-field-civilite"
+                                            aria-label="Select" id="select-field-civiliteop"
                                             data-placeholder="Choisir civilité">
                                             <option value="{{ old('civilite') }}">
                                                 {{ old('civilite') }}
@@ -782,8 +845,21 @@
                                     </div>
 
                                     <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xs-12 col-xxl-4">
-                                        <label for="email_responsable" class="form-label">Adresse e-mail<span
+                                        <label for="fonction_responsable" class="form-label">Fonction responsable<span
                                                 class="text-danger mx-1">*</span></label>
+                                        <input type="text" name="fonction_responsable"
+                                            value="{{ old('fonction_responsable') }}"
+                                            class="form-control form-control-sm @error('fonction_responsable') is-invalid @enderror"
+                                            id="fonction_responsable" placeholder="Fonction responsable">
+                                        @error('fonction_responsable')
+                                            <span class="invalid-feedback" role="alert">
+                                                <div>{{ $message }}</div>
+                                            </span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xs-12 col-xxl-4">
+                                        <label for="email_responsable" class="form-label">Adresse e-mail</label>
                                         <input type="email" name="email_responsable"
                                             value="{{ old('email_responsable') }}"
                                             class="form-control form-control-sm @error('email_responsable') is-invalid @enderror"
@@ -796,27 +872,12 @@
                                     </div>
 
                                     <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xs-12 col-xxl-4">
-                                        <label for="telephone_parent" class="form-label">Téléphone responsable<span
-                                                class="text-danger mx-1">*</span></label>
+                                        <label for="telephone_parent" class="form-label">Téléphone responsable</label>
                                         <input type="number" min="0" name="telephone_parent"
                                             value="{{ old('telephone_parent') }}"
                                             class="form-control form-control-sm @error('telephone_parent') is-invalid @enderror"
                                             id="telephone_parent" placeholder="7xxxxxxxx">
                                         @error('telephone_parent')
-                                            <span class="invalid-feedback" role="alert">
-                                                <div>{{ $message }}</div>
-                                            </span>
-                                        @enderror
-                                    </div>
-
-                                    <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xs-12 col-xxl-4">
-                                        <label for="fonction_responsable" class="form-label">Fonction responsable<span
-                                                class="text-danger mx-1">*</span></label>
-                                        <input type="text" name="fonction_responsable"
-                                            value="{{ old('fonction_responsable') }}"
-                                            class="form-control form-control-sm @error('fonction_responsable') is-invalid @enderror"
-                                            id="fonction_responsable" placeholder="Fonction responsable">
-                                        @error('fonction_responsable')
                                             <span class="invalid-feedback" role="alert">
                                                 <div>{{ $message }}</div>
                                             </span>

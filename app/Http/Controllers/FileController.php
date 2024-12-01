@@ -13,7 +13,8 @@ class FileController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware(['role:super-admin|admin|DIOF|DEC|DPP|Operateur']);
+        $this->middleware(['role:super-admin|admin|DIOF|DEC|DPP|Operateur|Demandeur']);
+        $this->middleware("permission:file-update", ["only" => ["update"]]);
     }
     public function index()
     {

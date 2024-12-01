@@ -38,7 +38,8 @@ class UserController extends Controller
         $this->middleware("permission:user-update", ["only" => ["update", "edit"]]);
         $this->middleware("permission:user-show", ["only" => ["show"]]);
         $this->middleware("permission:user-delete", ["only" => ["destroy"]]);
-        $this->middleware("permission:give-role-permissions", ["only" => ["givePermissionsToRole"]]); */
+        $this->middleware("permission:give-role-permissions", ["only" => ["givePermissionsToRole"]]); 
+        */
     }
 
     public function homePage()
@@ -115,8 +116,14 @@ class UserController extends Controller
         $rejeter = Individuelle::where('statut', 'rejeter')
             ->count();
 
-        $pourcentage_hommes = ($masculin / $individuelles->count()) * 100;
-        $pourcentage_femmes = ($feminin / $individuelles->count()) * 100;
+        if ($individuelles->count() > 0) {
+            $pourcentage_hommes = ($masculin / $individuelles->count()) * 100;
+            $pourcentage_femmes = ($feminin / $individuelles->count()) * 100;
+        } else {
+            $pourcentage_hommes = 0;
+            $pourcentage_femmes = 0;
+        }
+        
         $email_verified_at = ($email_verified_at / $total_user) * 100;
 
         return view(

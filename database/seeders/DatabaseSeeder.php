@@ -334,9 +334,9 @@ class DatabaseSeeder extends Seeder
             CommuneSeeder::class,
             FonctionSeeder::class,
             DirectionSeeder::class,
-            AdministrateurSeeder::class,
+            /* AdministrateurSeeder::class,
             GestionnaireSeeder::class,
-            EmployeeSeeder::class,
+            EmployeeSeeder::class, */
             RoleSeeder::class,
             LoiSeeder::class,
             DecretSeeder::class,
@@ -355,7 +355,7 @@ class DatabaseSeeder extends Seeder
             ReferentielSeeder::class,
             AntenneSeeder::class,
             ServiceSeeder::class,
-            IndividuelleSeeder::class,
+            /* IndividuelleSeeder::class, */
         ]);
     }
 }

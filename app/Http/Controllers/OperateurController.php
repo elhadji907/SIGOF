@@ -94,7 +94,7 @@ class OperateurController extends Controller
             /* "statut"                =>      "required|string", */
             "departement"           =>      "required|string",
             "quitus"                =>      ['image', 'required', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
-            "date_quitus"           =>      "required|string",
+            "date_quitus"           =>      "required|date",
             "type_demande"          =>      "required|string",
         ]);
 
@@ -226,7 +226,7 @@ class OperateurController extends Controller
             'web'                       => ['nullable', 'string', 'max:255'],
             'civilite'                  => ['required', 'string', 'max:8'],
             'prenom'                 => ['required', 'string', 'max:150'],
-            'email_responsable'         => ["required", "email", Rule::unique('users')->where(function ($query) {
+            'email_responsable'         => ["nullable", "email", Rule::unique('users')->where(function ($query) {
                 return $query->whereNull('deleted_at');
             })],
             "numero_agrement"           => ["nullable", "string", Rule::unique('operateurs')->where(function ($query) {
@@ -236,7 +236,7 @@ class OperateurController extends Controller
             "autre_statut"              =>  "nullable|string",
             "departement"               =>  "required|string",
             "quitus"                    =>  ['image', 'sometimes', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
-            "date_quitus"               =>  "required|string",
+            "date_quitus"               =>  "nullable|date",
             "type_demande"              =>  "required|string",
             "arrete_creation"           =>  "nullable|string",
             "file_arrete_creation"      =>  ['file', 'sometimes', 'mimes:jpeg,png,jpg,gif,svg,pdf', 'max:2048'],
@@ -320,6 +320,11 @@ class OperateurController extends Controller
             "rccm"                  =>      $request->input("rccm"), /* choisir ninea ou rccm */
             "ninea"                 =>      $request->input("ninea"), /* enregistrer le numero de la valeur choisi (ninea ou rccm) */
             "bp"                    =>      $request->input("bp"),
+            "statut"                =>      $request->input("statut"),
+            "autre_statut"          =>      $request->input("autre_statut"),
+            "quitusfiscal"          =>      $request->input("quitusfiscal"),
+            "cvsigne"               =>      $request->input("cvsigne"),
+            "web"                   =>      $request->input("web"),
 
         ]);
 
@@ -331,8 +336,6 @@ class OperateurController extends Controller
             "numero_dossier"       =>       $request->input("numero_dossier"),
             'numero_arrive'        =>       $request->input("numero_arrive"),
             "numero_agrement"      =>       $request->input("numero_agrement"),
-            "statut"               =>       $request->input("statut"),
-            "autre_statut"         =>       $request->input("autre_statut"),
             "type_demande"         =>       $request->input("type_demande"),
             "debut_quitus"         =>       $request->input("date_quitus"),
             "annee_agrement"       =>       date('Y-m-d'),
@@ -389,7 +392,7 @@ class OperateurController extends Controller
         }
         $this->validate($request, [
             "quitus"                =>      ['image', 'required', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
-            "date_quitus"           =>      ['required', 'string'],
+            "date_quitus"           =>      ['required', 'date'],
         ]);
 
         foreach (Auth::user()->roles as $key => $role) {
@@ -569,12 +572,13 @@ class OperateurController extends Controller
             "ninea"                 =>      ['required', 'string'],
             "registre_commerce"     =>      ['required', 'string'],
             "quitus"                =>      ['sometimes', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
-            "date_quitus"           =>      ['sometimes', 'string'],
+            "date_quitus"           =>      ['nullable', 'date'],
             "type_demande"          =>      ['required', 'string'],
             "arrete_creation"       =>      ['sometimes', 'string'],
             "file_arrete_creation"  =>      ['file', 'sometimes', 'mimes:jpeg,png,jpg,gif,svg,pdf', 'max:2048'],
             "demande_signe"         =>      ['sometimes', 'string'],
             "formulaire_signe"      =>      ['sometimes', 'string'],
+            "web"                   =>      ['nullable', 'string'],
         ]);
 
         $departement = Departement::where('nom', $request->input("departement"))->firstOrFail();
@@ -681,17 +685,18 @@ class OperateurController extends Controller
             "rccm"                  =>      $request->input("registre_commerce"), /* choisir ninea ou rccm */
             "ninea"                 =>      $request->input("ninea"), /* enregistrer le numero de la valeur choisi (ninea ou rccm) */
             "bp"                    =>      $request->input("bp"),
+            "statut"                =>      $request->input("statut"),
+            "autre_statut"          =>      $request->input("autre_statut"),
+            "web"                   =>      $request->input("web"),
             'updated_by'            =>      Auth::user()->id
         ]);
 
         $user->save();
 
         $operateur->update([
-            'numero_arrive'        =>      $request->input("numero_arrive"),
+            'numero_arrive'        =>       $request->input("numero_arrive"),
             "numero_dossier"       =>       $request->input("numero_dossier"),
             "numero_agrement"      =>       $request->input("numero_agrement"),
-            /* "statut"               =>       $request->input("statut"), */
-            /* "autre_statut"         =>       $request->input("autre_statut"), */
             "type_demande"         =>       $request->input("type_demande"),
             "debut_quitus"         =>       $request->input("date_quitus"),
             "departements_id"      =>       $departement?->id,
@@ -701,6 +706,8 @@ class OperateurController extends Controller
             "arrete_creation"      =>       $request->input("arrete_creation"),
             "demande_signe"        =>       $request->input("demande_signe"),
             "formulaire_signe"     =>       $request->input("formulaire_signe"),
+            "quitusfiscal"         =>       $request->input("quitusfiscal"),
+            "cvsigne"              =>       $request->input("cvsigne"),
         ]);
 
         $operateur->save();
@@ -742,7 +749,7 @@ class OperateurController extends Controller
         $this->validate($request, [
             "departement"           =>      ['required', 'string'],
             "quitus"                =>      ['sometimes', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
-            "date_quitus"           =>      ['sometimes', 'string'],
+            "date_quitus"           =>      ['nullable', 'date'],
             "type_demande"          =>      ['required', 'string'],
         ]);
         

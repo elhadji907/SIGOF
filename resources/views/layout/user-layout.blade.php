@@ -1185,6 +1185,136 @@
             dropdownParent: $('#AddoperateurModal'),
         });
     </script>
+    
+    <script>
+        $('#select-field-statutop').select2({
+            theme: "bootstrap-5",
+            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+            placeholder: $(this).data('placeholder'),
+            closeOnSelect: true,
+            selectionCssClass: "select2--small",
+            dropdownCssClass: "select2--small",
+            dropdownParent: $('#AddOperateurModal'),
+        });
+    </script>
+
+    <script>
+        $('#select-field-departementop').select2({
+            theme: "bootstrap-5",
+            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+            placeholder: $(this).data('placeholder'),
+            closeOnSelect: true,
+            selectionCssClass: "select2--small",
+            dropdownCssClass: "select2--small",
+            dropdownParent: $('#AddOperateurModal'),
+        });
+    </script>
+
+    <script>
+        $('#select-field-registreop').select2({
+            theme: "bootstrap-5",
+            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+            placeholder: $(this).data('placeholder'),
+            closeOnSelect: true,
+            selectionCssClass: "select2--small",
+            dropdownCssClass: "select2--small",
+            dropdownParent: $('#AddOperateurModal'),
+        });
+    </script>
+
+    <script>
+        $('#select-fieldop').select2({
+            theme: "bootstrap-5",
+            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+            placeholder: $(this).data('placeholder'),
+            closeOnSelect: true,
+            selectionCssClass: "select2--small",
+            dropdownCssClass: "select2--small",
+            dropdownParent: $('#AddOperateurModal'),
+        });
+    </script>
+
+    <script>
+        $('#select-field-arrete_creation-op').select2({
+            theme: "bootstrap-5",
+            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+            placeholder: $(this).data('placeholder'),
+            closeOnSelect: true,
+            selectionCssClass: "select2--small",
+            dropdownCssClass: "select2--small",
+            dropdownParent: $('#AddOperateurModal'),
+        });
+    </script>
+    
+    <script>
+        $('#select-field-formulaire_signeop').select2({
+            theme: "bootstrap-5",
+            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+            placeholder: $(this).data('placeholder'),
+            closeOnSelect: true,
+            selectionCssClass: "select2--small",
+            dropdownCssClass: "select2--small",
+            dropdownParent: $('#AddOperateurModal'),
+        });
+    </script>
+
+    <script>
+        $('#select-field-quitusfiscal').select2({
+            theme: "bootstrap-5",
+            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+            placeholder: $(this).data('placeholder'),
+            closeOnSelect: true,
+            selectionCssClass: "select2--small",
+            dropdownCssClass: "select2--small",
+            dropdownParent: $('#AddOperateurModal'),
+        });
+    </script>
+
+    <script>
+        $('#select-field-cvsigne').select2({
+            theme: "bootstrap-5",
+            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+            placeholder: $(this).data('placeholder'),
+            closeOnSelect: true,
+            selectionCssClass: "select2--small",
+            dropdownCssClass: "select2--small",
+            dropdownParent: $('#AddOperateurModal'),
+        });
+    </script>
+
+    <script>
+        $('#select-field-quitusfiscalup').select2({
+            theme: "bootstrap-5",
+            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+            placeholder: $(this).data('placeholder'),
+            closeOnSelect: true,
+            selectionCssClass: "select2--small",
+            dropdownCssClass: "select2--small",
+        });
+    </script>
+
+    <script>
+        $('#select-field-cvsigneup').select2({
+            theme: "bootstrap-5",
+            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+            placeholder: $(this).data('placeholder'),
+            closeOnSelect: true,
+            selectionCssClass: "select2--small",
+            dropdownCssClass: "select2--small",
+        });
+    </script>
+
+    <script>
+        $('#select-field-civiliteop').select2({
+            theme: "bootstrap-5",
+            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+            placeholder: $(this).data('placeholder'),
+            closeOnSelect: true,
+            selectionCssClass: "select2--small",
+            dropdownCssClass: "select2--small",
+            dropdownParent: $('#AddOperateurModal'),
+        });
+    </script>
 
     <script>
         $('#select-field_categorie_op').select2({

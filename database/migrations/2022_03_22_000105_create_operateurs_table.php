@@ -69,6 +69,8 @@ class CreateOperateursTable extends Migration
             $table->string('file_arrete_creation', 200)->nullable();
             $table->string('demande_signe', 200)->nullable();
             $table->string('formulaire_signe', 200)->nullable();
+            $table->string('quitusfiscal', 200)->nullable();
+            $table->string('cvsigne', 200)->nullable();
             $table->string('file8', 200)->nullable();
             $table->string('file9', 200)->nullable();
             $table->string('file10', 200)->nullable();

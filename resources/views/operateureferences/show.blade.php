@@ -54,9 +54,9 @@
                             <thead>
                                 <tr>
                                     <th>DENOMINATION L'ORGANISME</th>
-                                    <th class="text-center">CONTACTS</th>
                                     <th>PERIODES D'INTERVENTION</th>
                                     <th>DESCRIPTION DES INTERVENTIONS</th>
+                                    <th class="text-center">CONTACTS</th>
                                     <th class="text-center"><i class="bi bi-gear"></i></th>
                                 </tr>
                             </thead>
@@ -65,9 +65,9 @@
                                 @foreach ($operateur->operateureferences as $operateureference)
                                     <tr>
                                         <td>{{ $operateureference?->organisme }}</td>
-                                        <td style="text-align: center;">{{ $operateureference?->contact }}</td>
                                         <td>{{ $operateureference?->periode }}</td>
                                         <td>{{ $operateureference?->description }}</td>
+                                        <td style="text-align: center;">{{ $operateureference?->contact }}</td>
                                         <td style="text-align: center;">
                                             <span class="d-flex align-items-baseline justify-content-center"><a
                                                     href="" class="btn btn-outline-info btn-sm mx-1"
@@ -123,7 +123,58 @@
                         </div>
                         <input type="hidden" name="operateur" value="{{ $operateur->id }}">
                         <div class="modal-body">
-                            <div class="form-floating mb-3">
+
+                            <div class="col-12 col-md-12 col-lg-12 mb-2">
+                                <label for="organisme" class="form-label">Dénomination de l'organisme<span
+                                        class="text-danger mx-1">*</span></label>
+                                <input type="text" name="organisme" value="{{ old('organisme') }}"
+                                    class="form-control form-control-sm @error('organisme') is-invalid @enderror"
+                                    placeholder="Dénomination de l'organisme">
+                                @error('organisme')
+                                    <span class="invalid-feedback" role="alert">
+                                        <div>{{ $message }}</div>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="col-12 col-md-12 col-lg-12 mb-2">
+                                <label for="periode" class="form-label">Période<span
+                                        class="text-danger mx-1">*</span></label>
+                                <input type="text" name="periode" value="{{ old('periode') }}"
+                                    class="form-control form-control-sm @error('periode') is-invalid @enderror"
+                                    placeholder="Période">
+                                @error('periode')
+                                    <span class="invalid-feedback" role="alert">
+                                        <div>{{ $message }}</div>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="col-12 col-md-12 col-lg-12 mb-2">
+                                <label for="contact" class="form-label">Contact</label>
+                                <input type="number" min="0" name="contact" value="{{ old('contact') }}"
+                                    class="form-control form-control-sm @error('contact') is-invalid @enderror"
+                                    placeholder="Contact">
+                                @error('contact')
+                                    <span class="invalid-feedback" role="alert">
+                                        <div>{{ $message }}</div>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="col-12 col-md-12 col-lg-12 mb-2">
+                                <label for="contact" class="form-label">Description</label>
+                                <textarea name="description" id="description" cols="30" rows="5"
+                                    class="form-control form-control-sm @error('description') is-invalid @enderror"
+                                    placeholder="Description de l'activité">{{ old('description') }}</textarea>
+
+                                @error('description')
+                                    <span class="invalid-feedback" role="alert">
+                                        <div>{{ $message }}</div>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            {{-- <div class="form-floating mb-3">
                                 <input type="text" name="organisme" value="{{ old('organisme') }}"
                                     class="form-control form-control-sm @error('organisme') is-invalid @enderror"
                                     id="organisme" placeholder="Dénomination de l'organisme" autofocus>
@@ -162,16 +213,13 @@
                                     class="form-control form-control-sm @error('description') is-invalid @enderror"
                                     placeholder="Ajouter les membres du jury">{{ old('description') }}</textarea>
 
-                                {{-- <input type="text" name="description" value="{{ old('description') }}"
-                                    class="form-control form-control-sm @error('description') is-invalid @enderror"
-                                    id="description" placeholder="Description"> --}}
                                 @error('description')
                                     <span class="invalid-feedback" role="alert">
                                         <div>{{ $message }}</div>
                                     </span>
                                 @enderror
                                 <label for="floatingInput">Description<span class="text-danger mx-1">*</span></label>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary btn-sm"
@@ -197,7 +245,58 @@
                             </div>
                             <input type="hidden" name="operateur" value="{{ $operateur->id }}">
                             <div class="modal-body">
-                                <div class="form-floating mb-3">
+                                
+
+                            <div class="col-12 col-md-12 col-lg-12 mb-2">
+                                <label for="organisme" class="form-label">Dénomination de l'organisme<span
+                                        class="text-danger mx-1">*</span></label>
+                                <input type="text" name="organisme" value="{{ $operateureference->organisme ?? old('organisme') }}"
+                                    class="form-control form-control-sm @error('organisme') is-invalid @enderror"
+                                    placeholder="Dénomination de l'organisme">
+                                @error('organisme')
+                                    <span class="invalid-feedback" role="alert">
+                                        <div>{{ $message }}</div>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="col-12 col-md-12 col-lg-12 mb-2">
+                                <label for="periode" class="form-label">Période<span
+                                        class="text-danger mx-1">*</span></label>
+                                <input type="text" name="periode" value="{{ $operateureference->periode ?? old('periode') }}"
+                                    class="form-control form-control-sm @error('periode') is-invalid @enderror"
+                                    placeholder="Période">
+                                @error('periode')
+                                    <span class="invalid-feedback" role="alert">
+                                        <div>{{ $message }}</div>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="col-12 col-md-12 col-lg-12 mb-2">
+                                <label for="contact" class="form-label">Contact</label>
+                                <input type="number" min="0" name="contact" value="{{ $operateureference->contact ?? old('contact') }}"
+                                    class="form-control form-control-sm @error('contact') is-invalid @enderror"
+                                    placeholder="Contact">
+                                @error('contact')
+                                    <span class="invalid-feedback" role="alert">
+                                        <div>{{ $message }}</div>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="col-12 col-md-12 col-lg-12 mb-2">
+                                <label for="contact" class="form-label">Description</label>
+                                <textarea name="description" id="description" cols="30" rows="5"
+                                    class="form-control form-control-sm @error('description') is-invalid @enderror"
+                                    placeholder="Description de l'activité">{{ $operateureference->description ?? old('description') }}</textarea>
+
+                                @error('description')
+                                    <span class="invalid-feedback" role="alert">
+                                        <div>{{ $message }}</div>
+                                    </span>
+                                @enderror
+                            </div>
+                                {{-- <div class="form-floating mb-3">
                                     <input type="text" name="organisme"
                                         value="{{ $operateureference->organisme ?? old('organisme') }}"
                                         class="form-control form-control-sm @error('organisme') is-invalid @enderror"
@@ -238,17 +337,13 @@
                                     <textarea name="description" id="description" cols="30" rows="5"
                                         class="form-control form-control-sm @error('description') is-invalid @enderror"
                                         placeholder="Ajouter les membres du jury">{{ $operateureference->description ?? old('description') }}</textarea>
-
-                                    {{-- <input type="text" name="description" value="{{ old('description') }}"
-                                    class="form-control form-control-sm @error('description') is-invalid @enderror"
-                                    id="description" placeholder="Description"> --}}
                                     @error('description')
                                         <span class="invalid-feedback" role="alert">
                                             <div>{{ $message }}</div>
                                         </span>
                                     @enderror
                                     <label for="floatingInput">Description<span class="text-danger mx-1">*</span></label>
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary btn-sm"

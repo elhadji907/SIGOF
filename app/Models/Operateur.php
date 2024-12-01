@@ -53,6 +53,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property string|null $file_arrete_creation
  * @property string|null $demande_signe
  * @property string|null $formulaire_signe
+ * @property string|null $quitusfiscal
+ * @property string|null $cvsigne
  * @property string|null $file8
  * @property string|null $file9
  * @property string|null $file10
@@ -155,6 +157,8 @@ class Operateur extends Model
 		'file_arrete_creation',
 		'demande_signe',
 		'formulaire_signe',
+		'quitusfiscal',
+		'cvsigne',
 		'file8',
 		'file9',
 		'file10'
