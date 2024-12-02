@@ -72,6 +72,7 @@
                                         </td>
                                         <td>{{ $commissionagrement?->lieu }}</td>
                                         <td style="text-align: center;">
+                                            {{-- <span class="badge bg-info">{{ count($commissionagrement?->operateurs) }}</span> --}}
                                             @foreach ($commissionagrement->operateurs as $operateur)
                                                 @if ($loop->last)
                                                     <span class="badge bg-info">{{ $loop->count }}</span>
@@ -151,7 +152,7 @@
                         <div class="card-header text-center bg-gradient-default">
                             <h1 class="h4 text-black mb-0">AJOUTER COMMISSION</h1>
                         </div>
-                       {{--  <div class="modal-header">
+                        {{--  <div class="modal-header">
                             <h5 class="modal-title">Ajouter un agrément</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div> --}}
@@ -225,7 +226,8 @@
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Fermer</button>
+                            <button type="button" class="btn btn-secondary btn-sm"
+                                data-bs-dismiss="modal">Fermer</button>
                             <button type="submit" class="btn btn-primary btn-sm">Enregistrer</button>
                         </div>
                     </form>
@@ -326,7 +328,8 @@
 
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Fermer</button>
+                                <button type="button" class="btn btn-secondary btn-sm"
+                                    data-bs-dismiss="modal">Fermer</button>
                                 <button type="submit" class="btn btn-primary btn-sm">Modifier</button>
                             </div>
                         </form>

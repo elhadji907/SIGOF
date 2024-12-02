@@ -350,12 +350,12 @@
                                 <b>{{ __('MOYENS PEDAGOGIQUES') }}</b>
                             </td>
 
-                            <td colspan="3" width="100%">
+                            {{--  <td colspan="3" width="100%">
                                 <b>Type</b>
-                            </td>
+                            </td> --}}
 
-                            <td colspan="3" width="100%">
-                                <b>Désignation</b>
+                            <td colspan="6" width="100%">
+                                <b>Type & Désignation</b>
                             </td>
                             <td style="text-align: center">
                                 <b>Qté</b>
@@ -366,12 +366,13 @@
                         </tr>
                         @foreach ($operateur?->operateurequipements as $operateurequipement)
                             <tr class="item">
-                                <td colspan="3">
+                                {{--  <td colspan="3">
                                     {{ $operateurequipement?->type }}
-                                </td>
+                                </td> --}}
 
-                                <td colspan="3">
-                                    {{ $operateurequipement?->designation }}
+                                <td colspan="6">
+                                    <b><u>Type</u></b> : {{ $operateurequipement?->type }} <br>
+                                    <b><u>Désignation</u></b> : {{ $operateurequipement?->designation }} <br>
                                 </td>
                                 <td style="text-align: center">
                                     {{ $operateurequipement?->quantite }}
@@ -397,25 +398,32 @@
                                 <b>{{ __('EXPERIENCES') }}</b>
                             </td>
 
-                            <td colspan="4">
+                            {{-- <td colspan="4">
                                 <b>Référence & Année</b>
-                            </td>
+                            </td> --}}
 
-                            <td colspan="3">
-                                <b>Activités</b>
+                            <td colspan="7">
+                                <b>Référence & Activités</b>
                             </td>
                         </tr>
                         @foreach ($operateur?->operateureferences as $operateureference)
                             <tr class="item">
-                                <td colspan="4">
+                                {{-- <td colspan="4">
                                     {{ $operateureference?->organisme . ',' }}
                                     {{ $operateureference?->periode }} <br>
                                     Tél : <a
                                         href="tel:+{{ $operateureference?->contact }}">{{ $operateureference?->contact }}</a>
-                                </td>
+                                </td> --}}
 
-                                <td colspan="3">
-                                    {{ $operateureference?->description }}
+                                <td colspan="7">
+                                    <b><u>Référence</u></b> : {{ $operateureference?->organisme . ',' }}
+                                    {{ $operateureference?->periode }} <br>
+                                    @if (!empty($operateureference?->contact))
+                                        Tél : <a
+                                            href="tel:+{{ $operateureference?->contact }}">{{ $operateureference?->contact }}</a>
+                                        <br>
+                                    @endif
+                                    <b><u>Description</u></b> : {{ $operateureference?->description }}
                                 </td>
                             </tr>
                         @endforeach
@@ -424,7 +432,7 @@
                             <td><b>{{ __('OBSERVATIONS') }}</b></td>
                             <td colspan="7">
                                 @if (!empty($operateur?->observations))
-                                    {{ nl2br($operateur?->observations) }}
+                                    {{ $operateur?->observations }}
                                 @endif
                             </td>
                         </tr>

@@ -76,7 +76,7 @@
                             </div> --}}
                             <a href="{{ route('showReserve', ['id' => $commissionagrement->id]) }}">
                                 <div class="card-body">
-                                    <h5 class="card-title">Opérateurs <span>| Agréés sou réserve</span></h5>
+                                    <h5 class="card-title">Opérateurs <span>| Sous réserve</span></h5>
                                     <div class="d-flex align-items-center">
                                         <div
                                             class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -164,9 +164,12 @@
                                     <table class="table datatables align-middle" id="table-operateurs">
                                         <thead>
                                             <tr>
-                                                <th>N° agrément</th>
-                                                <th>Opérateurs</th>
-                                                <th>Sigle</th>
+                                                @can('num-dossier-operateur')
+                                                    <th width="5%" class="text-center">Dossier</th>
+                                                @endcan
+                                                <th width="15%">N° agrément</th>
+                                                <th width="50%">Opérateurs</th>
+                                                <th width="10%">Sigle</th>
                                                 <th class="text-center">Modules</th>
                                                 <th width="15%" class="text-center">Statut</th>
                                                 <th><i class="bi bi-gear"></i></th>
@@ -177,6 +180,9 @@
                                             @foreach ($operateurs as $operateur)
                                                 @isset($operateur?->numero_agrement)
                                                     <tr>
+                                                        @can('num-dossier-operateur')
+                                                            <td class="text-center">{{ $operateur?->numero_dossier }}</td>
+                                                        @endcan
                                                         <td>{{ $operateur?->numero_agrement }}</td>
                                                         <td>{{ $operateur?->user?->operateur }}</td>
                                                         <td>{{ $operateur?->user?->username }}</td>

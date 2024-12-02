@@ -296,6 +296,13 @@ class DatabaseSeeder extends Seeder
         'operateurmodule-create',
         'operateurmodule-update',
         'operateurmodule-delete',
+        'afficher-dossier-operateur',
+        'afficher-operateur-name',
+        'afficher-operateur-email',
+        'afficher-operateur-telephone',
+        'afficher-operateur-module',
+        'afficher-operateur-formation',
+        'afficher-operateur-statut',
     ];
 
     public function run(): void

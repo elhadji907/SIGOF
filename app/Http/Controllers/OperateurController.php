@@ -347,6 +347,8 @@ class OperateurController extends Controller
             "arrete_creation"      =>       $request->input("arrete_creation"),
             "demande_signe"        =>       $request->input("demande_signe"),
             "formulaire_signe"     =>       $request->input("formulaire_signe"),
+            "quitusfiscal"         =>       $request->input("quitusfiscal"),
+            "cvsigne"              =>       $request->input("cvsigne"),
         ]);
 
         $operateur->save();

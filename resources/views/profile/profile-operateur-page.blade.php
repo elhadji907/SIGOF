@@ -452,6 +452,12 @@
                                                         <option value="Ninea">
                                                             Ninea
                                                         </option>
+                                                        <option value="Aucun">
+                                                            Aucun
+                                                        </option>
+                                                        <option value="Autre">
+                                                            Autre
+                                                        </option>
                                                     </select>
                                                     @error('rccm')
                                                         <span class="invalid-feedback" role="alert">

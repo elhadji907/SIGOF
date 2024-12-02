@@ -199,14 +199,31 @@
                             <table class="table datatables table-bordered table-hover table-striped" id="table-operateurs">
                                 <thead>
                                     <tr>
+                                        @can('afficher-dossier-operateur')
+                                            <th width="3%" class="text-center">Dossier</th>
+                                        @endcan
                                         <th width="15%" class="text-center">N° agrément</th>
-                                        <th width="45%">Opérateurs</th>
-                                        <th width="10%">Sigle</th>
-                                        <th width="5%" class="text-center">Modules</th>
-                                        <th width="5%" class="text-center">Formations</th>
-                                        <th width="15%" class="text-center">Statut</th>
+                                        @can('afficher-operateur-name')
+                                            <th width="40%">Opérateurs</th>
+                                        @endcan
+                                        <th>Sigle</th>
+                                        @can('afficher-operateur-email')
+                                            <th>Email</th>
+                                        @endcan
+                                        @can('afficher-operateur-telephone')
+                                            <th>Telephone</th>
+                                        @endcan
+                                        @can('afficher-operateur-module')
+                                            <th class="text-center">Modules</th>
+                                        @endcan
+                                        @can('afficher-operateur-formation')
+                                            <th class="text-center">Formations</th>
+                                        @endcan
+                                        @can('afficher-operateur-statut')
+                                            <th width="15%" class="text-center">Statut</th>
+                                        @endcan
                                         @can('operateur-show')
-                                            <th width="5%"><i class="bi bi-gear"></i></th>
+                                            <th width="2%"><i class="bi bi-gear"></i></th>
                                         @endcan
                                     </tr>
                                 </thead>
@@ -215,28 +232,53 @@
                                     @foreach ($operateurs as $operateur)
                                         {{-- @isset($operateur?->numero_agrement) --}}
                                         <tr>
+                                            @can('afficher-dossier-operateur')
+                                                <td class="text-center">{{ $operateur?->numero_dossier }}</td>
+                                            @endcan
                                             <td>{{ $operateur?->numero_agrement }}</td>
-                                            <td>{{ $operateur?->user?->operateur }}</td>
+                                            @can('afficher-operateur-name')
+                                                <td>{{ $operateur?->user?->operateur }}</td>
+                                            @endcan
                                             <td>{{ $operateur?->user?->username }}</td>
-                                            <td style="text-align: center;">
-                                                @foreach ($operateur->operateurmodules as $operateurmodule)
-                                                    @if ($loop->last)
-                                                        <a href="#"><span
-                                                                class="badge bg-info">{{ $loop->count }}</span></a>
-                                                    @endif
-                                                @endforeach
-                                            </td>
-                                            <td class="text-center">
-                                                @foreach ($operateur->formations as $formation)
-                                                    @if ($loop->last)
-                                                        <a href="#"><span
-                                                                class="badge bg-info">{{ $loop->count }}</span></a>
-                                                    @endif
-                                                @endforeach
-                                            </td>
-                                            <td style="text-align: center;"><span
-                                                    class="{{ $operateur->statut_agrement }}">
-                                                    {{ $operateur?->statut_agrement }}</span></td>
+                                            @can('afficher-operateur-email')
+                                                <td><a
+                                                        href="mailto:{{ $operateur?->user?->email }}">{{ $operateur?->user?->email }}</a>
+                                                </td>
+                                            @endcan
+                                            @can('afficher-operateur-telephone')
+                                                <td><a
+                                                        href="tel:+{{ $operateur?->user?->telephone }}">{{ $operateur?->user?->telephone }}</a>
+                                                </td>
+                                            @endcan
+                                            @can('afficher-operateur-module')
+                                                <td style="text-align: center;">
+                                                    {{-- <span
+                                                        class="badge bg-info">{{ count($operateur?->operateurmodules) }}</span> --}}
+                                                    @foreach ($operateur->operateurmodules as $operateurmodule)
+                                                        @if ($loop->last)
+                                                            <a href="#"><span
+                                                                    class="badge bg-info">{{ $loop->count }}</span></a>
+                                                        @endif
+                                                    @endforeach
+                                                </td>
+                                            @endcan
+                                            @can('afficher-operateur-formation')
+                                                <td class="text-center">
+                                                    {{-- <span
+                                                        class="badge bg-info">{{ count($operateur?->formations) }}</span> --}}
+                                                     @foreach ($operateur->formations as $formation)
+                                                        @if ($loop->last)
+                                                            <a href="#"><span
+                                                                    class="badge bg-info">{{ $loop->count }}</span></a>
+                                                        @endif
+                                                    @endforeach
+                                                </td>
+                                            @endcan
+                                            @can('afficher-operateur-statut')
+                                                <td style="text-align: center;"><span
+                                                        class="{{ $operateur?->statut_agrement }}">
+                                                        {{ $operateur?->statut_agrement }}</span></td>
+                                            @endcan
                                             @can('operateur-show')
                                                 <td>
                                                     <span class="d-flex align-items-baseline"><a
@@ -568,7 +610,7 @@
                                     </div>
 
                                     <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xs-12 col-xxl-4">
-                                        <label for="type_demande" class="form-label">TYPE Demande<span
+                                        <label for="type_demande" class="form-label">Type demande<span
                                                 class="text-danger mx-1">*</span></label>
                                         <select name="type_demande"
                                             class="form-select form-select-sm @error('type_demande') is-invalid @enderror"
@@ -592,8 +634,7 @@
                                     </div>
 
                                     <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xs-12 col-xxl-4">
-                                        <label for="web" class="form-label">Site web<span
-                                                class="text-danger mx-1">*</span></label>
+                                        <label for="web" class="form-label">Site web</label>
                                         <input type="text" name="web" value="{{ old('web') }}"
                                             class="form-control form-control-sm @error('web') is-invalid @enderror"
                                             id="web" placeholder="www.">
@@ -630,6 +671,12 @@
                                             </option>
                                             <option value="Ninea">
                                                 Ninea
+                                            </option>
+                                            <option value="Aucun">
+                                                Aucun
+                                            </option>
+                                            <option value="Autre">
+                                                Autre
                                             </option>
                                         </select>
                                         @error('rccm')
@@ -725,6 +772,12 @@
                                             </option>
                                             <option value="MEN">
                                                 MEN
+                                            </option>
+                                            <option value="Aucun">
+                                                Aucun
+                                            </option>
+                                            <option value="Autre">
+                                                Autre
                                             </option>
                                         </select>
                                         @error('arrete_creation')

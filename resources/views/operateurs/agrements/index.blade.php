@@ -148,9 +148,12 @@
                             <thead>
                                 <tr>
                                     {{-- <th width="15%">N° courrier</th> --}}
+                                    @can('afficher-dossier-operateur')
+                                        <th width="5%" class="text-center">Dossier</th>
+                                    @endcan
                                     <th width="5%" class="text-center">Année</th>
                                     <th width="5%" class="text-center">Type</th>
-                                    <th width="60%" class="text-center">Opérateurs</th>
+                                    <th width="55%" class="text-center">Opérateurs</th>
                                     <th width="10%" class="text-center">Sigle</th>
                                     <th width="15%" class="text-center">Statut</th>
                                     <th width="5%"><i class="bi bi-gear"></i></th>
@@ -162,6 +165,9 @@
                                     {{-- @isset($operateur?->numero_agrement) --}}
                                     <tr>
                                         {{-- <td>{{ $operateur?->courrier?->numero }}</td> --}}
+                                        @can('afficher-dossier-operateur')
+                                            <td class="text-center">{{ $operateur?->numero_dossier }}</td>
+                                        @endcan
                                         <td style="text-align: center">{{ $operateur?->annee_agrement?->format('Y') }}</td>
                                         <td style="text-align: center"><span class="{{ $operateur->type_demande }}">
                                                 {{ $operateur?->type_demande }}</span></td>

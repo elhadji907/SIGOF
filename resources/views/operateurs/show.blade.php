@@ -160,10 +160,13 @@
                                             <div class="col-12 col-md-4 col-lg-4 mb-2">
                                                 <div class="label">Quitus</div>
                                                 <div>
+                                                    @if (!empty($operateur?->debut_quitus))
                                                     <a class="btn btn-outline-secondary btn-sm" title="télécharger le quitus"
                                                         target="_blank" href="{{ asset($operateur?->getQuitus()) }}">
                                                         <i class="bi bi-file-image"></i>
                                                     </a>
+                                                        
+                                                    @endif
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-4 col-lg-4">

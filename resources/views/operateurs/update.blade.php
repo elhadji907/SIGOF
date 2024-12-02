@@ -300,7 +300,7 @@
 
 
                                         <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xs-12 col-xxl-4">
-                                            <label for="type_demande" class="form-label">TYPE Demande<span
+                                            <label for="type_demande" class="form-label">Type demande<span
                                                     class="text-danger mx-1">*</span></label>
                                             <select name="type_demande"
                                                 class="form-select form-select-sm @error('type_demande') is-invalid @enderror"
@@ -323,9 +323,9 @@
                                         </div>
 
                                         <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xs-12 col-xxl-4">
-                                            <label for="web" class="form-label">Site web<span
-                                                    class="text-danger mx-1">*</span></label>
-                                            <input type="text" name="web" value="{{ $operateur?->user?->web ??old('web') }}"
+                                            <label for="web" class="form-label">Site web</label>
+                                            <input type="text" name="web"
+                                                value="{{ $operateur?->user?->web ?? old('web') }}"
                                                 class="form-control form-control-sm @error('web') is-invalid @enderror"
                                                 id="web" placeholder="www.">
                                             @error('web')
@@ -362,6 +362,12 @@
                                                 </option>
                                                 <option value="Ninea">
                                                     Ninea
+                                                </option>
+                                                <option value="Aucun">
+                                                    Aucun
+                                                </option>
+                                                <option value="Autre">
+                                                    Autre
                                                 </option>
                                             </select>
                                             @error('registre_commerce')
@@ -459,6 +465,12 @@
                                                 </option>
                                                 <option value="MEN">
                                                     MEN
+                                                </option>
+                                                <option value="Aucun">
+                                                    Aucun
+                                                </option>
+                                                <option value="Autre">
+                                                    Autre
                                                 </option>
                                             </select>
                                             @error('arrete_creation')

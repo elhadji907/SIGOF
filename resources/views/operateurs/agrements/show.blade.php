@@ -156,10 +156,13 @@
                                         <div class="col-12 col-md-4 col-lg-4 mb-2">
                                             <div class="label">Quitus</div>
                                             <div>
-                                                <a class="btn btn-outline-secondary btn-sm" title="télécharger le quitus"
-                                                    target="_blank" href="{{ asset($operateur?->getQuitus()) }}">
-                                                    <i class="bi bi-file-image"></i>
-                                                </a>
+                                                @if (!empty($operateur?->debut_quitus))
+                                                    <a class="btn btn-outline-secondary btn-sm"
+                                                        title="télécharger le quitus" target="_blank"
+                                                        href="{{ asset($operateur?->getQuitus()) }}">
+                                                        <i class="bi bi-file-image"></i>
+                                                    </a>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-4 col-lg-4">
@@ -671,14 +674,14 @@
                                 <div class="tab-pane fade profile-overview pt-0" id="observations-overview">
                                     <div class="d-flex justify-content-between align-items-center mt-0">
                                         <h5 class="card-title">Observations</h5>
-                                        <span>Visite conformité : <span class="{{ $operateur?->visite_conformite }}">{{ $operateur?->visite_conformite }}</span></span>
+                                        <span>Visite conformité : <span
+                                                class="{{ $operateur?->visite_conformite }}">{{ $operateur?->visite_conformite }}</span></span>
                                         <a href="#" class="btn btn-success btn-sm float-end" data-bs-toggle="modal"
                                             data-bs-target="#addobservations" title="Ajouter">Conformité</a>
                                     </div>
                                     @if (!empty($operateur?->observations))
-                                        
-                                    <textarea name="observation" id="observation" rows="10" @readonly(true)
-                                        class="form-control form-control-sm @error('date_reponse') is-invalid @enderror" placeholder="Observations">{{ $operateur?->observations ?? old('observation') }}</textarea>
+                                        <textarea name="observation" id="observation" rows="10" @readonly(true)
+                                            class="form-control form-control-sm @error('date_reponse') is-invalid @enderror" placeholder="Observations">{{ $operateur?->observations ?? old('observation') }}</textarea>
                                     @endif
                                 </div>
                             </div>
@@ -1094,8 +1097,8 @@
                         @method('PUT')
                         <div class="modal-body">
                             <div class="row g-3">
-                                
-                                
+
+
                                 <div class="col-12 col-md-12 col-lg-12 col-sm-12 col-xs-12 col-xxl-12">
                                     <label for="visite_conformite" class="form-label">Visite conformité<span
                                             class="text-danger mx-1">*</span></label>
@@ -1121,7 +1124,7 @@
                                 </div>
 
                                 <div class="col-12 col-md-12 col-lg-12 col-sm-12 col-xs-12 col-xxl-12">
-                                     <label for="observation" class="form-label">Observations<span
+                                    <label for="observation" class="form-label">Observations<span
                                             class="text-danger mx-1">*</span></label>
                                     <textarea name="observation" id="observation" rows="10"
                                         class="form-control form-control-sm @error('date_reponse') is-invalid @enderror" placeholder="Observations">{{ $operateur?->observations ?? old('observation') }}</textarea>
