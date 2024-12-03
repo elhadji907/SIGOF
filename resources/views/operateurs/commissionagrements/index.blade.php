@@ -54,7 +54,8 @@
                                     <th width="52%">Commission agrément</th>
                                     <th width="8%" class="text-center">Session</th>
                                     <th width="5%" class="text-center">Année</th>
-                                    <th width="5%" class="text-center">Date</th>
+                                    <th width="5%" class="text-center">Date début</th>
+                                    <th width="5%" class="text-center">Date pv</th>
                                     <th width="22%">Lieu</th>
                                     <th width="5%" class="text-center">Operateurs</th>
                                     <th width="3%" class="text-center" scope="col"><i class="bi bi-gear"></i>
@@ -69,6 +70,8 @@
                                         <td style="text-align: center;">{{ $commissionagrement?->session }}</td>
                                         <td style="text-align: center;">{{ $commissionagrement?->annee }}</td>
                                         <td style="text-align: center;">{{ $commissionagrement?->date?->format('d/m/Y') }}
+                                        </td>
+                                        <td style="text-align: center;">{{ $commissionagrement?->description }}
                                         </td>
                                         <td>{{ $commissionagrement?->lieu }}</td>
                                         <td style="text-align: center;">
@@ -161,7 +164,7 @@
                                 <label for="floatingInput">Commission<span class="text-danger mx-1">*</span></label>
                                 <input type="text" name="commission" value="{{ old('commission') }}"
                                     class="form-control form-control-sm @error('commission') is-invalid @enderror"
-                                    id="commission" placeholder="Commission" autofocus>
+                                    id="commission" placeholder="Commission">
                                 @error('commission')
                                     <span class="invalid-feedback" role="alert">
                                         <div>{{ $message }}</div>
@@ -202,11 +205,22 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="floatingInput">Date commission</label>
+                                <label for="floatingInput">Date début</label>
                                 <input type="date" name="date" value="{{ old('date') }}"
                                     class="form-control form-control-sm @error('date') is-invalid @enderror"
-                                    id="date" placeholder="Date commission" autofocus>
+                                    id="date" placeholder="Date commission">
                                 @error('date')
+                                    <span class="invalid-feedback" role="alert">
+                                        <div>{{ $message }}</div>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label for="floatingInput">Lieu et date commission</label>
+                                <input type="text" name="description" value="{{ old('description') }}"
+                                    class="form-control form-control-sm @error('description') is-invalid @enderror"
+                                    id="description" placeholder="Ex: Fait à Dakar, le 10/12/2024">
+                                @error('description')
                                     <span class="invalid-feedback" role="alert">
                                         <div>{{ $message }}</div>
                                     </span>
@@ -260,7 +274,7 @@
                                     <input type="text" name="commission"
                                         value="{{ $commissionagrement->commission ?? old('commission') }}"
                                         class="form-control form-control-sm @error('commission') is-invalid @enderror"
-                                        id="commission" placeholder="Commission" autofocus>
+                                        id="commission" placeholder="Commission">
                                     @error('commission')
                                         <span class="invalid-feedback" role="alert">
                                             <div>{{ $message }}</div>
@@ -306,13 +320,26 @@
                                     <input type="date" name="date"
                                         value="{{ $commissionagrement?->date?->format('Y-m-d') ?? old('date') }}"
                                         class="form-control form-control-sm @error('date') is-invalid @enderror"
-                                        id="date" placeholder="Date commission" autofocus>
+                                        id="date" placeholder="Date commission">
                                     @error('date')
                                         <span class="invalid-feedback" role="alert">
                                             <div>{{ $message }}</div>
                                         </span>
                                     @enderror
                                 </div>
+
+                                <div class="mb-3">
+                                    <label for="floatingInput">Lieu et date commission</label>
+                                    <input type="text" name="description" value="{{ $commissionagrement->description ?? old('description') }}"
+                                        class="form-control form-control-sm @error('description') is-invalid @enderror"
+                                        id="description" placeholder="Ex: Fait à Dakar, le 10/12/2024">
+                                    @error('description')
+                                        <span class="invalid-feedback" role="alert">
+                                            <div>{{ $message }}</div>
+                                        </span>
+                                    @enderror
+                                </div>
+
                                 <div class="mb-3">
                                     <label for="floatingInput">Lieu</label>
                                     <input type="text" name="lieu"

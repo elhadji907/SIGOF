@@ -44,8 +44,10 @@
                                     <table class="table datatables align-middle" id="table-operateurs">
                                         <thead>
                                             <tr>
-                                                <th width="45%">Opérateurs</th>
-                                                <th width="25%">Adresse</th>
+                                                <th width="30%">Opérateurs</th>
+                                                <th width="20%">Adresse</th>
+                                                <th>Email</th>
+                                                <th>Télephone</th>
                                                 {{-- <th>Domaine</th>
                                                 <th>Niveau qualification</th> --}}
                                                 {{-- <th>Modules</th> --}}
@@ -61,8 +63,10 @@
                                             @foreach ($operateurs as $operateur)
                                                 @isset($operateur?->numero_agrement)
                                                     <tr>
-                                                        <td>{{ $operateurmodule?->operateur?->user?->operateur . ' (' . $operateurmodule?->operateur?->user?->username . ')' }}</td>
+                                                        <td>{{ $operateur?->user?->operateur . ' (' . $operateur?->user?->username . ')' }}</td>
                                                         <td>{{ $operateur?->user?->adresse }}</td>
+                                                        <td>{{ $operateur?->user?->email }}</td>
+                                                        <td>{{ $operateur?->user?->telephone }}</td>
                                                         {{-- <td>{{ count($operateur?->operateurmodules) }}</td> --}}
                                                         {{-- <td>{{ $operateur?->numero_agrement }}</td> --}}
                                                         {{-- <td style="text-align: center;">

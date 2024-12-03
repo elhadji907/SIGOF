@@ -1079,7 +1079,7 @@ class OperateurController extends Controller
 
             $operateurmodule->save();
 
-            Alert::success('Effectué !','Tous les modules ont été agréés');
+            Alert::success('Effectué !', 'Tous les modules ont été agréés');
         }
 
         return redirect()->back();
@@ -1395,6 +1395,37 @@ class OperateurController extends Controller
         $dompdf->render();
 
         $name = 'Fiche de synthèse ' . $commission?->commission . ' du ' . $commission?->date?->translatedFormat('l d F Y') . ' à ' . $commission?->lieu . '.pdf';
+
+        // Output the generated PDF to Browser
+        $dompdf->stream($name, ['Attachment' => false]);
+    }
+
+    public function lettreAgrement(Request $request)
+    {
+        $commission = Commissionagrement::find($request->input('id'));
+
+        $operateurs = Operateur::where('statut_agrement', 'agréer')
+            ->where('commissionagrements_id', $request->input('id'))
+            ->get();
+
+        $title = 'Lettres agrément opérateurs, ' . $commission?->commission . ' du ' . $commission?->date?->translatedFormat('l d F Y') . ' à ' . $commission?->lieu;
+
+        $dompdf = new Dompdf();
+        $options = $dompdf->getOptions();
+        $dompdf->setOptions($options);
+
+        $dompdf->loadHtml(view('operateurs.lettreagrement', compact(
+            'operateurs',
+            'title'
+        )));
+
+        // (Optional) Setup the paper size and orientation (portrait ou landscape)
+        $dompdf->setPaper('Letter', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        $name = 'Lettres agrément opérateurs, ' . $commission?->commission . ' du ' . $commission?->date?->translatedFormat('l d F Y') . ' à ' . $commission?->lieu . '.pdf';
 
         // Output the generated PDF to Browser
         $dompdf->stream($name, ['Attachment' => false]);

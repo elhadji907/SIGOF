@@ -419,6 +419,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::put('observations/{id}', [OperateurController::class, 'observations'])->name('observations');
     
     Route::post('ficheSynthese', [OperateurController::class, 'ficheSynthese'])->name('ficheSynthese');
+    
+    Route::post('lettreAgrement', [OperateurController::class, 'lettreAgrement'])->name('lettreAgrement');
 
     Route::get('arrivesop', [ArriveController::class, 'arrivesop'])->name('arrivesop');
 

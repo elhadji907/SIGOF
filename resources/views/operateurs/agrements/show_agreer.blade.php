@@ -27,12 +27,21 @@
                                 <p> | {{ $commissionagrement?->commission }}</p>
                             </span>
                         </div>
-                        <h5 class="card-title">
-                            {{ count($operateurs) . ' opérateur(s) agréé(s)' . ' pour un total de ' . count($operateurmodules) . ' modules dont ' . $count_operateurmodules_distinct . ' modules distincts' }}
-                        </h5>
-                        {{--  <h5> Statut:
-                            <span class="badge bg-success">agréer</span>
-                        </h5> --}}
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="card-title">
+                                {{ count($operateurs) . ' opérateur(s) agréé(s)' . ' pour un total de ' . count($operateurmodules) . ' modules dont ' . $count_operateurmodules_distinct . ' modules distincts' }}
+                            </h5>
+                            @if (auth()->user()->hasRole('super-admin|admin'))
+                                <form action="{{ route('lettreAgrement') }}" method="post" target="_blank">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{ $commissionagrement->id }}">
+                                    <button type="submit" class="btn btn-secondary btn-sm mx-1"><i
+                                            class="bi bi-file-earmark-pdf-fill" title="Lettres agréments"></i>&nbsp;Générer
+                                        lettres agréments</button>
+                                </form>
+                            @endif
+
+                        </div>
                         {{-- <h5> Opérateurs:
                             <span class="badge bg-secondary">{{ count($operateurs) }}</span>
                         </h5> --}}

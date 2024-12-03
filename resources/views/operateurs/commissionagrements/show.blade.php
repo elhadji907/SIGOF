@@ -164,7 +164,7 @@
                                     <table class="table datatables align-middle" id="table-operateurs">
                                         <thead>
                                             <tr>
-                                                @can('num-dossier-operateur')
+                                                @can('afficher-dossier-operateur')
                                                     <th width="5%" class="text-center">Dossier</th>
                                                 @endcan
                                                 <th width="15%">N° agrément</th>
@@ -180,7 +180,7 @@
                                             @foreach ($operateurs as $operateur)
                                                 @isset($operateur?->numero_agrement)
                                                     <tr>
-                                                        @can('num-dossier-operateur')
+                                                        @can('afficher-dossier-operateur')
                                                             <td class="text-center">{{ $operateur?->numero_dossier }}</td>
                                                         @endcan
                                                         <td>{{ $operateur?->numero_agrement }}</td>
@@ -259,7 +259,7 @@
                 [10, 25, 50, 100, "Tout"]
             ],
             "order": [
-                [2, 'desc']
+                [0, 'desc']
             ],
             language: {
                 "sProcessing": "Traitement en cours...",

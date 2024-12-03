@@ -35,6 +35,7 @@ class CommissionagrementController extends Controller
             'commission'    =>  $request->input('commission'),
             'session'       =>  $request->input('session'),
             'date'          =>  $request->input('date'),
+            'description'   =>  $request->input('description'),
             'lieu'          =>  $request->input('lieu'),
             'annee'         =>  $request->input('annee'),
 
@@ -63,6 +64,7 @@ class CommissionagrementController extends Controller
             'commission'    =>  $request->input('commission'),
             'session'       =>  $request->input('session'),
             'date'          =>  $request->input('date'),
+            'description'   =>  $request->input('description'),
             'lieu'          =>  $request->input('lieu'),
             'annee'         =>  $request->input('annee'),
 

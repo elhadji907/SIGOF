@@ -61,7 +61,7 @@
                                             @foreach ($operateurs as $operateur)
                                                 @isset($operateur?->numero_agrement)
                                                     <tr>
-                                                        <td>{{ $operateur?->operateur?->user?->operateur . ' (' . $operateur?->operateur?->user?->username . ')' }}</td>
+                                                        <td>{{ $operateur?->user?->operateur . ' (' . $operateur?->user?->username . ')' }}</td>
                                                         <td>{{ $operateur?->user?->adresse }}</td>
                                                         {{-- <td>{{ count($operateur?->operateurmodules) }}</td> --}}
                                                         <td>{{ $operateur?->numero_agrement }}</td>
