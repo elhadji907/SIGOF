@@ -6,6 +6,7 @@ use App\Models\Arrive;
 use App\Models\Commissionagrement;
 use App\Models\Courrier;
 use App\Models\Departement;
+use App\Models\Moduleoperateurstatut;
 use App\Models\Operateur;
 use App\Models\Operateureference;
 use App\Models\Operateurequipement;
@@ -754,7 +755,7 @@ class OperateurController extends Controller
             "date_quitus"           =>      ['nullable', 'date'],
             "type_demande"          =>      ['required', 'string'],
         ]);
-        
+
         foreach (Auth::user()->roles as $key => $role) {
             if (!empty($role?->name) && ($role?->name != 'super-admin') && ($role?->name != 'admin') && ($role?->name != 'DIOF') && ($role?->name != 'DEC')) {
                 $this->authorize('update', $operateur);
@@ -1063,6 +1064,58 @@ class OperateurController extends Controller
             Alert::success("Effectué !", "l'opérateur " . $operateur?->user?->username . ' a été agréé');
             return redirect()->back();
         }
+    }
+
+    public function agreerAllModuleOperateur($id)
+    {
+        $operateur = Operateur::findOrFail($id);
+
+        foreach ($operateur->operateurmodules as $key => $operateurmodule) {
+
+            $operateurmodule->update([
+                'statut'             => 'agréer',
+                'users_id'           =>  Auth::user()->id,
+            ]);
+
+            $operateurmodule->save();
+
+            Alert::success('Effectué !','Tous les modules ont été agréés');
+        }
+
+        return redirect()->back();
+
+        /* $moduleoperateur_count = $operateur->operateurmodules->count();
+
+        $count_nouveau = $operateur->operateurmodules->where('statut', 'nouveau')->count();
+
+        if ($count_nouveau > 0) {
+            Alert::warning('Désolez ! ', 'il reste de(s) module(s) à traiter');
+            return redirect()->back();
+        } elseif ($moduleoperateur_count <= '0') {
+            Alert::warning('Désolez ! ', 'aucun module disponible pour cet opérateur');
+            return redirect()->back();
+        } else {
+            $operateur->update([
+                'statut_agrement'    => 'agréer',
+                'motif'              => null,
+                'date'               =>  date('Y-m-d'),
+            ]);
+
+            $operateur->save();
+
+            $validateoperateur = new Validationoperateur([
+                'validated_id'       =>       Auth::user()->id,
+                'action'             =>      'agréer',
+                'session'            =>      $operateur?->session_agrement,
+                'operateurs_id'      =>      $operateur?->id
+
+            ]);
+
+            $validateoperateur->save();
+
+            Alert::success("Effectué !", "l'opérateur " . $operateur?->user?->username . ' a été agréé');
+            return redirect()->back();
+        } */
     }
 
     public function retirerOperateur($id)

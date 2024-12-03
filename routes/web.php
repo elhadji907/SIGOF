@@ -423,6 +423,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('arrivesop', [ArriveController::class, 'arrivesop'])->name('arrivesop');
 
     Route::patch('/operateurs/{id}', [OperateurController::class, 'updated'])->name('operateurs.updated');
+    
+    Route::put('/agreerAllModuleOperateur/{id}', [OperateurController::class, 'agreerAllModuleOperateur'])->name('agreerAllModuleOperateur');
+
     /* Vues ressouces */
     Route::resource('/users', UserController::class);
     Route::resource('/permissions', PermissionController::class);

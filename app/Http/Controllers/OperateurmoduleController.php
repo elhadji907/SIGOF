@@ -6,6 +6,7 @@ use App\Models\Moduleoperateurstatut;
 use App\Models\Operateur;
 use App\Models\Operateurmodule;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -61,10 +62,10 @@ class OperateurmoduleController extends Controller
             ]);
 
             $operateurmodule->save();
-        } elseif ($operateur->user->categorie == 'Privé' && $total_module >= 20) {
+        } elseif ($operateur->user->categorie == 'Privé' && $total_module >= 30) {
             Alert::warning('Attention ! ', 'Vous avez atteint le nombre de modules autorisés');
             return redirect()->back();
-        } elseif ($total_module >= 25) {
+        } elseif ($total_module >= 40) {
             Alert::warning('Attention ! ', 'Vous avez atteint le nombre de modules autorisés');
             return redirect()->back();
         } else {
@@ -97,10 +98,16 @@ class OperateurmoduleController extends Controller
     public function update(Request $request, $id)
     {
         $operateurmodule = Operateurmodule::findOrFail($id);
-        if ($operateurmodule->statut != 'nouveau') {
-            Alert::warning('Attention ! ', 'action impossible module déjà traité');
-            return redirect()->back();
+
+        foreach (Auth::user()->roles as $key => $role) {
+            if (!empty($role?->name) && ($role?->name != 'super-admin') && ($role?->name != 'admin') && ($role?->name != 'DIOF') && ($role?->name != 'DEC')) {
+                if ($operateurmodule->statut != 'nouveau') {
+                    Alert::warning('Attention ! ', 'action impossible module déjà traité');
+                    return redirect()->back();
+                }
+            }
         }
+
         $operateurmodule_find    = DB::table('operateurmodules')->where('module', $request->input("module"))->first();
 
         /* $operateurmodule_count    = DB::table('operateurmodules')

@@ -385,20 +385,29 @@
                                                             @method('PUT')
                                                             <button class="show_confirm_valider btn btn-sm mx-1"><i
                                                                     class="bi bi-check2-circle"
-                                                                    title="Valider"></i>&nbsp;Agréer</button>
+                                                                    title="Valider"></i>&nbsp;agréer opérateur</button>
                                                         </form>
                                                         <div>
                                                             <button class="btn btn-sm mx-1" data-bs-toggle="modal"
                                                                 data-bs-target="#ReserveAgrementModal{{ $operateur->id }}"><i
                                                                     class="bi bi-chat-square-text"
-                                                                    title="Justification"></i>&nbsp;Sous réserve
+                                                                    title="Justification"></i>&nbsp;sous réserve
                                                             </button>
                                                         </div>
                                                         <button class="btn btn-sm mx-1" data-bs-toggle="modal"
                                                             data-bs-target="#RejetAgrementModal{{ $operateur->id }}"><i
                                                                 class="bi bi-trash"
-                                                                title="Justification"></i>&nbsp;Rejeter
+                                                                title="Justification"></i>&nbsp;rejeter
                                                         </button>
+                                                        <form
+                                                            action="{{ route('agreerAllModuleOperateur', ['id' => $operateur->id]) }}"
+                                                            method="post">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <button class="show_confirm_valider btn btn-sm mx-1"><i
+                                                                class="bi bi-check2-circle"
+                                                                title="Valider"></i>&nbsp;agréer modules</button>
+                                                        </form>
                                                     </ul>
                                                 </div>
                                             </span>
@@ -449,15 +458,15 @@
                                                                                 @csrf
                                                                                 @method('PUT')
                                                                                 <button
-                                                                                    class="show_confirm_valider dropdown-item btn btn-sm mx-1">Agréer</button>
+                                                                                    class="show_confirm_valider dropdown-item btn btn-sm mx-1">agréer</button>
                                                                             </form>
                                                                             <button class="dropdown-item btn btn-sm mx-1"
                                                                                 data-bs-toggle="modal"
-                                                                                data-bs-target="#AddRegionModal{{ $operateurmodule->id }}">Rejeter
+                                                                                data-bs-target="#AddRegionModal{{ $operateurmodule->id }}">rejeter
                                                                             </button>
                                                                             <button class="dropdown-item btn btn-sm mx-1"
                                                                                 data-bs-toggle="modal"
-                                                                                data-bs-target="#EditOperateurmoduleModal{{ $operateurmodule->id }}">Modifier
+                                                                                data-bs-target="#EditOperateurmoduleModal{{ $operateurmodule->id }}">modifier
                                                                             </button>
                                                                             <form
                                                                                 action="{{ route('operateurmodules.destroy', $operateurmodule->id) }}"
@@ -466,7 +475,7 @@
                                                                                 @method('DELETE')
                                                                                 <button type="submit"
                                                                                     class="dropdown-item show_confirm"
-                                                                                    title="Supprimer">Supprimer</button>
+                                                                                    title="Supprimer">supprimer</button>
                                                                             </form>
                                                                         </ul>
                                                                     </div>
@@ -486,7 +495,8 @@
                                 <div class="tab-pane fade profile-overview pt-0" id="observations-overview">
                                     <div class="d-flex justify-content-between align-items-center mt-0">
                                         <h5 class="card-title">Observations</h5>
-                                        <span>Visite conformité : <span class="{{ $operateur?->visite_conformite }}">{{ $operateur?->visite_conformite }}</span></span>
+                                        <span>Visite conformité : <span
+                                                class="{{ $operateur?->visite_conformite }}">{{ $operateur?->visite_conformite }}</span></span>
                                         <a href="#" class="btn btn-success btn-sm float-end" data-bs-toggle="modal"
                                             data-bs-target="#addobservations" title="Ajouter">Conformité</a>
                                     </div>
@@ -766,7 +776,7 @@
                         @method('PUT')
                         <div class="modal-body">
                             <div class="row g-3">
-                                
+
                                 <div class="col-12 col-md-12 col-lg-12 col-sm-12 col-xs-12 col-xxl-12">
                                     <label for="visite_conformite" class="form-label">Visite conformité<span
                                             class="text-danger mx-1">*</span></label>
@@ -792,8 +802,8 @@
                                 </div>
 
                                 <div class="col-12 col-md-12 col-lg-12 col-sm-12 col-xs-12 col-xxl-12">
-                                     <label for="observation" class="form-label">Observations<span
-                                        class="text-danger mx-1">*</span></label>
+                                    <label for="observation" class="form-label">Observations<span
+                                            class="text-danger mx-1">*</span></label>
                                     <textarea name="observation" id="observation" rows="10"
                                         class="form-control form-control-sm @error('date_reponse') is-invalid @enderror" placeholder="Observations">{{ $operateur?->observations ?? old('observation') }}</textarea>
                                     @error('observation')
