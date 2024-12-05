@@ -11,7 +11,7 @@
 
     <!-- Favicons -->
     <link href="{{ asset('assets/img/favicon-onfp.png') }}" rel="icon">
-    <link href="{{ asset('assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+    <link href="{{ asset('assets/img/favicon-onfp.png') }}" rel="icon">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -2162,17 +2162,6 @@
     <script src="{{ asset('asset/vendor/purecounter/purecounter_vanilla.js') }}"></script>
 
     <!-- Main JS File -->
-    <script src="{{ asset('asset/js/main.js') }}"></script>
-
-    <!-- Vendor JS Files -->
-    {{-- <script src="{{ asset('asset/vendor/apexcharts/apexcharts.min.js') }}"></script>
-    <script src="{{ asset('asset/vendor/chart.js/chart.umd.js') }}"></script>
-    <script src="{{ asset('asset/vendor/echarts/echarts.min.js') }}"></script>
-    <script src="{{ asset('asset/vendor/quill/quill.min.js') }}"></script>
-    <script src="{{ asset('asset/vendor/simple-datatables/simple-datatables.js') }}"></script>
-    <script src="{{ asset('asset/vendor/tinymce/tinymce.min.js') }}"></script> --}}
-
-    <!-- Template Main JS File -->
     <script src="{{ asset('asset/js/main.js') }}"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="

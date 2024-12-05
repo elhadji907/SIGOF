@@ -821,6 +821,7 @@
                                 </div>
                                 <div class="modal-body">
                                     <input type="hidden" name="id" value="{{ $operateurmodule->id }}">
+                                    <input type="hidden" name="operateur" value="{{ $operateurmodule->operateur->id }}">
 
                                     <div class="col-12 col-md-12 col-lg-12 mb-0">
                                         <label for="module" class="form-label">Module<span

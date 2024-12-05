@@ -57,8 +57,8 @@
                                         <tr>
                                             <td style="text-align: center;">{{ $operateurmodule?->operateur?->numero_agrement }}
                                             </td>
-                                            <td style="text-align: center;">{{ $operateurmodule?->operateur?->name }}</td>
-                                            <td style="text-align: center;">{{ $operateurmodule?->operateur?->sigle }}</td>
+                                            <td style="text-align: center;">{{ $operateurmodule?->operateur?->user?->operateur }}</td>
+                                            <td style="text-align: center;">{{ $operateurmodule?->operateur?->user?->username }}</td>
                                             <td style="text-align: center;">
                                                 @foreach ($operateurmodule?->operateur?->operateurmodules as $operateurmodule)
                                                     @if ($loop->last)

@@ -97,6 +97,12 @@ class OperateurmoduleController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'module'                => 'required|string',
+            'domaine'               => 'required|string',
+            'categorie'             => 'required|string',
+            'niveau_qualification'  => 'required|string',
+        ]);
         $operateurmodule = Operateurmodule::findOrFail($id);
 
         foreach (Auth::user()->roles as $key => $role) {
@@ -117,13 +123,7 @@ class OperateurmoduleController extends Controller
 
         $operateur_find  = Operateurmodule::where('operateurs_id', $operateurmodule->operateurs_id)->get();
 
-        $this->validate($request, [
-            'module'                => 'required|string',
-            'domaine'               => 'required|string',
-            'niveau_qualification'  => 'required|string',
-        ]);
-
-        if (isset($operateurmodule_find) && $operateurmodule_find->module == $operateurmodule->module) {
+        if (!empty($operateurmodule_find) && $operateurmodule_find->module == $operateurmodule->module) {
             $operateurmodule->update([
                 "module"                =>  $request->input("module"),
                 "domaine"               =>  $request->input("domaine"),
@@ -133,10 +133,22 @@ class OperateurmoduleController extends Controller
             ]);
             Alert::success($operateurmodule->module, 'mis à jour');
             $operateurmodule->save();
-        } elseif (isset($operateurmodule_find)) {
+            
+        } elseif (!empty($operateurmodule_find)) {
             foreach ($operateur_find as $value) {
                 if (($value->module == $operateurmodule_find->module)) {
                     Alert::warning('Attention ! ' . $value->module, 'a déjà été choisi');
+                    return redirect()->back();
+                } else {
+                    $operateurmodule->update([
+                        "module"                =>  $request->input("module"),
+                        "domaine"               =>  $request->input("domaine"),
+                        "categorie"             =>  $request->input("categorie"),
+                        'niveau_qualification'  =>  $request->input('niveau_qualification'),
+                        'operateurs_id'         =>  $operateurmodule->operateurs_id,
+                    ]);
+                    Alert::success($operateurmodule->module, 'mis à jour');
+                    $operateurmodule->save();
                     return redirect()->back();
                 }
             }

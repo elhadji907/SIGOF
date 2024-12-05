@@ -60,7 +60,7 @@
                                         <td style="text-align: center;">{{ $operateurmodule?->module }}</td>
                                         <td style="text-align: center;">{{ $operateurmodule?->categorie }}</td>
                                         <td style="text-align: center;">{{ $operateurmodule?->niveau_qualification }}</td>
-                                        <td style="text-align: center;">{{ $operateurmodule?->operateur?->sigle }}</td>
+                                        <td style="text-align: center;">{{ $operateurmodule?->operateur?->user?->username }}</td>
                                         <td style="text-align: center;">
                                             <span
                                                 class="{{ $operateurmodule?->statut }}">{{ $operateurmodule?->statut }}</span>
@@ -123,7 +123,7 @@
                             </div>
                             <div class="modal-body">
                                 <input type="hidden" name="id" value="{{ $operateurmodule->id }}">
-
+                                <input type="hidden" name="operateur" value="{{ $operateurmodule->operateur->id }}">
                                 <div class="col-12 col-md-12 col-lg-12 mb-0">
                                     <label for="module" class="form-label">Module<span
                                             class="text-danger mx-1">*</span></label>
