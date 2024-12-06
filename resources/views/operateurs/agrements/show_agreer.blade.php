@@ -32,13 +32,74 @@
                                 {{ count($operateurs) . ' opérateur(s) agréé(s)' . ' pour un total de ' . count($operateurmodules) . ' modules dont ' . $count_operateurmodules_distinct . ' modules distincts' }}
                             </h5>
                             @if (auth()->user()->hasRole('super-admin|admin'))
-                                <form action="{{ route('lettreAgrement') }}" method="post" target="_blank">
-                                    @csrf
-                                    <input type="hidden" name="id" value="{{ $commissionagrement->id }}">
-                                    <button type="submit" class="btn btn-secondary btn-sm mx-1"><i
-                                            class="bi bi-file-earmark-pdf-fill" title="Lettres agréments"></i>&nbsp;Générer
-                                        lettres agréments</button>
-                                </form>
+                                <span class="d-flex align-items-baseline">
+                                    <a href="#" class="btn btn-secondary btn-sm float-end" data-bs-toggle="modal"
+                                        data-bs-target="#AddUserModal" title="Générer">Générer lettres</a>
+                                    <div class="filter">
+                                        <a class="icon" href="#" data-bs-toggle="dropdown"><i
+                                                class="bi bi-three-dots"></i></a>
+                                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                            <li>
+                                                <form action="{{ route('lettreAgrement') }}" method="post" target="_blank">
+                                                    @csrf
+                                                    <input type="hidden" name="id"
+                                                        value="{{ $commissionagrement->id }}">
+                                                    <input type="hidden" name="value2" value="50">
+                                                    <input type="hidden" name="value1" value="0">
+                                                    <button type="submit" class="dropdown-item btn btn-sm">De 01 à
+                                                        50</button>
+                                                </form>
+                                            </li>
+                                            <li>
+                                                <form action="{{ route('lettreAgrement') }}" method="post" target="_blank">
+                                                    @csrf
+                                                    <input type="hidden" name="id"
+                                                        value="{{ $commissionagrement->id }}">
+                                                    <input type="hidden" name="value2" value="100">
+                                                    <input type="hidden" name="value1" value="50">
+                                                    <button type="submit" class="dropdown-item btn btn-sm">De 50 à
+                                                        100</button>
+                                                </form>
+                                            </li>
+                                            <li>
+                                                <form action="{{ route('lettreAgrement') }}" method="post" target="_blank">
+                                                    @csrf
+                                                    <input type="hidden" name="id"
+                                                        value="{{ $commissionagrement->id }}">
+                                                    <input type="hidden" name="value2" value="150">
+                                                    <input type="hidden" name="value1" value="100">
+                                                    <button type="submit" class="dropdown-item btn btn-sm">De 100 à
+                                                        150</button>
+                                                </form>
+                                            </li>
+                                            <li>
+                                                <form action="{{ route('lettreAgrement') }}" method="post"
+                                                    target="_blank">
+                                                    @csrf
+                                                    <input type="hidden" name="id"
+                                                        value="{{ $commissionagrement->id }}">
+                                                    <input type="hidden" name="value2"
+                                                        value="{{ count($commissionagrement->operateurs) }}">
+                                                    <input type="hidden" name="value1" value="150">
+                                                    <button type="submit" class="dropdown-item btn btn-sm">De 150 à
+                                                        {{ count($commissionagrement->operateurs) }}</button>
+                                                </form>
+                                            </li>
+                                            {{-- <li>
+                                                <form action="{{ route('lettreAgrement') }}" method="post"
+                                                    target="_blank">
+                                                    @csrf
+                                                    <input type="hidden" name="id"
+                                                        value="{{ $commissionagrement->id }}">
+                                                    <input type="hidden" name="value2" value="250">
+                                                    <input type="hidden" name="value1" value="201">
+                                                    <button type="submit" class="dropdown-item btn btn-sm">De 200 à
+                                                        250</button>
+                                                </form>
+                                            </li> --}}
+                                        </ul>
+                                    </div>
+                                </span>
                             @endif
 
                         </div>

@@ -1404,7 +1404,11 @@ class OperateurController extends Controller
     {
         $commission = Commissionagrement::find($request->input('id'));
 
-        $operateurs = Operateur::where('statut_agrement', 'agréer')
+        $operateurs_count = Operateur::where('statut_agrement', 'agréer')
+            ->where('commissionagrements_id', $request->input('id'))
+            ->count();
+
+        $operateurs = Operateur::offset($request->value1)->limit($request->value2)->where('statut_agrement', 'agréer')
             ->where('commissionagrements_id', $request->input('id'))
             ->get();
 
